@@ -7,6 +7,10 @@ require('packer').startup(function(use)
   -- Package manager, packer manages itself :D
   use 'wbthomason/packer.nvim'
 
+  -- Speed up loading Lua modules in Neovim to improve startup time.
+  -- https://github.com/lewis6991/impatient.nvim
+  use 'lewis6991/impatient.nvim'
+
   -- LSP Configuration & Plugins
   use {
     'neovim/nvim-lspconfig',
@@ -21,6 +25,20 @@ require('packer').startup(function(use)
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
     },
+  }
+
+  -- Terminal Panes
+  -- https://github.com/s1n7ax/nvim-terminal
+  use('s1n7ax/nvim-terminal')
+
+  -- Nvim Tree (A file explorer)
+  -- https://github.com/nvim-tree/nvim-tree.lua
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
 
   -- Prettier

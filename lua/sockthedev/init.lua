@@ -1,5 +1,10 @@
-require("sockthedev.set")
-require("sockthedev.remap")
+-- Speed up loading Lua modules in Neovim to improve startup time.
+-- https://github.com/lewis6991/impatient.nvim
+require('impatient')
+
+require('sockthedev.global')
+require('sockthedev.set')
+require('sockthedev.remap')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
