@@ -2,9 +2,9 @@
 -- https://github.com/lewis6991/impatient.nvim
 require('impatient')
 
-require('sockthedev.global')
-require('sockthedev.set')
-require('sockthedev.remap')
+require('sockthedev.config')
+require('sockthedev.keymaps')
+require('sockthedev.plugins')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
