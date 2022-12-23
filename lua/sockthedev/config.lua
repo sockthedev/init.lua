@@ -1,6 +1,9 @@
 -- Vim Options 
 -- :help vim.o
 
+-- Ensure terminals can hide/show without being recreated
+vim.o.hidden = true
+
 -- Using Neovim Tree, so need to disable netrw
 -- Disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
