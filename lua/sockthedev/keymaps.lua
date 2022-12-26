@@ -16,11 +16,22 @@ vim.g.maplocalleader = ' '
 -- Disable space in normal/visual
 keymap({ 'n', 'v' }, '<Space>', '<Nop>', opts)
 
+-- This is something not saved. Or is it? Is it still?
+
 -- Disable arrow keys
 keymap('', '<up>', '<nop>')
 keymap('', '<down>', '<nop>')
 keymap('', '<left>', '<nop>')
 keymap('', '<right>', '<nop>')
+
+-- Reload configuration without restart nvim
+keymap('n', '<leader>r', ':so %<CR>')
+
+-- Fast saving with <leader> and s
+keymap('n', '<leader>s', ':w<CR>')
+
+-- Close all windows and exit from Neovim with <leader> and q
+keymap('n', '<leader>Q', ':qa<CR>')
 
 -- Map kk to Esc when editing
 keymap('i', 'kk', '<Esc>')
@@ -36,8 +47,11 @@ keymap("n", "<C-u>", "<C-u>zz", opts)
 keymap("n", "<leader>j", "ddp", opts)
 keymap("n", "<leader>k", "ddkP", opts)
 
--- Copy line
+-- Duplicate line
 keymap("n", "<leader>l", "yyp", opts)
+keymap("n", "<leader>l", "yyp", opts)
+keymap("n", "<leader>L", "yyP", opts)
+keymap("n", "<leader>L", "yyP", opts)
 
 -- New empty line
 keymap("n", "<leader>o", "o<Esc>", opts)

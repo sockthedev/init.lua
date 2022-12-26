@@ -29,7 +29,7 @@ vim.o.mouse = 'a'
 vim.o.undofile = true
 
 -- Search highlighting
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 -- Case insensitive searching UNLESS /C or capital in search
