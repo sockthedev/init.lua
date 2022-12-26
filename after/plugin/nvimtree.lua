@@ -4,8 +4,10 @@
 
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
+  open_on_setup = true,
   view = {
     adaptive_size = true,
+    hide_root_folder = true,
     mappings = {
       list = {
         { key = "u", action = "dir_up" },

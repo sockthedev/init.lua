@@ -2,7 +2,7 @@
 -- https://github.com/akinsho/toggleterm.nvim
 
 require("toggleterm").setup({
-  size = 60,
+  size = 100,
   open_mapping = [[<c-;>]],
   direction = "vertical",
 })
