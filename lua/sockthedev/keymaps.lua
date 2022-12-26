@@ -49,8 +49,6 @@ keymap("n", "<leader>k", "ddkP", opts)
 
 -- Duplicate line
 keymap("n", "<leader>l", "yyp", opts)
-keymap("n", "<leader>l", "yyp", opts)
-keymap("n", "<leader>L", "yyP", opts)
 keymap("n", "<leader>L", "yyP", opts)
 
 -- New empty line
@@ -90,7 +88,9 @@ keymap('t', '<Esc>', '<C-\\><C-n>', opts)              -- exit
 
 -- Nvim Tree
 
-keymap('n', 'tF', ':NvimTreeFindFile', opts)
+keymap('n', 'tf', ':NvimTreeFindFile<CR>', opts)
+keymap('n', 'tt', ':NvimTreeToggle<CR>', opts)
+keymap('n', 'tc', ':NvimTreeCollapse<CR>', opts)
 
 -- Fugitive
 
