@@ -1,21 +1,41 @@
--- [[ Configure Treesitter ]]
--- See `:help nvim-treesitter`
+-- import nvim-treesitter plugin safely
+local status, treesitter = pcall(require, "nvim-treesitter.configs")
+if not status then
+  return
+end
+
+-- configure treesitter
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'lua', 'javascript', 'typescript', 'help' },
-
+  ensure_installed = {
+    'lua',
+    'javascript',
+    'typescript',
+    'help',
+    'json',
+    'tsx',
+    'yaml',
+    'html',
+    'css',
+    'markdown',
+    'graphql',
+    'bash',
+    'vim',
+    'dockerfile',
+    'gitignore',
+  },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
   },
-  indent = { enable = true, disable = { 'python' } },
+  indent = { enable = true },
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = '<c-space>',
-      node_incremental = '<c-space>',
-      scope_incremental = '<c-s>',
-      node_decremental = '<c-backspace>',
+      init_selection = '<C-space>',
+      node_incremental = '<C-space>',
+      scope_incremental = '<C-s>',
+      node_decremental = '<C-backspace>',
     },
   },
   textobjects = {

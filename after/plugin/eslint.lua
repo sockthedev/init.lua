@@ -1,8 +1,10 @@
-local null_ls = require("null-ls")
-local eslint = require("eslint")
+-- import eslint plugin safely
+local statusE, eslint = pcall(require, "eslint")
+if not statusE then
+  return
+end
 
-null_ls.setup()
-
+-- configure eslint
 eslint.setup({
   bin = 'eslint', -- or `eslint_d`
   code_actions = {

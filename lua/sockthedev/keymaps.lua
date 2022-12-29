@@ -80,11 +80,14 @@ keymap('n', '<C-k>', '<C-w><C-k>', opts)
 keymap('n', '<C-l>', '<C-w><C-l>', opts)
 
 -- Terminal 
-keymap('n', '<C-t>', ':Term<CR>', { silent = true, noremap = true })  -- open
 keymap('t', '<Esc>', '<C-\\><C-n>', opts)              -- exit
 
 -------------------------------------------------------------------------------
 --                             PLUGINS                                       --
+
+-- Toggle Term
+
+keymap('n', '<C-t>', ':TermToggleToggleAll', opts)
 
 -- Nvim Tree
 
@@ -137,3 +140,8 @@ keymap('n', '<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 end, { desc = '[W]orkspace [L]ist Folders' })
 
+-- Blame line
+keymap('n', '<leader>b', ':ToggleBlameLine<CR>', opts)
+
+-- restart lsp server
+keymap("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary

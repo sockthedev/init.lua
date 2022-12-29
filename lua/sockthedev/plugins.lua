@@ -1,29 +1,26 @@
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system({
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  })
-  print("Installing packer close and reopen Neovim...")
-  vim.cmd([[packadd packer.nvim]])
+-- auto install packer if not installed
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+    vim.cmd([[packadd packer.nvim]])
+    return true
+  end
+  return false
 end
+local packer_bootstrap = ensure_packer() -- true if packer was just installed
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
+-- autocommand that reloads neovim and installs/updates/removes plugins
+-- when file is saved
 vim.cmd([[
   augroup packer_user_config
-  autocmd!
-  autocmd BufWritePost plugins.lua source <afile> | PackerSync
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
   augroup end
 ]])
 
--- Use a protected call so we don't error out on first use
+-- import packer safely
 local status, packer = pcall(require, "packer")
 if not status then
   return
@@ -43,14 +40,61 @@ return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- Speed up loading Lua modules in Neovim to improve startup time.
-  -- https://github.com/lewis6991/impatient.nvim
   use 'lewis6991/impatient.nvim'
+
+  -- Lua functions that are used by many plugins
+  use("nvim-lua/plenary.nvim")
+
+  -- Theme
+  use("bluz71/vim-nightfly-guicolors")
+
+  -- Transparent backgrounds
+  use('xiyaowong/nvim-transparent')
+
+  -- tmux & split window navigation
+  use("christoomey/vim-tmux-navigator")
+
+  -- Change the char surrounding text (e.g. ' / ")
+  use("tpope/vim-surround")
+
+  -- Startup screen
+  use {
+    'goolord/alpha-nvim',
+    config = function ()
+      require'alpha'.setup(require'alpha.themes.dashboard'.config)
+    end
+  }
+
+  -- Git
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb'
+  use 'lewis6991/gitsigns.nvim'
+  use 'tveskag/nvim-blame-line' -- Inline git blame
+
+  -- File explorer
+  use {
+    'nvim-tree/nvim-tree.lua',
+    after = 'nvim-transparent',
+    requires = {
+      -- File icons, lurvely
+      'nvim-tree/nvim-web-devicons',
+    },
+  }
+
+  -- Fancier statusline
+  use 'nvim-lualine/lualine.nvim'
+
+  -- Comment out lines with appropriate characters
+  use 'numToStr/Comment.nvim'
+
+  -- Detect tabstop and shiftwidth automatically
+  use 'tpope/vim-sleuth'
 
   -- LSP Configuration & Plugins
   use {
     'neovim/nvim-lspconfig',
     requires = {
-      -- Automatically install LSPs to stdpath for neovim
+      -- Manage and install LSP servers, linters, and formatters
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
 
@@ -62,25 +106,9 @@ return packer.startup(function(use)
     },
   }
 
-  -- Terminal
-  -- https://github.com/akinsho/toggleterm.nvim
-  use('akinsho/toggleterm.nvim')
-
-  -- Nvim Tree (A file explorer)
-  -- https://github.com/nvim-tree/nvim-tree.lua
-  use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
-  }
-
-  -- Prettier
+  -- Linters and Formatters
   use('jose-elias-alvarez/null-ls.nvim')
   use('MunifTanjim/prettier.nvim')
-
-  -- ESLint
   use('MunifTanjim/eslint.nvim')
 
   -- LSP Autocompletion
@@ -103,43 +131,21 @@ return packer.startup(function(use)
     after = 'nvim-treesitter',
   }
 
-  -- Git related plugins
-  use 'tpope/vim-fugitive'
-  use 'tpope/vim-rhubarb'
-  use 'lewis6991/gitsigns.nvim'
-
-  -- Theme
-  -- use 'saltdotac/citylights.vim'
-  use({
-    'rose-pine/neovim',
-    as = 'rose-pine',
-    config = function()
-      vim.cmd('colorscheme rose-pine')
-    end
-  })
-
-  -- Fancier statusline
-  use 'nvim-lualine/lualine.nvim'
-
-  -- "gc" to comment visual regions/lines
-  use 'numToStr/Comment.nvim'
-
-  -- Detect tabstop and shiftwidth automatically
-  use 'tpope/vim-sleuth'
-
-  -- Fuzzy Finder (files, lsp, etc)
+  -- Fuzzy Finder
   use {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
-    requires = { 'nvim-lua/plenary.nvim' }
-  }
-
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-  -- Only load if `make` is available
-  use {
+     -- better sorting performance
     'nvim-telescope/telescope-fzf-native.nvim',
     run = 'make',
     cond = vim.fn.executable 'make' == 1
   }
+  use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
 
+  -- auto closing
+  use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
+  use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
+
+
+  if packer_bootstrap then
+     require("packer").sync()
+  end
 end)

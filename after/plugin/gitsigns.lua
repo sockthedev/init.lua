@@ -1,6 +1,11 @@
--- Gitsigns
--- See `:help gitsigns.txt`
-require('gitsigns').setup {
+-- import gitsigns plugin safely
+local setup, gitsigns = pcall(require, "gitsigns")
+if not setup then
+  return
+end
+
+-- configure/enable gitsign
+gitsigns.setup {
   signs = {
     add = { text = '+' },
     change = { text = '~' },
