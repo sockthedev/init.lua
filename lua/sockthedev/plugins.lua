@@ -117,6 +117,7 @@ return packer.startup(function(use)
       'saadparwaiz1/cmp_luasnip',
     },
   }
+  use('rafamadriz/friendly-snippets')
 
   -- Code AST highlighting / editing / navigating  
   use {

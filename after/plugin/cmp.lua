@@ -10,6 +10,12 @@ if not luasnip_setup then
   return
 end
 
+-- load friendly-snippets
+require('luasnip/loaders/from_vscode').lazy_load()
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menu,menuone,noselect'
+
 -- configure cmp
 cmp.setup {
   snippet = {

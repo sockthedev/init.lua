@@ -38,11 +38,8 @@ vim.o.colorcolumn = '80'
 vim.o.updatetime = 50
 vim.wo.signcolumn = 'yes'
 
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
--- backspace
-vim.o.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
+-- Allow backspace on indent, end of line or insert mode start position
+vim.o.backspace = "indent,eol,start"
 
 -- clipboard
 vim.opt.clipboard:append("unnamedplus") -- use system clipboard as default register
