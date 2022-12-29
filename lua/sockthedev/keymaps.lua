@@ -76,8 +76,8 @@ keymap('n', '<leader>sx', ':close<CR>', opts) -- close split
 
 -- Nvim Tree
 
-keymap('n', '<leader>tg', ':NvimTreeFindFile<CR>', opts)
-keymap('n', '<leader>tf', ':NvimTreeToggle<CR>', opts)
+keymap('n', '<leader>tf', ':NvimTreeFindFile<CR>', opts)
+keymap('n', '<leader>tt', ':NvimTreeToggle<CR>', opts)
 keymap('n', '<leader>tc', ':NvimTreeCollapse<CR>', opts)
 
 -- Fugitive
