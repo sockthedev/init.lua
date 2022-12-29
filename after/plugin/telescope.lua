@@ -1,7 +1,11 @@
--- ## Configure Telescope ## 
--- See `:help telescope` and `:help telescope.setup()`
+-- import telescope plugin safely
+local status, telescope = pcall(require, "telescope")
+if not status then
+  return
+end
 
-require('telescope').setup {
+-- configure telescope
+telescope.setup {
   defaults = {
     mappings = {
       i = {
@@ -13,5 +17,5 @@ require('telescope').setup {
 }
 
 -- Enable telescope fzf native, if installed
-pcall(require('telescope').load_extension, 'fzf')
+pcall(telescope.load_extension, 'fzf')
 

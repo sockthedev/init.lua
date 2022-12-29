@@ -76,9 +76,9 @@ keymap('n', '<leader>sx', ':close<CR>', opts) -- close split
 
 -- Nvim Tree
 
-keymap('n', '<leader>fg', ':NvimTreeFindFile<CR>', opts)
-keymap('n', '<leader>ff', ':NvimTreeToggle<CR>', opts)
-keymap('n', '<leader>fc', ':NvimTreeCollapse<CR>', opts)
+keymap('n', '<leader>tg', ':NvimTreeFindFile<CR>', opts)
+keymap('n', '<leader>tf', ':NvimTreeToggle<CR>', opts)
+keymap('n', '<leader>tc', ':NvimTreeCollapse<CR>', opts)
 
 -- Fugitive
 
@@ -88,11 +88,11 @@ keymap('n', '<leader>gs', vim.cmd.Git)
 
 local tbuiltin = require('telescope.builtin')
 
-keymap('n', '<leader>tf', tbuiltin.find_files, { desc = '[S]earch [F]iles' })
-keymap('n', '<leader>tr', tbuiltin.git_files, { desc = '[S]earch G[i]t' })
-keymap('n', '<leader>th', tbuiltin.help_tags, { desc = '[S]earch [H]elp' })
-keymap('n', '<leader>tw', tbuiltin.grep_string, { desc = '[S]earch current [W]ord' })
-keymap('n', '<leader>tg', tbuiltin.live_grep, { desc = '[S]earch by [G]rep' })
+keymap('n', '<leader>ff', tbuiltin.find_files, { desc = '[F]ind [F]iles' })
+keymap('n', '<leader>fg', tbuiltin.git_files, { desc = '[F]ind [G]it' })
+keymap('n', '<leader>fh', tbuiltin.help_tags, { desc = '[F]ind [H]elp' })
+keymap('n', '<leader>fw', tbuiltin.grep_string, { desc = '[F]ind current [W]ord' })
+keymap('n', '<leader>fr', tbuiltin.live_grep, { desc = '[F]ind by [R]egex' })
 keymap('n', '<leader>?', tbuiltin.oldfiles, { desc = '[?] Find recently opened files' })
 keymap('n', '<leader><space>', tbuiltin.buffers, { desc = '[ ] Find existing buffers' })
 keymap('n', '<leader>/', function()
@@ -102,7 +102,7 @@ keymap('n', '<leader>/', function()
     previewer = false,
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
-keymap('n', '<leader>td', tbuiltin.diagnostics, { desc = '[S]earch [D]iagnostics' })
+keymap('n', '<leader>fd', tbuiltin.diagnostics, { desc = '[F]ind [D]iagnostics' })
 
 -- LSP
 
