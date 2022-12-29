@@ -38,9 +38,6 @@ vim.o.colorcolumn = '80'
 vim.o.updatetime = 50
 vim.wo.signcolumn = 'yes'
 
--- Set colorscheme
-vim.o.termguicolors = true
-
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 

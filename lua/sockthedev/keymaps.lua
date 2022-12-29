@@ -1,6 +1,3 @@
--- Keymaps
--- Here be all the keyboard customisations
-
 -- Shorten keymap function ref
 local keymap = vim.keymap.set
 
@@ -8,15 +5,11 @@ local keymap = vim.keymap.set
 local opts = { silent = true }
 
 -- Leader key  
--- See `:help mapleader`
--- NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Disable space in normal/visual
 keymap({ 'n', 'v' }, '<Space>', '<Nop>', opts)
-
--- This is something not saved. Or is it? Is it still?
 
 -- Disable arrow keys
 keymap('', '<up>', '<nop>')
@@ -27,17 +20,20 @@ keymap('', '<right>', '<nop>')
 -- Reload configuration without restart nvim
 keymap('n', '<leader>r', ':so %<CR>')
 
--- Fast saving with <leader> and s
-keymap('n', '<leader>s', ':w<CR>')
+-- Fast saving
+keymap('n', '<leader>w', ':w<CR>')
 
--- Close all windows and exit from Neovim with <leader> and q
+-- Close all windows and exit
 keymap('n', '<leader>Q', ':qa<CR>')
 
--- Map kk to Esc when editing
-keymap('i', 'kk', '<Esc>')
+-- Delete char does not go into register
+keymap('i', 'x', '"_x', opts)
 
--- Clear search highlighting with <leader> and c
-keymap('n', '<leader>c', ':nohl<CR>')
+-- Map kk to Esc when editing
+keymap('i', 'kk', '<Esc>', opts)
+
+-- Clear search highlighting
+keymap('n', '<leader>c', ':nohl<CR>', opts)
 
 -- Better page up/down
 keymap("n", "<C-d>", "<C-d>zz", opts)
@@ -64,30 +60,20 @@ keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
--- Quick escape to normal mode
-keymap('t', '<Esc>', '<C-\\> <C-n>', { noremap = true })
-
 -- Diagnostic Navigation
 keymap('n', '[d', vim.diagnostic.goto_prev)
 keymap('n', ']d', vim.diagnostic.goto_next)
 keymap('n', '<leader>e', vim.diagnostic.open_float)
 keymap('n', '<leader>q', vim.diagnostic.setloclist)
 
--- Splits Navigation 
-keymap('n', '<C-h>', '<C-w><C-h>', opts)
-keymap('n', '<C-j>', '<C-w><C-j>', opts)
-keymap('n', '<C-k>', '<C-w><C-k>', opts)
-keymap('n', '<C-l>', '<C-w><C-l>', opts)
-
--- Terminal 
-keymap('t', '<Esc>', '<C-\\><C-n>', opts)              -- exit
+-- Splits
+keymap('n', '<leader>sv', '<C-w>v', opts) -- split verically
+keymap('n', '<leader>sh', '<C-w>s', opts) -- split horizontally 
+keymap('n', '<leader>se', '<C-w>=', opts) -- make splits equal size 
+keymap('n', '<leader>sx', ':close<CR>', opts) -- close split 
 
 -------------------------------------------------------------------------------
 --                             PLUGINS                                       --
-
--- Toggle Term
-
-keymap('n', '<C-t>', ':TermToggleToggleAll', opts)
 
 -- Nvim Tree
 
