@@ -81,9 +81,6 @@ return packer.startup(function(use)
     },
   }
 
-  -- Fancier statusline
-  use 'nvim-lualine/lualine.nvim'
-
   -- Comment out lines with appropriate characters
   use 'numToStr/Comment.nvim'
 
