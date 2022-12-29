@@ -52,11 +52,12 @@ keymap("n", "<leader>O", "O<Esc>", opts)
 keymap("n", "<leader>q", ":q<CR>", opts) -- Close current split
 keymap('n', '<leader>Q', ':qa<CR>') -- Close all splits and exit
 
+-- TODO: Need to figure out decent keybindings here;
 -- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+-- keymap("n", "<C-Up>", ":resize -2<CR>", opts)
+-- keymap("n", "<C-Down>", ":resize +2<CR>", opts)
+-- keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+-- keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Diagnostic Navigation
 keymap('n', '[d', vim.diagnostic.goto_prev)
@@ -87,11 +88,11 @@ keymap('n', '<leader>gs', vim.cmd.Git)
 
 local tbuiltin = require('telescope.builtin')
 
-keymap('n', '<leader>sf', tbuiltin.find_files, { desc = '[S]earch [F]iles' })
-keymap('n', '<leader>si', tbuiltin.git_files, { desc = '[S]earch G[i]t' })
-keymap('n', '<leader>sh', tbuiltin.help_tags, { desc = '[S]earch [H]elp' })
-keymap('n', '<leader>sw', tbuiltin.grep_string, { desc = '[S]earch current [W]ord' })
-keymap('n', '<leader>sg', tbuiltin.live_grep, { desc = '[S]earch by [G]rep' })
+keymap('n', '<leader>tf', tbuiltin.find_files, { desc = '[S]earch [F]iles' })
+keymap('n', '<leader>tr', tbuiltin.git_files, { desc = '[S]earch G[i]t' })
+keymap('n', '<leader>th', tbuiltin.help_tags, { desc = '[S]earch [H]elp' })
+keymap('n', '<leader>tw', tbuiltin.grep_string, { desc = '[S]earch current [W]ord' })
+keymap('n', '<leader>tg', tbuiltin.live_grep, { desc = '[S]earch by [G]rep' })
 keymap('n', '<leader>?', tbuiltin.oldfiles, { desc = '[?] Find recently opened files' })
 keymap('n', '<leader><space>', tbuiltin.buffers, { desc = '[ ] Find existing buffers' })
 keymap('n', '<leader>/', function()
@@ -101,7 +102,7 @@ keymap('n', '<leader>/', function()
     previewer = false,
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
-keymap('n', '<leader>sd', tbuiltin.diagnostics, { desc = '[S]earch [D]iagnostics' })
+keymap('n', '<leader>td', tbuiltin.diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 -- LSP
 
