@@ -126,7 +126,7 @@ keymap('n', '<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 end, { desc = '[W]orkspace [L]ist Folders' })
 
--- Blame line
+-- Toggle inline Git blame
 keymap('n', '<leader>b', ':ToggleBlameLine<CR>', opts)
 
 -- restart lsp server
