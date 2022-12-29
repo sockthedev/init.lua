@@ -111,7 +111,7 @@ return packer.startup(function(use)
   use('MunifTanjim/prettier.nvim')
   use('MunifTanjim/eslint.nvim')
 
-  -- LSP Autocompletion
+  -- Completions 
   use {
     'hrsh7th/nvim-cmp',
     requires = {
@@ -121,16 +121,15 @@ return packer.startup(function(use)
     },
   }
 
-  -- Highlight, edit, and navigate code
+  -- Code AST highlighting / editing / navigating  
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   }
-
-  -- Additional text objects via treesitter
   use {
+    -- Additional text objects via treesitter
     'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
   }
@@ -144,10 +143,9 @@ return packer.startup(function(use)
   }
   use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
 
-  -- auto closing
+  -- Auto closing
   use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
   use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
-
 
   if packer_bootstrap then
      require("packer").sync()

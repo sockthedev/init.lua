@@ -26,9 +26,11 @@ nvimtree.setup({
   view = {
     adaptive_size = true,
     hide_root_folder = true,
-    mappings = {
-      list = {
-        { key = "u", action = "dir_up" },
+  },
+  actions = {
+    open_file = {
+      window_picker = {
+        enable = false,
       },
     },
   },
@@ -39,8 +41,8 @@ nvimtree.setup({
         default = "",
         symlink = "",
         folder = {
-          arrow_open = "",
-          arrow_closed = "",
+          arrow_closed = "",
+          arrow_open = "",
           default = "",
           open = "",
           empty = "",
