@@ -20,14 +20,11 @@ keymap('', '<right>', '<nop>')
 -- Reload configuration without restart nvim
 keymap('n', '<leader>r', ':so %<CR>')
 
--- Fast saving
+-- Save file 
 keymap('n', '<leader>w', ':w<CR>')
 
--- Close all windows and exit
-keymap('n', '<leader>Q', ':qa<CR>')
-
 -- Delete char does not go into register
-keymap('i', 'x', '"_x', opts)
+keymap('n', 'x', '"_x', opts)
 
 -- Map kk to Esc when editing
 keymap('i', 'kk', '<Esc>', opts)
@@ -51,8 +48,9 @@ keymap("n", "<leader>L", "yyP", opts)
 keymap("n", "<leader>o", "o<Esc>", opts)
 keymap("n", "<leader>O", "O<Esc>", opts)
 
--- Close windows
-keymap("n", "<leader>q", ":q<CR>", opts)
+-- Close split/window
+keymap("n", "<leader>q", ":q<CR>", opts) -- Close current split
+keymap('n', '<leader>Q', ':qa<CR>') -- Close all splits and exit
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -64,7 +62,7 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap('n', '[d', vim.diagnostic.goto_prev)
 keymap('n', ']d', vim.diagnostic.goto_next)
 keymap('n', '<leader>e', vim.diagnostic.open_float)
-keymap('n', '<leader>q', vim.diagnostic.setloclist)
+keymap('n', '<leader>d', vim.diagnostic.setloclist)
 
 -- Splits
 keymap('n', '<leader>sv', '<C-w>v', opts) -- split verically
