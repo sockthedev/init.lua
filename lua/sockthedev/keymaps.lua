@@ -87,7 +87,6 @@ keymap("n", "<leader>gs", vim.cmd.Git)
 -- Telescope
 
 local tbuiltin = require("telescope.builtin")
-
 keymap("n", "<leader>ff", tbuiltin.find_files, { desc = "[F]ind [F]iles" })
 keymap("n", "<leader>fg", tbuiltin.git_files, { desc = "[F]ind [G]it" })
 keymap("n", "<leader>fh", tbuiltin.help_tags, { desc = "[F]ind [H]elp" })
@@ -116,8 +115,8 @@ keymap("n", "<leader>ds", tbuiltin.lsp_document_symbols, { desc = "[D]ocument [S
 keymap("n", "<leader>ws", tbuiltin.lsp_dynamic_workspace_symbols, { desc = "[W]orkspace [S]ymbols" })
 keymap("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 keymap("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
-
 -- Lesser used LSP functionality
+keymap("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 keymap("n", "gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
 keymap("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "[W]orkspace [A]dd Folder" })
 keymap("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "[W]orkspace [R]emove Folder" })
@@ -125,11 +124,10 @@ keymap("n", "<leader>wl", function()
   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 end, { desc = "[W]orkspace [L]ist Folders" })
 
--- Toggle inline Git blame
+-- Git Blame
+
 keymap("n", "<leader>b", ":ToggleBlameLine<CR>", opts)
 
--- restart lsp server
-keymap("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
-
 -- Aerial
+
 keymap("n", "<leader>a", ":AerialToggle<CR>")

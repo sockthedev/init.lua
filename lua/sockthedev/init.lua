@@ -1,3 +1,4 @@
+require('impatient')
 require('sockthedev.options')
 require('sockthedev.plugins')
 require('sockthedev.keymaps')

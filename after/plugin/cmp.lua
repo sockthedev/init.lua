@@ -16,11 +16,6 @@ require('luasnip/loaders/from_vscode').lazy_load()
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menu,menuone,noselect'
 
-local check_backspace = function()
-  local col = vim.fn.col(".") - 1
-  return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-end
-
 local kind_icons = {
   Text = "",
   Method = "",
@@ -61,7 +56,7 @@ cmp.setup {
     ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
     ["<C-e>"] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
@@ -73,11 +68,9 @@ cmp.setup {
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expandable() then
-        luasnip.expand()
+        luasnip.expand({})
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
-      elseif check_backspace() then
-        fallback()
       else
         fallback()
       end
