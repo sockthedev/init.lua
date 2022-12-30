@@ -60,8 +60,8 @@ return packer.startup(function(use)
   -- Startup screen
   use {
     'goolord/alpha-nvim',
-    config = function ()
-      require'alpha'.setup(require'alpha.themes.dashboard'.config)
+    config = function()
+      require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
     end
   }
 
@@ -87,28 +87,28 @@ return packer.startup(function(use)
   -- Detect tabstop and shiftwidth automatically
   use 'tpope/vim-sleuth'
 
-  -- LSP Configuration & Plugins
+  -- Fuzzy Finder
   use {
-    'neovim/nvim-lspconfig',
-    requires = {
-      -- Manage and install LSP servers, linters, and formatters
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-
-      -- Useful status updates for LSP
-      'j-hui/fidget.nvim',
-
-      -- Additional lua configuration, makes nvim stuff amazing
-      'folke/neodev.nvim',
-    },
+    'nvim-telescope/telescope-fzf-native.nvim', -- better sorting performance
+    run = 'make',
+    cond = vim.fn.executable 'make' == 1
   }
+  use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
+
+  -- LSP
+  use("neovim/nvim-lspconfig") -- enable LSP
+  use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+  use("RRethy/vim-illuminate")
+  use("williamboman/mason.nvim")
+  use("williamboman/mason-lspconfig.nvim")
+  use('j-hui/fidget.nvim') -- Useful status updates for LSP
+  use('folke/neodev.nvim') -- Additional lua configuration, makes nvim stuff amazing
 
   -- Linters and Formatters
-  use('jose-elias-alvarez/null-ls.nvim')
   use('MunifTanjim/prettier.nvim')
   use('MunifTanjim/eslint.nvim')
 
-  -- Completions Engine 
+  -- Completions Engine
   use('hrsh7th/nvim-cmp')
 
   -- Completion plugins
@@ -122,7 +122,7 @@ return packer.startup(function(use)
   use('L3MON4D3/LuaSnip') -- snippet engine
   use('rafamadriz/friendly-snippets') -- bunch of snippets
 
-  -- Code AST highlighting / editing / navigating  
+  -- Code AST highlighting / editing / navigating
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function()
@@ -135,20 +135,11 @@ return packer.startup(function(use)
     after = 'nvim-treesitter',
   }
 
-  -- Fuzzy Finder
-  use {
-     -- better sorting performance
-    'nvim-telescope/telescope-fzf-native.nvim',
-    run = 'make',
-    cond = vim.fn.executable 'make' == 1
-  }
-  use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
-
   -- Auto closing
   use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
   use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
 
   if packer_bootstrap then
-     require("packer").sync()
+    require("packer").sync()
   end
 end)
