@@ -37,10 +37,10 @@ packer.init({
 
 return packer.startup(function(use)
   -- Package manager, packer manages itself :D
-  use 'wbthomason/packer.nvim'
+  use("wbthomason/packer.nvim")
 
   -- Speed up loading Lua modules in Neovim to improve startup time.
-  use 'lewis6991/impatient.nvim'
+  use("lewis6991/impatient.nvim")
 
   -- Lua functions that are used by many plugins
   use("nvim-lua/plenary.nvim")
@@ -49,7 +49,10 @@ return packer.startup(function(use)
   use("bluz71/vim-nightfly-guicolors")
 
   -- Transparent backgrounds
-  use('xiyaowong/nvim-transparent')
+  use("xiyaowong/nvim-transparent")
+
+  -- Nice status line
+  use("nvim-lualine/lualine.nvim")
 
   -- tmux & split window navigation
   use("christoomey/vim-tmux-navigator")
@@ -58,36 +61,37 @@ return packer.startup(function(use)
   use("tpope/vim-surround")
 
   -- Startup screen
-  use('goolord/alpha-nvim')
+  use("goolord/alpha-nvim")
 
   -- Git
-  use 'tpope/vim-fugitive'
-  use 'tpope/vim-rhubarb'
-  use 'lewis6991/gitsigns.nvim'
-  use 'tveskag/nvim-blame-line' -- Inline git blame
+  use("tpope/vim-fugitive")
+  use("tpope/vim-rhubarb")
+  use("lewis6991/gitsigns.nvim")
+  use("tveskag/nvim-blame-line") -- Inline git blame
 
   -- File explorer
-  use {
-    'nvim-tree/nvim-tree.lua',
-    after = 'nvim-transparent',
+  use({
+    "nvim-tree/nvim-tree.lua",
+    after = "nvim-transparent",
     requires = {
       -- File icons, lurvely
-      'nvim-tree/nvim-web-devicons',
+      "nvim-tree/nvim-web-devicons",
     },
-  }
+  })
 
   -- Comment out lines with appropriate characters
-  use 'numToStr/Comment.nvim'
+  use("numToStr/Comment.nvim")
+  use("JoosepAlviste/nvim-ts-context-commentstring")
 
   -- Detect tabstop and shiftwidth automatically
-  use 'tpope/vim-sleuth'
+  use("tpope/vim-sleuth")
 
   -- Fuzzy Finder
-  use {
-    'nvim-telescope/telescope-fzf-native.nvim', -- better sorting performance
-    run = 'make',
-    cond = vim.fn.executable 'make' == 1
-  }
+  use({
+    "nvim-telescope/telescope-fzf-native.nvim", -- better sorting performance
+    run = "make",
+    cond = vim.fn.executable("make") == 1,
+  })
   use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
 
   -- LSP
@@ -96,39 +100,42 @@ return packer.startup(function(use)
   use("RRethy/vim-illuminate")
   use("williamboman/mason.nvim")
   use("williamboman/mason-lspconfig.nvim")
-  use('j-hui/fidget.nvim') -- Useful status updates for LSP
-  use('folke/neodev.nvim') -- Additional lua configuration, makes nvim stuff amazing
+  use("j-hui/fidget.nvim") -- Useful status updates for LSP
+  use("folke/neodev.nvim") -- Additional lua configuration, makes nvim stuff amazing
 
   -- Linters and Formatters
-  use('MunifTanjim/prettier.nvim')
-  use('MunifTanjim/eslint.nvim')
+  use("MunifTanjim/prettier.nvim")
+  use("MunifTanjim/eslint.nvim")
 
   -- Completions Engine
-  use('hrsh7th/nvim-cmp')
+  use("hrsh7th/nvim-cmp")
 
   -- Completion plugins
-  use('hrsh7th/cmp-nvim-lsp')
-  use('saadparwaiz1/cmp_luasnip')
-  use('hrsh7th/cmp-buffer') -- buffer completions
-  use('hrsh7th/cmp-path') -- path completions
-  use('hrsh7th/cmp-nvim-lua')
+  use("hrsh7th/cmp-nvim-lsp")
+  use("saadparwaiz1/cmp_luasnip")
+  use("hrsh7th/cmp-buffer") -- buffer completions
+  use("hrsh7th/cmp-path") -- path completions
+  use("hrsh7th/cmp-nvim-lua")
 
   -- Snippets
-  use('L3MON4D3/LuaSnip') -- snippet engine
-  use('rafamadriz/friendly-snippets') -- bunch of snippets
+  use("L3MON4D3/LuaSnip") -- snippet engine
+  use("rafamadriz/friendly-snippets") -- bunch of snippets
+
+  -- Code Outline
+  use("stevearc/aerial.nvim")
 
   -- Code AST highlighting / editing / navigating
-  use {
-    'nvim-treesitter/nvim-treesitter',
+  use({
+    "nvim-treesitter/nvim-treesitter",
     run = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
+      pcall(require("nvim-treesitter.install").update({ with_sync = true }))
     end,
-  }
-  use {
+  })
+  use({
     -- Additional text objects via treesitter
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    after = 'nvim-treesitter',
-  }
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    after = "nvim-treesitter",
+  })
 
   -- Auto closing
   use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...

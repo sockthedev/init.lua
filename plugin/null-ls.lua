@@ -1,4 +1,10 @@
-local null_ls = require("null-ls")
+-- safely import null_ls
+local status, null_ls = pcall(require, "null_ls")
+if not status then
+  return
+end
+
+-- configure null_ls
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
@@ -8,8 +14,7 @@ null_ls.setup({
   debug = true,
   sources = {
     formatting.stylua,
-    formatting.prettierd.with({ extra_filetypes = { "astro" } }),
-    formatting.rustfmt,
+    formatting.prettierd,
     formatting.black,
     formatting.isort,
     diagnostics.eslint_d,
@@ -24,7 +29,7 @@ null_ls.setup({
         group = augroup,
         buffer = bufnr,
         callback = function()
-        vim.lsp.buf.format({ bufnr = bufnr })
+          vim.lsp.buf.format({ bufnr = bufnr })
         end,
       })
     end

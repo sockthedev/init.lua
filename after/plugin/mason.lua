@@ -10,7 +10,7 @@ if not status2 then
   return
 end
 
--- configure mason 
+-- configure mason
 mason.setup({})
 
 -- configure mason-lspconfig
@@ -19,6 +19,6 @@ lspconfig.setup({
     "sumneko_lua",
     "tailwindcss",
     "tsserver",
-    "astro",
+    "graphql",
   },
 })

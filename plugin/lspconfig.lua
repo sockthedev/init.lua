@@ -1,3 +1,4 @@
+-- safely import lspconfig
 local status, nvim_lsp = pcall(require, "lspconfig")
 if not status then
   return
@@ -82,11 +83,6 @@ protocol.CompletionItemKind = {
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-nvim_lsp.flow.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
 nvim_lsp.denols.setup({
   on_attach = on_attach,
   root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
@@ -98,10 +94,6 @@ nvim_lsp.tsserver.setup({
   cmd = { "typescript-language-server", "--stdio" },
   capabilities = capabilities,
   root_dir = nvim_lsp.util.root_pattern("package.json"),
-})
-
-nvim_lsp.sourcekit.setup({
-  on_attach = on_attach,
 })
 
 nvim_lsp.sumneko_lua.setup({
@@ -123,24 +115,8 @@ nvim_lsp.sumneko_lua.setup({
 })
 
 nvim_lsp.tailwindcss.setup({})
-nvim_lsp.astro.setup({
-  init_options = {
-    typescript = {
-      serverPath = "/Users/adam/.local/share/nvim/mason/packages/typescript-language-server/node_modules/typescript/lib/tsserverlibrary.js",
-    },
-  },
-})
-nvim_lsp.graphql.setup({})
-nvim_lsp.rust_analyzer.setup({
-  on_attach = on_attach,
-})
 
-nvim_lsp.pyright.setup({
-  on_attach = on_attach,
-})
-nvim_lsp.jedi_language_server.setup({
-  on_attach = on_attach,
-})
+nvim_lsp.graphql.setup({})
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   underline = true,
@@ -159,7 +135,7 @@ end
 vim.diagnostic.config({
   virtual_text = {
     prefix = "●",
-},
+  },
   update_in_insert = true,
   float = {
     source = "always", -- Or "if_many"
