@@ -58,12 +58,7 @@ return packer.startup(function(use)
   use("tpope/vim-surround")
 
   -- Startup screen
-  use {
-    'goolord/alpha-nvim',
-    config = function()
-      require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
-    end
-  }
+  use('goolord/alpha-nvim')
 
   -- Git
   use 'tpope/vim-fugitive'
