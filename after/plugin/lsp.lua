@@ -1,5 +1,3 @@
--- LSP settings.
-
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
   -- Create a command `:Format` local to the LSP buffer
@@ -14,12 +12,7 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
   tsserver = {},
-
   sumneko_lua = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -28,22 +21,14 @@ local servers = {
   },
 }
 
----------------------------------------------------------------------------------
 -- Setup neovim lua configuration
--- https://github.com/folke/neodev.nvim
-
 require('neodev').setup()
 
-
---
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
----------------------------------------------------------------------------------
 -- Setup mason so it can manage external tooling
--- https://github.com/williamboman/mason.nvim
-
 require('mason').setup()
 
 -- Ensure the servers above are installed
@@ -62,10 +47,3 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
-
---------------------------------------------------------------------------------
--- Turn on lsp status information
--- https://github.com/j-hui/fidget.nvim
-
-require('fidget').setup()
-

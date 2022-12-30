@@ -1,6 +1,6 @@
 -- import eslint plugin safely
-local statusE, eslint = pcall(require, "eslint")
-if not statusE then
+local status, eslint = pcall(require, "eslint")
+if not status then
   return
 end
 

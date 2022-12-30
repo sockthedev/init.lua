@@ -108,16 +108,19 @@ return packer.startup(function(use)
   use('MunifTanjim/prettier.nvim')
   use('MunifTanjim/eslint.nvim')
 
-  -- Completions 
-  use {
-    'hrsh7th/nvim-cmp',
-    requires = {
-      'hrsh7th/cmp-nvim-lsp',
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-    },
-  }
-  use('rafamadriz/friendly-snippets')
+  -- Completions Engine 
+  use('hrsh7th/nvim-cmp')
+
+  -- Completion plugins
+  use('hrsh7th/cmp-nvim-lsp')
+  use('saadparwaiz1/cmp_luasnip')
+  use('hrsh7th/cmp-buffer') -- buffer completions
+  use('hrsh7th/cmp-path') -- path completions
+  use('hrsh7th/cmp-nvim-lua')
+
+  -- Snippets
+  use('L3MON4D3/LuaSnip') -- snippet engine
+  use('rafamadriz/friendly-snippets') -- bunch of snippets
 
   -- Code AST highlighting / editing / navigating  
   use {
