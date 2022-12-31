@@ -16,9 +16,17 @@ mason.setup({})
 -- configure mason-lspconfig
 lspconfig.setup({
   ensure_installed = {
+    "cssls",
+    "denols",
+    "eslint",
+    "graphql",
+    "html",
+    "jsonls",
+    "lemminx", -- xml
+    "remark_ls", -- markdown
     "sumneko_lua",
     "tailwindcss",
     "tsserver",
-    "graphql",
+    "yamlls",
   },
 })
