@@ -78,11 +78,3 @@ nvimtree.setup({
   },
 })
 
--- Ensure transparent backgrounds are used 
-vim.cmd("autocmd Colorscheme * highlight NvimTreeNormal guibg=none guifg=#9da5b3")
-
--- This is a bit of a hack, have to force the 'transparent' plugin to get enabled
--- again, otherwise the transparency ain't working
-vim.cmd("TransparentEnable")
-
-

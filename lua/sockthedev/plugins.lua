@@ -64,11 +64,25 @@ return packer.startup(function(use)
   -- Startup screen
   use("goolord/alpha-nvim")
 
+  -- Show buffers as tabs
+  use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+
+  -- Delete buffers (close files) without closing your windows or messing up your layout.
+  use("moll/vim-bbye")
+
   -- Git
   use("tpope/vim-fugitive")
   use("tpope/vim-rhubarb")
   use("lewis6991/gitsigns.nvim")
   use("tveskag/nvim-blame-line") -- Inline git blame
+
+  -- Markdown preview
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	})
 
   -- File explorer
   use({
