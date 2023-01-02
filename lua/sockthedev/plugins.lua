@@ -84,6 +84,9 @@ return packer.startup(function(use)
     end,
   })
 
+  -- Multi cursors
+  use 'mg979/vim-visual-multi'
+
   -- File explorer
   use({
     "nvim-tree/nvim-tree.lua",

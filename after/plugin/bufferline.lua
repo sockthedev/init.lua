@@ -6,7 +6,8 @@ end
 
 -- configure bufferline 
 bufferline.setup({
-  diagnostics = "nvim_lsp",
-  numbers = 'ordinal',
+  options = {
+    diagnostics = "nvim_lsp",
+  }
 })
 
