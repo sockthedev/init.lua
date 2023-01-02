@@ -1,6 +1,7 @@
 # sockthedev's Neovim configuration
 
-What a vibe this stuff is!
+What a vibe this stuff is! Honestly, Neovim is the coolest shizzle I've played
+with for a long time. I can't believe how hard I've been bitten by this bug.
 
 To install;
 

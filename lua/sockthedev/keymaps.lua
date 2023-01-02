@@ -17,9 +17,6 @@ keymap("", "<down>", "<nop>")
 keymap("", "<left>", "<nop>")
 keymap("", "<right>", "<nop>")
 
--- Close buffers
-keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
-
 -- Reload configuration without restart nvim
 keymap("n", "<leader>r", ":so %<CR>")
 
@@ -75,8 +72,10 @@ keymap("n", "<leader>se", "<C-w>=", opts) -- make splits equal size
 keymap("n", "<leader>sx", ":close<CR>", opts) -- close split
 
 -- buffers
-keymap('n', '<leader>bn', '<cmd>bn<CR>', opts) -- next buffer
-keymap('n', '<leader>bp', '<cmd>bp<CR>', opts) -- previous buffer
+keymap('n', '<leader>n', '<cmd>bn<CR>', opts) -- next buffer
+keymap('n', '<leader>p', '<cmd>bp<CR>', opts) -- previous buffer
+keymap('n', '<leader>x', '<cmd>bd<CR>', opts) -- close current buffer
+keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts) -- Close all buffers
 
 -------------------------------------------------------------------------------
 --                             PLUGINS                                       --
