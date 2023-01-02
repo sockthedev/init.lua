@@ -45,11 +45,12 @@ return packer.startup(function(use)
   -- Lua functions that are used by many plugins
   use("nvim-lua/plenary.nvim")
 
-  -- Theme
+  -- Themes
   use("bluz71/vim-nightfly-guicolors")
-
-  -- Transparent backgrounds
-  use("xiyaowong/nvim-transparent")
+  use({
+    'rose-pine/neovim',
+    as = 'rose-pine'
+  })
 
   -- Nice status line
   use("nvim-lualine/lualine.nvim")
@@ -72,7 +73,6 @@ return packer.startup(function(use)
   -- File explorer
   use({
     "nvim-tree/nvim-tree.lua",
-    after = "nvim-transparent",
     requires = {
       -- File icons, lurvely
       "nvim-tree/nvim-web-devicons",
