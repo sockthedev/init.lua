@@ -66,6 +66,7 @@ return packer.startup(function(use)
 
   -- Show buffers as tabs
   use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+  use "tiagovla/scope.nvim"
 
   -- Delete buffers (close files) without closing your windows or messing up your layout.
   use("moll/vim-bbye")

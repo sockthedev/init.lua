@@ -74,8 +74,10 @@ keymap("n", "<leader>sx", ":close<CR>", opts) -- close split
 -- buffers
 keymap('n', '<leader>n', '<cmd>bn<CR>', opts) -- next buffer
 keymap('n', '<leader>p', '<cmd>bp<CR>', opts) -- previous buffer
-keymap('n', '<leader>x', '<cmd>bd<CR>', opts) -- close current buffer
-keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts) -- Close all buffers
+keymap('n', '<leader>xx', '<cmd>Bdelete!<CR>', opts) -- close current buffer 
+keymap('n', '<leader>xr', '<cmd>BufferLineCloseRight<CR>', opts) -- close right buffers
+keymap('n', '<leader>xl', '<cmd>BufferLineCloseLeft<CR>', opts) -- close left buffers
+keymap("n", "<S-q>", "<cmd>bd<CR>", opts) -- Close all buffers
 
 -------------------------------------------------------------------------------
 --                             PLUGINS                                       --

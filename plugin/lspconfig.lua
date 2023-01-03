@@ -1,5 +1,5 @@
 -- safely import lspconfig
-local status, nvim_lsp = pcall(require, "lspconfig")
+local status, lspconfig = pcall(require, "lspconfig")
 if not status then
   return
 end
@@ -81,23 +81,75 @@ protocol.CompletionItemKind = {
 }
 
 -- Set up completion using nvim_cmp with LSP source
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities(
+  vim.lsp.protocol.make_client_capabilities()
+)
 
-nvim_lsp.denols.setup({
-  on_attach = on_attach,
-  root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
-})
+-- Configure the language servers below, these are installed/managed via
+-- Mason. Make sure that you have the necessary language servers installed.
+-- Run `:Mason` to get the interactive Mason UI.
 
-nvim_lsp.tsserver.setup({
-  on_attach = on_attach,
-  -- filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript" },
-  cmd = { "typescript-language-server", "--stdio" },
+-- configure html server
+lspconfig["html"].setup({
   capabilities = capabilities,
-  root_dir = nvim_lsp.util.root_pattern("package.json"),
+  on_attach = on_attach,
 })
 
-nvim_lsp.sumneko_lua.setup({
+-- configure css server
+lspconfig["cssls"].setup({
+  capabilities = capabilities,
   on_attach = on_attach,
+})
+
+-- configure tailwind server
+lspconfig.tailwindcss.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
+-- configure json server
+lspconfig["jsonls"].setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+
+-- configure yaml server
+lspconfig["yamlls"].setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+
+-- configure xml server
+lspconfig["lemminx"].setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+
+-- configure markdown server
+lspconfig["remark_ls"].setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+
+-- configure deno server
+lspconfig.denols.setup({
+  on_attach = on_attach,
+  root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+})
+
+-- configure typescript server
+lspconfig.tsserver.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "typescript-language-server", "--stdio" },
+  -- filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript" },
+  root_dir = lspconfig.util.root_pattern("package.json"),
+})
+
+-- configure lua server
+lspconfig.sumneko_lua.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
   settings = {
     Lua = {
       diagnostics = {
@@ -114,9 +166,11 @@ nvim_lsp.sumneko_lua.setup({
   },
 })
 
-nvim_lsp.tailwindcss.setup({})
-
-nvim_lsp.graphql.setup({})
+-- configure graphql server
+lspconfig.graphql.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   underline = true,
