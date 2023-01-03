@@ -97,6 +97,9 @@ return packer.startup(function(use)
     },
   })
 
+  -- GitHub Copilot
+  use('github/copilot.vim')
+
   -- Comment out lines with appropriate characters
   use("numToStr/Comment.nvim")
   use("JoosepAlviste/nvim-ts-context-commentstring")
