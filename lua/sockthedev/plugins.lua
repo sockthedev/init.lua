@@ -69,6 +69,7 @@ return packer.startup(function(use)
   use "tiagovla/scope.nvim"
 
   -- Delete buffers (close files) without closing your windows or messing up your layout.
+  use 'famiu/bufdelete.nvim'
   use("moll/vim-bbye")
 
   -- Git
