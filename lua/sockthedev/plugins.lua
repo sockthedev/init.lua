@@ -117,22 +117,22 @@ return packer.startup(function(use)
   use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
 
   -- LSP
-  use("neovim/nvim-lspconfig") -- enable LSP
-  use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
-  use("RRethy/vim-illuminate")
-  use("williamboman/mason.nvim")
-  use("williamboman/mason-lspconfig.nvim")
+  use("neovim/nvim-lspconfig") -- enable configuration for LSP servers 
+  use("williamboman/mason.nvim") -- manages LSP servers (run `:Mason`)
+  use("williamboman/mason-lspconfig.nvim") -- mason-lspconfig bridges mason.nvim with the lspconfig plugin
   use("j-hui/fidget.nvim") -- Useful status updates for LSP
   use("folke/neodev.nvim") -- Additional lua configuration, makes nvim stuff amazing
 
+  -- Highlight other uses of word under cursor using LSP, Tree-sitter, or regex
+  use("RRethy/vim-illuminate")
+
   -- Linters and Formatters
+  use("jose-elias-alvarez/null-ls.nvim") -- engine
   use("MunifTanjim/prettier.nvim")
   use("MunifTanjim/eslint.nvim")
 
-  -- Completions Engine
-  use("hrsh7th/nvim-cmp")
-
-  -- Completion plugins
+  -- Completion
+  use("hrsh7th/nvim-cmp") -- engine
   use("hrsh7th/cmp-nvim-lsp")
   use("saadparwaiz1/cmp_luasnip")
   use("hrsh7th/cmp-buffer") -- buffer completions
