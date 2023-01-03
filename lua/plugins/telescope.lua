@@ -17,7 +17,7 @@ local plugin = {
 }
 
 function plugin.init()
-  local u = require("config.utils")
+  local u = require("utils.keymaps")
 
   u.set_keymaps("n", {
     {

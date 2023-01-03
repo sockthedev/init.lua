@@ -1,4 +1,4 @@
-local u = require("config.utils")
+local u = require("utils.keymaps")
 
 -- recommended settings from nvim-tree documentation
 vim.g.loaded_netrw = 1

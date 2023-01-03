@@ -1,4 +1,4 @@
-local u = require("config.utils")
+local u = require("utils.keymaps")
 
 -- configure
 require("smart-splits").setup({
