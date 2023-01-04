@@ -1,7 +1,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.g.camelcasemotion_key = "<leader>"
+vim.g.maximizer_set_default_mapping = 1
 vim.g.copilot_assume_mapped = true
-vim.opt.colorcolumn = '80'
+vim.opt.colorcolumn = "80"
 vim.opt.splitbelow = true -- split horizontal window to the bottom
 vim.opt.splitright = true -- split vertical window to the right
 vim.opt.backspace = "indent,eol,start" -- Allow backspace on indent, end of line or insert mode start position
@@ -50,4 +52,4 @@ vim.opt.updatetime = 300 -- faster completion (4000ms default)
 vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
