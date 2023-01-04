@@ -53,3 +53,28 @@ vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 vim.wo.signcolumn = "yes"
+
+-- Fixes Autocomment
+vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+  callback = function()
+    vim.cmd("set formatoptions-=cro")
+  end,
+})
+
+-- Use 'q' to quit from common plugins
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir" },
+  callback = function()
+    vim.cmd([[
+      nnoremap <silent> <buffer> q :close<CR>
+      set nobuflisted
+      ]])
+  end,
+})
+
+-- Highlight Yanked Text
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+  callback = function()
+    vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
+  end,
+})
