@@ -39,13 +39,6 @@ keymap("n", "<leader>O", "O<Esc>", opts)
 keymap("n", "<leader>q", ":q<CR>", opts) -- Close current split
 keymap("n", "<leader>Q", ":qa<CR>") -- Close all splits and exit
 
--- TODO: Need to figure out decent keybindings here;
--- Resize with arrows
--- keymap("n", "<C-Up>", ":resize -2<CR>", opts)
--- keymap("n", "<C-Down>", ":resize +2<CR>", opts)
--- keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
--- keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
-
 -- Diagnostic Navigation
 keymap("n", "[d", vim.diagnostic.goto_prev)
 keymap("n", "]d", vim.diagnostic.goto_next)
@@ -59,21 +52,12 @@ keymap("n", "<leader>se", "<C-w>=", opts) -- make splits equal size
 keymap("n", "<leader>sx", ":close<CR>", opts) -- close split
 
 -- buffers
-keymap('n', '<leader>n', '<cmd>bn<CR>', opts) -- next buffer
-keymap('n', '<leader>p', '<cmd>bp<CR>', opts) -- previous buffer
--- keymap('n', '<leader>xx', '<cmd>Bdelete!<CR>', opts) -- close current buffer 
+keymap("n", "<leader>n", "<cmd>bn<CR>", opts) -- next buffer
+keymap("n", "<leader>p", "<cmd>bp<CR>", opts) -- previous buffer
+-- keymap('n', '<leader>xx', '<cmd>Bdelete!<CR>', opts) -- close current buffer
 -- keymap('n', '<leader>xr', '<cmd>BufferLineCloseRight<CR>', opts) -- close right buffers
 -- keymap('n', '<leader>xl', '<cmd>BufferLineCloseLeft<CR>', opts) -- close left buffers
 keymap("n", "<S-q>", "<cmd>bd<CR>", opts) -- Close all buffers
-
--------------------------------------------------------------------------------
---                             PLUGINS                                       --
-
--- Nvim Tree
-
--- keymap("n", "<leader>tf", ":NvimTreeFindFile<CR>", opts)
--- keymap("n", "<leader>tt", ":NvimTreeToggle<CR>", opts)
--- keymap("n", "<leader>tc", ":NvimTreeCollapse<CR>", opts)
 
 -- Fugitive
 
@@ -122,7 +106,3 @@ keymap("n", "<S-q>", "<cmd>bd<CR>", opts) -- Close all buffers
 -- Git Blame
 
 -- keymap("n", "<leader>b", ":ToggleBlameLine<CR>", opts)
-
--- Aerial
-
--- keymap("n", "<leader>a", ":AerialToggle<CR>")

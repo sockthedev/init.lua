@@ -42,6 +42,13 @@ function plugin.init()
       "[telescope] git files",
     },
     {
+      "<Leader>fo",
+      function()
+        require("telescope.builtin").oldfiles()
+      end,
+      "[telescope] old files",
+    },
+    {
       "<Leader>fc",
       function()
         require("telescope.builtin").live_grep()
