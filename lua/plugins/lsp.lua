@@ -24,6 +24,17 @@ local plugins = {
       require("plugins.lsp.base")
     end,
   },
+    {
+    "jose-elias-alvarez/null-ls.nvim",
+    dependencies = {
+      "MunifTanjim/eslint.nvim",
+      "MunifTanjim/prettier.nvim",
+    },
+    event = "BufReadPre",
+    config = function()
+      require("plugins.lsp.null-ls")
+    end,
+  },
   {
     "folke/trouble.nvim",
     event = "LspAttach",
