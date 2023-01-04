@@ -7,6 +7,7 @@ treesitter_configs.setup({
     "comment",
     "css",
     "graphql",
+    "help",
     "html",
     "javascript",
     "typescript",
@@ -65,6 +66,6 @@ u.set_keymaps("n", {
 })
 
 vim.cmd([[
-  autocmd Syntax css,go,html,javascript,javascriptreact,json,python,ruby,rust,toml,typescript,typescriptreact,yaml
+  autocmd Syntax css,html,javascript,javascriptreact,json,typescript,typescriptreact,yaml
    \ set foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
 ]])

@@ -17,7 +17,7 @@ require("nvim-tree").setup({
   },
   update_focused_file = {
     enable = true,
-    update_cwd = true,
+    update_cwd = false,
   },
   view = {
     adaptive_size = true,
@@ -26,10 +26,12 @@ require("nvim-tree").setup({
   actions = {
     open_file = {
       window_picker = {
+        chars = "1234567890",
         enable = true,
         exclude = {
           filetype = {
             "notify",
+            "packer",
             "qf",
             "diff",
             "fugitive",
@@ -72,7 +74,8 @@ require("nvim-tree").setup({
   },
   filters = {
     dotfiles = false,
-    custom = { '^.git$' },
+    custom = { "^.git$" },
+    no_buffer = false,
   },
   diagnostics = {
     enable = true,
@@ -91,4 +94,3 @@ u.set_keymaps("n", {
   { "<C-t>", ":NvimTreeToggle<CR>", "[nvim-tree] toggle tree" },
   { "<leader>t", ":NvimTreeFindFile<CR>", "[nvim-tree] focus tree" },
 })
-
