@@ -24,6 +24,13 @@ local plugins = {
       require("plugins.lsp.base")
     end,
   },
+  {
+    "folke/trouble.nvim",
+    event = "LspAttach",
+    config = function()
+      require("plugins.lsp.trouble")
+    end,
+  },
 }
 
 return plugins
