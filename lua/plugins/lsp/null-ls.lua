@@ -19,7 +19,7 @@ null_ls.setup({
 })
 
 require("eslint").setup({
-  bin = "eslint_d",
+  bin = "eslint",
   diagnostics = {
     enable = true,
     report_unused_disable_directives = false,
