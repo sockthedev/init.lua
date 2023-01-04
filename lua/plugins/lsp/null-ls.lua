@@ -27,6 +27,7 @@ require("eslint").setup({
   },
 })
 
-require("prettier").setup({
-  bin = "prettierd",
+local prettier = require("prettier")
+prettier.setup({
+  bin = "prettier",
 })

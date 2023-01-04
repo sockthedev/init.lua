@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.g.camelcasemotion_key = "<leader>"
-vim.g.maximizer_set_default_mapping = 1
+vim.g.camelcasemotion_key = "<M>"
+vim.g.maximizer_default_mapping_key = "<M-m>"
 vim.g.copilot_assume_mapped = true
 vim.opt.colorcolumn = "80"
 vim.opt.splitbelow = true -- split horizontal window to the bottom
