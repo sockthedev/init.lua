@@ -23,8 +23,14 @@ local plugins = {
   {
     "rose-pine/neovim",
     name = "rose-pine",
-    config = function() 
+    config = function()
       require("plugins.ui.theme")
+    end,
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    config = function()
+      require("plugins.ui.lualine")
     end,
   },
 }
