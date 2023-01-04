@@ -1,4 +1,4 @@
-local document_highlight = require("plugins.lsp.mods.document_highlight")
+local document_highlight = require("plugins.lsp.utils.document_highlight")
 
 ---@param client table
 ---@param bufnr integer

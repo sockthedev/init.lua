@@ -96,7 +96,7 @@ for _, server_name in ipairs(mason_lsp.get_installed_servers()) do
 end
 
 vim.api.nvim_create_user_command("Format", function(params)
-  local format = require("plugins.lsp.mods.format")
+  local format = require("plugins.lsp.utils.format")
   if params.range > 0 then
     format({ range = vim.lsp.util.make_given_range_params() })
   else

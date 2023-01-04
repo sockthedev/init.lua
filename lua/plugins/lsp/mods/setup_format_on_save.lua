@@ -1,4 +1,4 @@
-local format = require("plugins.lsp.mods.format")
+local format = require("plugins.lsp.utils.format")
 
 local function setup_format_on_save(client, bufnr, options)
   if not client.server_capabilities.documentFormattingProvider then

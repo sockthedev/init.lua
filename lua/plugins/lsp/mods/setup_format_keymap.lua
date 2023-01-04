@@ -1,5 +1,5 @@
 local u = require("utils.keymaps")
-local format = require("plugins.lsp.mods.format")
+local format = require("plugins.lsp.utils.format")
 
 ---@param client table
 ---@param bufnr integer

@@ -1,5 +1,5 @@
 local u = require("utils.keymaps")
-local hover = require("plugins.lsp.mods.hover")
+local hover = require("plugins.lsp.utils.hover")
 
 ---@param client table
 ---@param bufnr integer
