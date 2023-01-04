@@ -1,1 +1,2 @@
-require('sockthedev')
+require("config")
+
