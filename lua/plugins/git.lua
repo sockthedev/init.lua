@@ -13,11 +13,11 @@ function plugin_gitsigns.config()
 
   gitsigns.setup({
     signs = {
-      add = { text = "▎" },
-      change = { text = "▎" },
-      delete = { text = "▁" },
-      topdelete = { text = "▔" },
-      changedelete = { text = "▎" },
+      add = { text = "+" },
+      change = { text = "~" },
+      delete = { text = "_" },
+      topdelete = { text = "‾" },
+      changedelete = { text = "~" },
     },
     on_attach = function(bufnr)
       u.set_keymaps("n", {
@@ -68,29 +68,30 @@ function plugin_gitsigns.config()
   end)
 end
 
-local plugin_fugitive = {
-  "tpope/vim-fugitive",
-}
-function plugin_fugitive.config()
-  u.set_keymaps("n", {
-    { "<leader>gs", vim.cmd.Git, "[git] open fugitive" },
-  })
-end
-
-local plugin_gitblame = {
-  "f-person/git-blame.nvim",
-}
-function plugin_gitblame.config()
-  u.set_keymaps("n", {
-    { "<leader>gb", "<cmd>ToggleBlameLine<CR>", "[git] toggle blame" },
-  })
-end
-
 local plugins = {
   plugin_gitsigns,
   { "rhysd/git-messenger.vim" },
-  plugin_fugitive,
-  plugin_gitblame,
+  {
+    "tpope/vim-fugitive",
+    config = function()
+      u.set_keymaps("n", {
+        { "<leader>gs", vim.cmd.Git, "[git] open fugitive" },
+      })
+    end,
+  },
+  {
+    "f-person/git-blame.nvim",
+    config = function()
+      u.set_keymaps("n", {
+        { "<leader>gb", ":GitBlameToggle<CR>", "[git] toggle blame" },
+      })
+    end,
+    init = function()
+      vim.g.gitblame_enabled = 0
+      vim.g.gitblame_highlight_group = "Question"
+      vim.g.gitblame_date_format = "%r"
+    end,
+  },
 }
 
 return plugins

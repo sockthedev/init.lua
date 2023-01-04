@@ -21,8 +21,8 @@ local function setup_basic_keymap(client, bufnr)
     { "<C-k>", vim.lsp.buf.signature_help, "[lsp] signature help", mode = { "n", "i" } },
     { "gy", vim.lsp.buf.type_definition, "[lsp] type definition" },
     { "gr", vim.lsp.buf.references, "[lsp] references" },
-    { "<leader>ds", require("telescope").builtin.lsp_document_symbols, "[lsp] document symbols" },
-    { "<leader>ws", require("telescope").builtin.lsp_dynamic_workspace_symbols, "[lsp] workspace symbols" },
+    { "<leader>ds", require("telescope.builtin").lsp_document_symbols, "[lsp] document symbols" },
+    { "<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[lsp] workspace symbols" },
     { "<Leader>ca", vim.lsp.buf.code_action, "[lsp] code action", mode = { "n", "v" } },
     {
       "<Leader>do",
