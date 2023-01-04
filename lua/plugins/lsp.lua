@@ -3,7 +3,7 @@ local plugins = {
     "neovim/nvim-lspconfig",
     dependencies = {
       "b0o/schemastore.nvim",
-      "folke/lua-dev.nvim",
+      "folke/neodev.nvim",
       "hrsh7th/cmp-nvim-lsp",
       "jose-elias-alvarez/typescript.nvim",
       "onsails/lspkind-nvim",
@@ -24,7 +24,7 @@ local plugins = {
       require("plugins.lsp.base")
     end,
   },
-    {
+  {
     "jose-elias-alvarez/null-ls.nvim",
     dependencies = {
       "MunifTanjim/eslint.nvim",

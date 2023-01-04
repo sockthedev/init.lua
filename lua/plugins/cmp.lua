@@ -44,14 +44,14 @@ function plugin.config()
       }),
     },
     mapping = {
-      ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+      ["<C-Space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
       ["<Tab>"] = cmp.mapping(function(fallback)
         if require("copilot.suggestion").is_visible() then
           require("copilot.suggestion").accept()
         elseif cmp.visible() then
           cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
         elseif luasnip.expandable() then
-          luasnip.expand()
+          luasnip.expand({})
         elseif has_words_before() then
           cmp.complete()
         else

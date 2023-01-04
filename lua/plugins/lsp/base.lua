@@ -43,50 +43,10 @@ local function setup_server(server)
   end
 
   if server.name == "sumneko_lua" then
-    local luarc = mods.sumneko_lua.read_luarc()
-
-    local function get_workspace_library()
-      local workspace_library = {}
-
-      if luarc.workspace then
-        if luarc.workspace.library then
-          ---@diagnostic disable-next-line: missing-parameter
-          vim.list_extend(workspace_library, luarc.Lua.workspace.library)
-        end
-      end
-
-      if luarc.nvim then
-        table.insert(workspace_library, mods.sumneko_lua.get_nvim_lib_dir("lua-dev.nvim") .. "/types")
-        ---@diagnostic disable-next-line: missing-parameter
-        vim.list_extend(workspace_library, mods.sumneko_lua.get_nvim_lib_dirs(luarc.nvim.packages))
-      end
-
-      if not luarc.workspace and not luarc.nvim then
-        table.insert(workspace_library, mods.sumneko_lua.get_nvim_lib_dir("lua-dev.nvim") .. "/types")
-        ---@diagnostic disable-next-line: missing-parameter
-        vim.list_extend(workspace_library, mods.sumneko_lua.get_nvim_lib_dirs())
-      end
-
-      return workspace_library
-    end
-
     config.settings = {
       Lua = {
-        format = {
-          enable = false,
-        },
-        runtime = vim.tbl_deep_extend("force", {
-          version = "LuaJIT",
-          path = { "?.lua", "?/init.lua", "lua/?.lua", "lua/?/init.lua" },
-        }, luarc.runtime or {}),
-        workspace = {
-          checkThirdParty = false,
-          library = get_workspace_library(),
-          maxPreload = 10000,
-          preloadFileSize = 10000,
-        },
-        telemetry = {
-          enable = false,
+        completion = {
+          callSnippet = "Replace",
         },
       },
     }
@@ -95,6 +55,7 @@ local function setup_server(server)
   if server.name == "jsonls" then
     config.settings = {
       json = {
+        ---@diagnostic disable-next-line: missing-parameter
         schemas = vim.list_extend({
           {
             description = "Setting of sumneko.lua",
@@ -126,6 +87,9 @@ local function setup_server(server)
 
   server.setup(config)
 end
+
+-- this MUST be called prior to any `require("lspconfig")`
+require("neodev").setup({})
 
 for _, server_name in ipairs(mason_lsp.get_installed_servers()) do
   setup_server(require("lspconfig")[server_name])
