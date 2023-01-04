@@ -1,63 +1,37 @@
+local k = require("utils.keymaps")
+
 -- Shorten keymap function ref
 local keymap = vim.keymap.set
 
 -- Silent keymap option
 local opts = { silent = true }
 
--- Disable space in normal/visual
-keymap({ "n", "v" }, "<Space>", "<Nop>", opts)
+k.set_keymaps("n", {
+  { "<Space>", "<Nop>", "Noop" },
+  { "<leader>w", ":w<CR>", "Save file" },
+  { "x", '"_x', "Delete character" },
+  { "<leader>c", ":nohl<CR>", "Clear search highlighting" },
+  { "<C-d>", "<C-d>zz", "Page down" },
+  { "<C-u>", "<C-u>zz", "Page up" },
+  { "<leader>j", "ddp", "Move line up" },
+  { "<leader>k", "ddkP", "Move line down" },
+  { "<leader>l", "yyp", "Duplicate line down" },
+  { "<leader>L", "yyP", "Duplicate line up" },
+  { "<leader>o", "o<Esc>", "Insert empty line below" },
+  { "<leader>O", "O<Esc>", "Insert empty line above" },
+  { "<leader>q", ":q<CR>", "Close pane/split" },
+  { "<leader>Q", ":qa<CR>", "Close all panes/splits" },
+  { "[d", vim.diagnostic.goto_prev, "[diagnostics] Go to prev issue" },
+  { "]d", vim.diagnostic.goto_next, "[diagnostics] Go to next issue" },
+  { "<leader>sv", "<C-w>v", "Split vertically" },
+  { "<leader>sh", "<C-w>s", "Split horizontally" },
+  { "<leader>se", "<C-w>=", "Make splits equal size" },
+  { "<leader>sx", ":close<CR>", "Close split" },
+})
 
--- Save file
-keymap("n", "<leader>w", ":w<CR>")
-
--- Delete char does not go into register
-keymap("n", "x", '"_x', opts)
-
--- Map kk to Esc when editing
-keymap("i", "kk", "<Esc>", opts)
-
--- Clear search highlighting
-keymap("n", "<leader>c", ":nohl<CR>", opts)
-
--- Better page up/down
-keymap("n", "<C-d>", "<C-d>zz", opts)
-keymap("n", "<C-u>", "<C-u>zz", opts)
-
--- Move line up/down
-keymap("n", "<leader>j", "ddp", opts)
-keymap("n", "<leader>k", "ddkP", opts)
-
--- Duplicate line
-keymap("n", "<leader>l", "yyp", opts)
-keymap("n", "<leader>L", "yyP", opts)
-
--- New empty line
-keymap("n", "<leader>o", "o<Esc>", opts)
-keymap("n", "<leader>O", "O<Esc>", opts)
-
--- Close split/window
-keymap("n", "<leader>q", ":q<CR>", opts) -- Close current split
-keymap("n", "<leader>Q", ":qa<CR>") -- Close all splits and exit
-
--- Diagnostic Navigation
-keymap("n", "[d", vim.diagnostic.goto_prev)
-keymap("n", "]d", vim.diagnostic.goto_next)
-keymap("n", "<leader>e", vim.diagnostic.open_float)
-keymap("n", "<leader>d", vim.diagnostic.setloclist)
-
--- Splits
-keymap("n", "<leader>sv", "<C-w>v", opts) -- split verically
-keymap("n", "<leader>sh", "<C-w>s", opts) -- split horizontally
-keymap("n", "<leader>se", "<C-w>=", opts) -- make splits equal size
-keymap("n", "<leader>sx", ":close<CR>", opts) -- close split
-
--- buffers
-keymap("n", "<leader>n", "<cmd>bn<CR>", opts) -- next buffer
-keymap("n", "<leader>p", "<cmd>bp<CR>", opts) -- previous buffer
--- keymap('n', '<leader>xx', '<cmd>Bdelete!<CR>', opts) -- close current buffer
--- keymap('n', '<leader>xr', '<cmd>BufferLineCloseRight<CR>', opts) -- close right buffers
--- keymap('n', '<leader>xl', '<cmd>BufferLineCloseLeft<CR>', opts) -- close left buffers
-keymap("n", "<S-q>", "<cmd>bd<CR>", opts) -- Close all buffers
+k.set_keymaps("i", {
+  { "kk", "<Esc>", "Quite INSERT mode" },
+})
 
 -- Fugitive
 
