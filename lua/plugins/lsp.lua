@@ -31,6 +31,16 @@ local plugins = {
       require("plugins.lsp.trouble")
     end,
   },
+  {
+    "kosayoda/nvim-lightbulb",
+    dependencies = {
+      "antoinemadec/FixCursorHold.nvim",
+    },
+    event = "LspAttach",
+    config = function()
+      require("plugins.lsp.lightbulb")
+    end,
+  },
 }
 
 return plugins

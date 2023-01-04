@@ -10,8 +10,7 @@ local plugin = {
 function plugin.config()
   local u = require("utils.keymaps")
   local luasnip = require("luasnip")
-  local types = require("luasnip.util.types")
-
+  -- local types = require("luasnip.util.types")
   luasnip.config.setup({
     -- ext_opts = {
     --   [types.choiceNode] = {
