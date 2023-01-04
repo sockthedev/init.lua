@@ -105,18 +105,6 @@ function plugin.config()
         show_unindexed = false,
       },
     },
-    -- pickers = {
-    --   find_files = {
-    --     find_command = { "fd", "--type", "f", "--color", "never" },
-    --     hidden = true,
-    --   },
-    --   live_grep = {
-    --     additional_args = function()
-    --       return { "--hidden" }
-    --     end,
-    --     glob_pattern = { "!.git" },
-    --   },
-    -- },
   })
 
   telescope.load_extension("fzf")

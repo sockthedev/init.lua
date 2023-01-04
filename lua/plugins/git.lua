@@ -1,3 +1,5 @@
+local u = require("utils.keymaps")
+
 local plugin_gitsigns = {
   "lewis6991/gitsigns.nvim",
   event = "BufReadPre",
@@ -7,7 +9,6 @@ local plugin_gitsigns = {
 }
 
 function plugin_gitsigns.config()
-  local u = require("utils.keymaps")
   local gitsigns = require("gitsigns")
 
   gitsigns.setup({
@@ -67,10 +68,29 @@ function plugin_gitsigns.config()
   end)
 end
 
+local plugin_fugitive = {
+  "tpope/vim-fugitive",
+}
+function plugin_fugitive.config()
+  u.set_keymaps("n", {
+    { "<leader>gs", vim.cmd.Git, "[git] open fugitive" },
+  })
+end
+
+local plugin_gitblame = {
+  "f-person/git-blame.nvim",
+}
+function plugin_gitblame.config()
+  u.set_keymaps("n", {
+    { "<leader>gb", "<cmd>ToggleBlameLine<CR>", "[git] toggle blame" },
+  })
+end
+
 local plugins = {
   plugin_gitsigns,
   { "rhysd/git-messenger.vim" },
-  { "tpope/vim-fugitive" },
+  plugin_fugitive,
+  plugin_gitblame,
 }
 
 return plugins

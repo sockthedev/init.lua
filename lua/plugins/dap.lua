@@ -83,6 +83,7 @@ function plugin.init()
     {
       "<Leader>dh",
       function()
+        ---@diagnostic disable-next-line: missing-parameter
         require("dapui").eval()
       end,
       "[dap] Eval",

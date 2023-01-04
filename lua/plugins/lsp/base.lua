@@ -57,11 +57,13 @@ local function setup_server(server)
 
       if luarc.nvim then
         table.insert(workspace_library, mods.sumneko_lua.get_nvim_lib_dir("lua-dev.nvim") .. "/types")
+        ---@diagnostic disable-next-line: missing-parameter
         vim.list_extend(workspace_library, mods.sumneko_lua.get_nvim_lib_dirs(luarc.nvim.packages))
       end
 
       if not luarc.workspace and not luarc.nvim then
         table.insert(workspace_library, mods.sumneko_lua.get_nvim_lib_dir("lua-dev.nvim") .. "/types")
+        ---@diagnostic disable-next-line: missing-parameter
         vim.list_extend(workspace_library, mods.sumneko_lua.get_nvim_lib_dirs())
       end
 
