@@ -21,7 +21,7 @@ local function setup_basic_keymap(client, bufnr)
     { "gy", vim.lsp.buf.type_definition, "[lsp] type definition" },
     -- { "<Leader>rn", custom.rename, "[lsp] rename" },
     { "gr", vim.lsp.buf.references, "[lsp] references" },
-    { "<Leader>ac", vim.lsp.buf.code_action, "[lsp] code action", mode = { "n", "v" } },
+    { "<Leader>ca", vim.lsp.buf.code_action, "[lsp] code action", mode = { "n", "v" } },
     {
       "<Leader>do",
       function()
