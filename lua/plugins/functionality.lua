@@ -15,11 +15,6 @@ local plugins = {
     build = "make install",
   },
   { "powerman/vim-plugin-AnsiEsc" },
-  {
-    "rrethy/vim-hexokinase",
-    build = "make hexokinase",
-    event = "VeryLazy",
-  },
   { "szw/vim-maximizer" },
   { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
