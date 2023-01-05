@@ -33,6 +33,22 @@ local plugins = {
       require("plugins.ui.lualine")
     end,
   },
+  {
+    "xiyaowong/virtcolumn.nvim",
+    init = function()
+      vim.g.virtcolumn_char = "▕" -- char to display the line
+      vim.g.virtcolumn_priority = 10 -- priority of extmark
+    end,
+  },
+  -- {
+  --   "glepnir/lspsaga.nvim",
+  --   branch = "main",
+  --   config = function ()
+  --     local k = require("utils.keymaps")
+  --
+  --
+  --   end
+  -- }
 }
 
 return plugins
