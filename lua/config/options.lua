@@ -9,7 +9,6 @@ vim.opt.splitright = true -- split vertical window to the right
 vim.opt.backspace = "indent,eol,start" -- Allow backspace on indent, end of line or insert mode start position
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
-vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
 vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
 vim.opt.confirm = true
 vim.opt.cursorline = true -- highlight the current line
@@ -17,7 +16,7 @@ vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.fileencoding = "utf-8" -- the encoding written to a file
 vim.opt.fillchars.eob = " "
 vim.opt.foldenable = false
-vim.opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
+-- vim.opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
 vim.opt.hlsearch = true -- highlight all matches on previous search pattern
 vim.opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
 vim.opt.incsearch = true
@@ -68,7 +67,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.cmd([[
       nnoremap <silent> <buffer> q :close<CR>
       set nobuflisted
-      ]])
+    ]])
   end,
 })
 
@@ -76,5 +75,18 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   callback = function()
     vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
+  end,
+})
+
+-- Wrap lines for markdown files
+local group = vim.api.nvim_create_augroup("Markdown Wrap Settings", { clear = true })
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*.md" },
+  group = group,
+  callback = function()
+    vim.cmd([[
+      setlocal wrap
+      set colorcolumn=
+    ]])
   end,
 })

@@ -1,3 +1,5 @@
+local k = require("utils.keymaps")
+
 local plugins = {
   {
     "andymass/vim-matchup",
@@ -23,6 +25,14 @@ local plugins = {
   { "tpope/vim-surround" },
   { "tpope/vim-unimpaired" },
   { "svermeulen/vim-easyclip" },
+  {
+    "famiu/bufdelete.nvim",
+    init = function()
+      k.set_keymaps("n", {
+        { "<M-q>", ":Bdelete<CR>", "[bufdelete] Close buffer" },
+      })
+    end,
+  },
 }
 
 return plugins

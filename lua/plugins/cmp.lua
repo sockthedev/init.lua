@@ -15,22 +15,26 @@ local function has_words_before()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+function plugin.init()
+  vim.o.completeopt = "menu,menuone,noselect"
+end
+
 function plugin.config()
   local cmp = require("cmp")
   local luasnip = require("luasnip")
   local lspkind = require("lspkind")
 
-  vim.o.completeopt = "menu,menuone,noselect"
+  -- vim.o.completeopt = "menu,menuone,noselect"
 
   ---@diagnostic disable-next-line: redundant-parameter
   cmp.setup({
-    completion = {
-      autocomplete = false,
-      completeopt = vim.o.completeopt,
-    },
-    experimental = {
-      ghost_text = true,
-    },
+    -- completion = {
+    --   autocomplete = false,
+    --   completeopt = vim.o.completeopt,
+    -- },
+    -- experimental = {
+    --   ghost_text = true,
+    -- },
     formatting = {
       format = lspkind.cmp_format({
         with_text = true,

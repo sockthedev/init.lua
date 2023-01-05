@@ -36,7 +36,7 @@ function plugin.config()
 
   local suggestion = require("copilot.suggestion")
 
-  u.set_keymap("i", "<M-l>", function()
+  u.set_keymap("i", "<M-c>", function()
     if suggestion.is_visible() then
       suggestion.accept()
     else

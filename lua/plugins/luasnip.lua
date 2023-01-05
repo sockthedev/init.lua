@@ -10,22 +10,7 @@ local plugin = {
 function plugin.config()
   local u = require("utils.keymaps")
   local luasnip = require("luasnip")
-  -- local types = require("luasnip.util.types")
   luasnip.config.setup({
-    -- ext_opts = {
-    --   [types.choiceNode] = {
-    --     active = {
-    --       virt_text = { { "●", "GruvboxOrange" } },
-    --       hl_mode = "combine",
-    --     },
-    --   },
-    --   [types.insertNode] = {
-    --     active = {
-    --       virt_text = { { "●", "GruvboxBlue" } },
-    --       hl_mode = "combine",
-    --     },
-    --   },
-    -- },
     region_check_events = "CursorMoved",
     update_events = "TextChanged,TextChangedI",
     -- this does not affect lsp-snippets
@@ -92,4 +77,3 @@ function plugin.config()
 end
 
 return plugin
-
