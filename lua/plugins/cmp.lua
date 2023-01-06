@@ -24,17 +24,8 @@ function plugin.config()
   local luasnip = require("luasnip")
   local lspkind = require("lspkind")
 
-  -- vim.o.completeopt = "menu,menuone,noselect"
-
   ---@diagnostic disable-next-line: redundant-parameter
   cmp.setup({
-    -- completion = {
-    --   autocomplete = false,
-    --   completeopt = vim.o.completeopt,
-    -- },
-    -- experimental = {
-    --   ghost_text = true,
-    -- },
     formatting = {
       format = lspkind.cmp_format({
         with_text = true,

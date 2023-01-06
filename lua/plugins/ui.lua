@@ -40,15 +40,6 @@ local plugins = {
       vim.g.virtcolumn_priority = 10 -- priority of extmark
     end,
   },
-  -- {
-  --   "glepnir/lspsaga.nvim",
-  --   branch = "main",
-  --   config = function ()
-  --     local k = require("utils.keymaps")
-  --
-  --
-  --   end
-  -- }
 }
 
 return plugins

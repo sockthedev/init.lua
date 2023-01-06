@@ -5,7 +5,6 @@ local plugins = {
     "andymass/vim-matchup",
     event = "VeryLazy",
   },
-  { "bkad/CamelCaseMotion" },
   {
     "heavenshell/vim-jsdoc",
     ft = {
@@ -19,7 +18,6 @@ local plugins = {
   { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
   { "tpope/vim-unimpaired" },
-  { "svermeulen/vim-easyclip" },
   {
     "famiu/bufdelete.nvim",
     init = function()
