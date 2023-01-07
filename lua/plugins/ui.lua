@@ -15,12 +15,6 @@ local plugins = {
     end,
   },
   {
-    "mrjones2014/smart-splits.nvim",
-    config = function()
-      require("plugins.ui.smart-splits")
-    end,
-  },
-  {
     "rose-pine/neovim",
     name = "rose-pine",
     config = function()
@@ -31,13 +25,6 @@ local plugins = {
     "nvim-lualine/lualine.nvim",
     config = function()
       require("plugins.ui.lualine")
-    end,
-  },
-  {
-    "xiyaowong/virtcolumn.nvim",
-    init = function()
-      vim.g.virtcolumn_char = "▕" -- char to display the line
-      vim.g.virtcolumn_priority = 10 -- priority of extmark
     end,
   },
 }

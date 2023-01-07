@@ -42,16 +42,6 @@ local plugins = {
       require("plugins.lsp.trouble")
     end,
   },
-  -- {
-  --   "kosayoda/nvim-lightbulb",
-  --   dependencies = {
-  --     "antoinemadec/FixCursorHold.nvim",
-  --   },
-  --   event = "LspAttach",
-  --   config = function()
-  --     require("plugins.lsp.lightbulb")
-  --   end,
-  -- },
   {
     "glepnir/lspsaga.nvim",
     branch = "main",
@@ -60,7 +50,12 @@ local plugins = {
 
       local saga = require("lspsaga")
 
-      saga.init_lsp_saga()
+      saga.init_lsp_saga({
+        show_outline = {
+          win_position = "left_with",
+          auto_enter = false,
+        },
+      })
 
       k.set_keymaps({ "n", "v" }, {
         { "<leader>ca", "<cmd>Lspsaga code_action<CR>", "[lspsaga] code action", { silent = true } },
@@ -69,7 +64,7 @@ local plugins = {
       k.set_keymaps("n", {
         { "gh", "<cmd>Lspsaga lsp_finder<CR>", "[lspsaga] lsp finder", { silent = true } },
         { "<leader>rn", "<cmd>Lspsaga rename<CR>", "[lspsaga] rename", { silent = true } },
-        { "gg", "<cmd>Lspsaga peek_definition<CR>", "[lspsaga] peek definition", { silent = true } },
+        { "ga", "<cmd>Lspsaga peek_definition<CR>", "[lspsaga] peek definition", { silent = true } },
         {
           "<leader>cd",
           "<cmd>Lspsaga show_line_diagnostics<CR>",
@@ -102,13 +97,14 @@ local plugins = {
         },
         { "<leader>a", "<cmd>Lspsaga outline<CR>", "[lspsaga] code outline", { silent = true } },
         { "K", "<cmd>Lspsaga hover_doc<CR>", "[lspsaga] hover documentation", { silent = true } },
-        { "<C-m>", "<cmd>Lspsaga open_floaterm<CR>", "[lspsaga] open float terminal", { silent = true } },
-        {
-          "<C-M>",
-          [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]],
-          "[lspsaga] close float terminal",
-          { silent = true },
-        },
+        -- TODO: These are buggy. Revisit later.
+        -- { "<C-x>", ":Lspsaga open_floaterm<CR>", "[lspsaga] open float terminal", { silent = true } },
+        -- {
+        --   "<C-X>",
+        --   [[<C-\><C-n>:Lspsaga close_floaterm<CR>]],
+        --   "[lspsaga] close float terminal",
+        --   { silent = true },
+        -- },
       })
 
       -- if you want to pass some cli command into a terminal you can do it like this

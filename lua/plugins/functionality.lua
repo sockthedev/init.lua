@@ -26,6 +26,12 @@ local plugins = {
       })
     end,
   },
+  {
+    "mrjones2014/smart-splits.nvim",
+    config = function()
+      require("plugins.ui.smart-splits")
+    end,
+  },
 }
 
 return plugins

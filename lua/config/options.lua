@@ -1,6 +1,5 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.g.camelcasemotion_key = "<M>"
 vim.g.maximizer_default_mapping_key = "<M-m>"
 vim.g.copilot_assume_mapped = true
 vim.opt.colorcolumn = "80"
@@ -16,7 +15,6 @@ vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.fileencoding = "utf-8" -- the encoding written to a file
 vim.opt.fillchars.eob = " "
 vim.opt.foldenable = false
--- vim.opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
 vim.opt.hlsearch = true -- highlight all matches on previous search pattern
 vim.opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
 vim.opt.incsearch = true
@@ -51,7 +49,6 @@ vim.opt.updatetime = 300 -- faster completion (4000ms default)
 vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-vim.wo.signcolumn = "yes"
 
 -- Fixes Autocomment
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {

@@ -19,7 +19,7 @@ null_ls.setup({
 })
 
 require("eslint").setup({
-  bin = "eslint",
+  bin = "eslint_d",
   diagnostics = {
     enable = true,
     report_unused_disable_directives = false,
@@ -29,5 +29,5 @@ require("eslint").setup({
 
 local prettier = require("prettier")
 prettier.setup({
-  bin = "prettier",
+  bin = "prettierd",
 })
