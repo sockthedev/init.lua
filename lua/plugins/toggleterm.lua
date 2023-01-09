@@ -14,10 +14,23 @@ function plugin.config()
   local k = require("utils.keymaps")
 
   k.set_keymaps("n", {
-    { "<leader>ch", ":ToggleTerm size=10 direction=horizontal<CR>", "[toggleterm] horizontal" },
-    { "<leader>cv", ":ToggleTerm size=50 direction=vertical<CR>", "[toggleterm] vertical" },
     { "<leader>ct", ":ToggleTermToggleAll<CR>", "[toggleterm] toggle all" },
   })
+
+  local Terminal = require("toggleterm.terminal").Terminal
+
+  function split_terminal_horizontal()
+    Terminal:new({ direction = "horizontal", close_on_exit = true }):open()
+  end
+  function split_terminal_vertical()
+    Terminal:new({ direction = "vertical", close_on_exit = true }):open()
+  end
+
+  vim.api.nvim_create_user_command("SplitTerminalHorizontal", split_terminal_horizontal, {})
+  vim.api.nvim_create_user_command("SplitTerminalVertical", split_terminal_vertical, {})
+
+  vim.keymap.set({ "n", "t" }, "<leader>ch", "<cmd>SplitTerminalHorizontal<cr>")
+  vim.keymap.set({ "n", "t" }, "<leader>cv", "<cmd>SplitTerminalVertical<cr>")
 
   function _G.set_terminal_keymaps()
     local opts = { buffer = 0 }

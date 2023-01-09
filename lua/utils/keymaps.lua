@@ -18,7 +18,7 @@ end
 ---@param maps ({[1]: string, [2]: string|(fun():nil), [3]?: string, [4]?: table}|table)[]
 ---@param default_opts? table
 function k.set_keymaps(default_mode, maps, default_opts)
-  default_opts = default_opts or {}
+  default_opts = default_opts or { silent = true, noremap = true }
   for _, map in ipairs(maps) do
     local mode, lhs, rhs, map_opts = map.mode or default_mode, map[1], map[2], map[4] or {}
     map.desc = map.desc or map[3]
