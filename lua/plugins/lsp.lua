@@ -62,9 +62,9 @@ local plugins = {
       })
 
       k.set_keymaps("n", {
-        { "gh", "<cmd>Lspsaga lsp_finder<CR>", "[lspsaga] lsp finder", { silent = true } },
-        { "<leader>rn", "<cmd>Lspsaga rename<CR>", "[lspsaga] rename", { silent = true } },
-        { "ga", "<cmd>Lspsaga peek_definition<CR>", "[lspsaga] peek definition", { silent = true } },
+        { "gh", "<CMD>Lspsaga lsp_finder<CR>", "[lspsaga] lsp finder", { silent = true } },
+        { "<leader>cr", "<CMD>Lspsaga rename<CR>", "[lspsaga] rename", { silent = true } },
+        { "<leader>cp", "<CMD>Lspsaga peek_definition<CR>", "[lspsaga] peek definition", { silent = true } },
         {
           "<leader>cd",
           "<cmd>Lspsaga show_line_diagnostics<CR>",
@@ -95,8 +95,8 @@ local plugins = {
           "[lspsaga] jump to next error",
           { silent = true },
         },
-        { "<leader>a", "<cmd>Lspsaga outline<CR>", "[lspsaga] code outline", { silent = true } },
-        { "K", "<cmd>Lspsaga hover_doc<CR>", "[lspsaga] hover documentation", { silent = true } },
+        { "<leader>co", "<CMD>Lspsaga outline<CR>", "[lspsaga] code outline", { silent = true } },
+        { "K", ":Lspsaga hover_doc<CR>", "[lspsaga] hover documentation", { silent = true } },
         -- TODO: These are buggy. Revisit later.
         -- { "<C-x>", ":Lspsaga open_floaterm<CR>", "[lspsaga] open float terminal", { silent = true } },
         -- {

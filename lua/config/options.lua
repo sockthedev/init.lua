@@ -15,6 +15,7 @@ vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.fileencoding = "utf-8" -- the encoding written to a file
 vim.opt.fillchars.eob = " "
 vim.opt.foldenable = false
+vim.opt.guicursor = "i:block" -- block cursor on insert
 vim.opt.hlsearch = true -- highlight all matches on previous search pattern
 vim.opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
 vim.opt.incsearch = true

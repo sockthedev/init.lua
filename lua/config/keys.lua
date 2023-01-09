@@ -4,7 +4,7 @@ k.set_keymaps("n", {
   { "<Space>", "<Nop>", "Noop" },
   { "<leader>w", ":w<CR>", "Save file" },
   { "x", '"_x', "Delete character" },
-  { "<leader>c", ":nohl<CR>", "Clear search highlighting" },
+  { "<leader>fx", ":nohl<CR>", "Clear search highlighting" },
   { "<C-d>", "<C-d>zz", "Page down" },
   { "<C-u>", "<C-u>zz", "Page up" },
   { "<leader>j", "ddp", "Move line up" },

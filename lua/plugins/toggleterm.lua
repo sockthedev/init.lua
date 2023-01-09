@@ -1,6 +1,6 @@
 local plugin = {
   "akinsho/toggleterm.nvim",
-  tag = "*",
+  -- tag = "*",
 }
 
 function plugin.config()
@@ -8,6 +8,15 @@ function plugin.config()
     open_mapping = [[<c-\>]],
     shade_terminals = false,
     start_in_insert = false,
+    persist_mode = false,
+  })
+
+  local k = require("utils.keymaps")
+
+  k.set_keymaps("n", {
+    { "<leader>ch", ":ToggleTerm size=10 direction=horizontal<CR>", "[toggleterm] horizontal" },
+    { "<leader>cv", ":ToggleTerm size=50 direction=vertical<CR>", "[toggleterm] vertical" },
+    { "<leader>ct", ":ToggleTermToggleAll<CR>", "[toggleterm] toggle all" },
   })
 
   function _G.set_terminal_keymaps()

@@ -21,16 +21,16 @@ function plugin.config()
     }),
   })
 
-  local lsp_snippets_path = vim.fn.resolve(vim.fn.stdpath("config") .. "/snippets/lsp")
-  if vim.fn.isdirectory(lsp_snippets_path) == 0 then
-    print("[config] Missing LSP Snippets")
-  else
-    require("luasnip.loaders.from_vscode").lazy_load({
-      paths = {
-        lsp_snippets_path,
-      },
-    })
-  end
+  -- local lsp_snippets_path = vim.fn.resolve(vim.fn.stdpath("config") .. "/snippets/lsp")
+  -- if vim.fn.isdirectory(lsp_snippets_path) == 0 then
+  --   print("[config] Missing LSP Snippets")
+  -- else
+  --   require("luasnip.loaders.from_vscode").lazy_load({
+  --     paths = {
+  --       lsp_snippets_path,
+  --     },
+  --   })
+  -- end
 
   u.set_keymaps({ "i", "s" }, {
     {
