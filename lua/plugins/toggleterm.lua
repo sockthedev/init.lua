@@ -7,7 +7,7 @@ function plugin.config()
   require("toggleterm").setup({
     open_mapping = [[<c-\>]],
     shade_terminals = false,
-    start_in_insert = false,
+    start_in_insert = true,
     persist_mode = false,
   })
 

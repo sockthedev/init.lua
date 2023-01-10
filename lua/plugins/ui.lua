@@ -27,15 +27,6 @@ local plugins = {
       require("plugins.ui.lualine")
     end,
   },
-  {
-    "levouh/tint.nvim",
-    config = function()
-      require("tint").setup({
-        tint = -55,
-        saturation = 0.5,
-      })
-    end,
-  },
 }
 
 return plugins
