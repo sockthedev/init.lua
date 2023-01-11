@@ -65,11 +65,6 @@ treesitter_configs.setup({
   },
 })
 
-u.set_keymaps("n", {
-  { "<Leader>ghg", ":TSHighlightCapturesUnderCursor<CR>", "[treesitter] show hl captures" },
-  { "<Leader>gtr", ":TSPlaygroundToggle<CR>", "[treesitter] toggle playground" },
-})
-
 vim.cmd([[
   autocmd Syntax css,html,javascript,javascriptreact,json,typescript,typescriptreact,yaml
    \ set foldmethod=expr foldexpr=nvim_treesitter#foldexpr()

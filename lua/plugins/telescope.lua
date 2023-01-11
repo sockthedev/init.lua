@@ -21,56 +21,56 @@ function plugin.init()
 
   u.set_keymaps("n", {
     {
-      "<Leader>fb",
+      "<Leader>tb",
       function()
         require("telescope.builtin").buffers()
       end,
       "[telescope] buffers",
     },
     {
-      "<Leader>ff",
+      "<Leader>tf",
       function()
         require("telescope.builtin").find_files()
       end,
       "[telescope] files",
     },
     {
-      "<Leader>fg",
+      "<Leader>tg",
       function()
         require("telescope.builtin").git_files()
       end,
       "[telescope] git files",
     },
     {
-      "<Leader>fo",
+      "<Leader>to",
       function()
         require("telescope.builtin").oldfiles()
       end,
       "[telescope] old files",
     },
     {
-      "<Leader>fc",
+      "<Leader>tc",
       function()
         require("telescope.builtin").live_grep()
       end,
       "[telescope] content",
     },
     {
-      "<Leader>fh",
+      "<Leader>th",
       function()
         require("telescope.builtin").help_tags()
       end,
       "[telescope] help tags",
     },
     {
-      "<Leader>fr",
+      "<Leader>tr",
       function()
         require("telescope.builtin").lsp_references({ layout_strategy = "vertical" })
       end,
       "[telescope] lsp references",
     },
     {
-      "<Leader>f;",
+      "<Leader>t;",
       function()
         require("telescope.builtin").resume()
       end,

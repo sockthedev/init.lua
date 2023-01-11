@@ -2,7 +2,7 @@ local u = require("utils.keymaps")
 
 require("trouble").setup({
   action_keys = {
-    close = "gq",
+    close = "xq",
   },
 })
 

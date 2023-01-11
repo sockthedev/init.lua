@@ -21,10 +21,10 @@ local plugins = {
         on_attach = function(bufnr)
           u.set_keymaps("n", {
             {
-              "[c",
+              "<leader>gp",
               function()
                 if vim.wo.diff then
-                  return "[c"
+                  return "<leader>p"
                 end
 
                 vim.schedule(function()
@@ -33,13 +33,13 @@ local plugins = {
 
                 return "<ignore>"
               end,
-              "[git] prev change",
+              "Prev change",
             },
             {
-              "]c",
+              "<leader>gn",
               function()
                 if vim.wo.diff then
-                  return "]c"
+                  return "<leader>gn"
                 end
 
                 vim.schedule(function()
@@ -48,7 +48,7 @@ local plugins = {
 
                 return "<ignore>"
               end,
-              "[git] next change",
+              "Next change",
             },
           }, {
             buffer = bufnr,
@@ -57,7 +57,7 @@ local plugins = {
 
           u.set_keymap("v", "<leader>gs", ":Gitsigns stage_hunk<cr>", {
             buffer = bufnr,
-            desc = "[git] stage change",
+            desc = "Stage change",
           })
         end,
       })
@@ -72,7 +72,7 @@ local plugins = {
     "tpope/vim-fugitive",
     config = function()
       u.set_keymaps("n", {
-        { "<leader>gs", vim.cmd.Git, "[git] open fugitive" },
+        { "<leader>gs", vim.cmd.Git, "Open fugitive" },
       })
     end,
   },
@@ -87,11 +87,11 @@ local plugins = {
       local k = require("utils.keymaps")
 
       k.set_keymaps("n", {
-        { "<leader>gdc", "<CMD>DiffviewFileHistory %<CR>", "[git] View current file history" },
-        { "<leader>gdh", "<CMD>DiffviewFileHistory<CR>", "[git] View branch history" },
-        { "<leader>gdx", "<CMD>DiffviewClose<CR>", "[git] Close diff view" },
-        { "<leader>gdd", "<CMD>DiffviewOpen<CR>", "[git] Open diff view" },
-        { "<leader>gdm", "<CMD>DiffviewOpen origin/main...HEAD<CR>", "[git] Open diff view" },
+        { "<leader>gdc", "<CMD>DiffviewFileHistory %<CR>", "View current file history" },
+        { "<leader>gdh", "<CMD>DiffviewFileHistory<CR>", "View branch history" },
+        { "<leader>gdx", "<CMD>DiffviewClose<CR>", "Close diff view" },
+        { "<leader>gdd", "<CMD>DiffviewOpen<CR>", "Open diff view" },
+        { "<leader>gdm", "<CMD>DiffviewOpen origin/main...HEAD<CR>", "Open diff view" },
       })
     end,
   },

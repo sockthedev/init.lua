@@ -63,6 +63,16 @@ function plugin.config()
   u.set_keymap = set_keymap
   u.set_keymaps = set_keymaps
 
+  which_key.register({ d = { name = "dap" } }, { prefix = "<leader>" })
+  which_key.register({ f = { name = "filetree" } }, { prefix = "<leader>" })
+  which_key.register({ g = { name = "git" } }, { prefix = "<leader>" })
+  which_key.register({ gd = { name = "diff" } }, { prefix = "<leader>" })
+  which_key.register({ h = { name = "lines" } }, { prefix = "<leader>" })
+  which_key.register({ l = { name = "lsp" } }, { prefix = "<leader>" })
+  which_key.register({ s = { name = "splits" } }, { prefix = "<leader>" })
+  which_key.register({ t = { name = "telescope" } }, { prefix = "<leader>" })
+  which_key.register({ x = { name = "terminal" } }, { prefix = "<leader>" })
+
   vim.schedule(function()
     vim.api.nvim_set_hl(0, "WhichKeyFloat", { link = "Normal" })
   end)

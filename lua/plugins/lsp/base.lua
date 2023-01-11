@@ -20,7 +20,7 @@ mason_lsp.setup({
 local function default_on_attach(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  mods.setup_basic_keymap(client, bufnr)
+  mods.setup_basic_keymap(bufnr)
   mods.setup_format_keymap(client, bufnr)
   mods.setup_format_on_save(client, bufnr)
   mods.setup_document_highlight(client, bufnr)
@@ -102,7 +102,7 @@ vim.api.nvim_create_user_command("Format", function(params)
   else
     format()
   end
-end, { desc = "[lsp] format content", range = "%" })
+end, { desc = "Format", range = "%" })
 
 local function setup_diagnostics()
   vim.diagnostic.config({

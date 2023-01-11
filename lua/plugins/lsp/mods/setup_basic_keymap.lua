@@ -1,22 +1,18 @@
 local u = require("utils.keymaps")
-local hover = require("plugins.lsp.utils.hover")
 
----@param client table
 ---@param bufnr integer
-local function setup_basic_keymap(client, bufnr)
+local function setup_basic_keymap(bufnr)
   local opts = { buffer = bufnr }
 
   u.set_keymaps("n", {
-    { "gD", vim.lsp.buf.declaration, "[lsp] declaration" },
-    { "gd", vim.lsp.buf.definition, "[lsp] definition" },
-    { "gi", vim.lsp.buf.implementation, "[lsp] implementation" },
-    { "<C-k>", vim.lsp.buf.signature_help, "[lsp] signature help", mode = { "n", "i" } },
-    { "gy", vim.lsp.buf.type_definition, "[lsp] type definition" },
-    { "gr", vim.lsp.buf.references, "[lsp] references" },
-    { "<leader>ds", require("telescope.builtin").lsp_document_symbols, "[lsp] document symbols" },
-    { "<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[lsp] workspace symbols" },
-    { "<Leader>qf", vim.diagnostic.setloclist, "[lsp] diagnostic to location list" },
-    { "<Leader>rs", "<cmd>LspRestart<CR>", "[lsp] restart" },
+    { "<leader>lD", vim.lsp.buf.declaration, "Goto declaration" },
+    { "<leader>ld", vim.lsp.buf.definition, "Goto definition" },
+    { "<leader>li", vim.lsp.buf.implementation, "Goto implementation" },
+    { "<leader>ly", vim.lsp.buf.type_definition, "Goto type definition" },
+    { "<leader>lr", vim.lsp.buf.references, "References" },
+    { "<leader>td", require("telescope.builtin").lsp_document_symbols, "Document symbols" },
+    { "<leader>tw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols" },
+    { "<Leader>lr", "<cmd>LspRestart<CR>", "Restart" },
   }, opts)
 end
 

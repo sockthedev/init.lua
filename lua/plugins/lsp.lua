@@ -58,58 +58,42 @@ local plugins = {
       })
 
       k.set_keymaps({ "n", "v" }, {
-        { "<leader>ca", "<cmd>Lspsaga code_action<CR>", "[lspsaga] code action", { silent = true } },
+        { "<leader>la", "<cmd>Lspsaga code_action<CR>", "Code action" },
       })
 
       k.set_keymaps("n", {
-        { "gh", "<CMD>Lspsaga lsp_finder<CR>", "[lspsaga] lsp finder", { silent = true } },
-        { "<leader>cr", "<CMD>Lspsaga rename<CR>", "[lspsaga] rename", { silent = true } },
-        { "<leader>cp", "<CMD>Lspsaga peek_definition<CR>", "[lspsaga] peek definition", { silent = true } },
+        { "<leader>lf", "<CMD>Lspsaga lsp_finder<CR>", "Finder" },
+        { "<leader>lr", "<CMD>Lspsaga rename<CR>", "Rename" },
+        { "<leader>lp", "<CMD>Lspsaga peek_definition<CR>", "Peek" },
         {
-          "<leader>cd",
+          "<leader>lx",
           "<cmd>Lspsaga show_line_diagnostics<CR>",
-          "[lspsaga] show line diagnostics",
-          { silent = true },
+          "Line diagnostics",
         },
         {
-          "<leader>cd",
+          "<leader>lc",
           "<cmd>Lspsaga show_cursor_diagnostics<CR>",
-          "[lspsaga] show cursor diagnostics",
-          { silent = true },
+          "Show cursor diagnostics",
         },
-        { "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "[lspsaga] prev diagnostic jump", { silent = true } },
-        { "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", "[lspsaga] next diagnostics jump", { silent = true } },
+        { "<leader>le", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Jump to prev diagnostic" },
+        { "<leader>le", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Jump to next diagnostics" },
         {
-          "[E",
+          "<leader>lE",
           function()
             require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
           end,
-          "[lspsaga] jump to prev error",
-          { silent = true },
+          "Jump to prev error",
         },
         {
-          "]E",
+          "<leader>lE",
           function()
             require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
           end,
-          "[lspsaga] jump to next error",
-          { silent = true },
+          "Jump to next error",
         },
-        { "<leader>co", "<CMD>Lspsaga outline<CR>", "[lspsaga] code outline", { silent = true } },
-        { "K", ":Lspsaga hover_doc<CR>", "[lspsaga] hover documentation", { silent = true } },
-        -- TODO: These are buggy. Revisit later.
-        -- { "<C-x>", ":Lspsaga open_floaterm<CR>", "[lspsaga] open float terminal", { silent = true } },
-        -- {
-        --   "<C-X>",
-        --   [[<C-\><C-n>:Lspsaga close_floaterm<CR>]],
-        --   "[lspsaga] close float terminal",
-        --   { silent = true },
-        -- },
+        { "<leader>lo", "<CMD>Lspsaga outline<CR>", "Code outline" },
+        { "<leader>lk", ":Lspsaga hover_doc<CR>", "Float documentation" },
       })
-
-      -- if you want to pass some cli command into a terminal you can do it like this
-      -- open lazygit in lspsaga float terminal
-      -- keymap("n", "<A-d>", "<cmd>Lspsaga open_floaterm lazygit<CR>", { silent = true })
     end,
   },
 }
