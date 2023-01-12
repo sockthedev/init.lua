@@ -21,8 +21,13 @@ require("nvim-tree").setup({
   },
   view = {
     adaptive_size = true,
-    hide_root_folder = true,
-    side = "right",
+    hide_root_folder = false,
+    -- side = "right",
+    float = {
+      enable = true,
+      -- width = 100,
+      -- height = 30,
+    },
   },
   actions = {
     open_file = {

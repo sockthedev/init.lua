@@ -1,5 +1,4 @@
 local k = require("utils.keymaps")
---local wk = require("which-key")
 
 k.set_keymaps({ "n", "v" }, {
   { "<Space>", "<Nop>", "Noop" },
@@ -27,7 +26,6 @@ k.set_keymaps("n", {
 })
 
 -- Line actions
--- wk.register({ l = { name = "Lines" } }, { prefix = "<leader>" })
 k.set_keymaps("n", {
   { "<leader>hD", "yyP", "Duplicate line up" },
   { "<leader>hd", "yyp", "Duplicate line down" },

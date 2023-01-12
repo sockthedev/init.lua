@@ -6,16 +6,27 @@ local plugin = {
 function plugin.config()
   require("toggleterm").setup({
     open_mapping = [[<c-\>]],
+    size = function(term)
+      if term.direction == "vertical" then
+        local minWidth = 50
+        local quarterWindow = vim.o.columns / 3
+        if quarterWindow > minWidth then
+          print(string.format("using calculated %s", quarterWindow))
+          return quarterWindow
+        else
+          print(string.format("using default %s", quarterWindow))
+          return minWidth
+        end
+      else
+        return 20
+      end
+    end,
     shade_terminals = false,
-    start_in_insert = true,
+    start_in_insert = false,
     persist_mode = false,
   })
 
   local k = require("utils.keymaps")
-
-  k.set_keymaps("n", {
-    { "<leader>xt", ":ToggleTermToggleAll<CR>", "[toggleterm] toggle all" },
-  })
 
   local Terminal = require("toggleterm.terminal").Terminal
 
@@ -25,12 +36,20 @@ function plugin.config()
   local function split_terminal_vertical()
     Terminal:new({ direction = "vertical", close_on_exit = true }):open()
   end
+  local function split_terminal_float()
+    Terminal:new({ direction = "float", close_on_exit = true }):open()
+  end
 
-  vim.api.nvim_create_user_command("SplitTerminalHorizontal", split_terminal_horizontal, {})
-  vim.api.nvim_create_user_command("SplitTerminalVertical", split_terminal_vertical, {})
+  vim.api.nvim_create_user_command("CreateHorizontalTerminal", split_terminal_horizontal, {})
+  vim.api.nvim_create_user_command("CreateVerticalTerminal", split_terminal_vertical, {})
+  vim.api.nvim_create_user_command("CreateFloatTerminal", split_terminal_float, {})
 
-  vim.keymap.set({ "n", "t" }, "<leader>xh", "<cmd>SplitTerminalHorizontal<cr>")
-  vim.keymap.set({ "n", "t" }, "<leader>xv", "<cmd>SplitTerminalVertical<cr>")
+  k.set_keymaps({ "n", "t" }, {
+    { "<leader>xt", "<cmd>ToggleTermToggleAll<CR>", "Toggle terminals" },
+    { "<leader>xh", "<cmd>CreateHorizontalTerminal<cr>", "Create horizontal terminal" },
+    { "<leader>xv", "<cmd>CreateVerticalTerminal<cr>", "Create vertical terminal" },
+    { "<leader>xf", "<cmd>CreateFloatTerminal<cr>", "Create float terminal" },
+  })
 
   function _G.set_terminal_keymaps()
     local opts = { buffer = 0 }
