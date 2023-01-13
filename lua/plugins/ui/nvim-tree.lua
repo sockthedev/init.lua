@@ -7,6 +7,11 @@ vim.g.loaded_netrwPlugin = 1
 -- change color for arrows in tree to light blue
 vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
 
+local gheight = vim.api.nvim_list_uis()[1].height
+local gwidth = vim.api.nvim_list_uis()[1].width
+local width = 90
+local height = math.floor(gheight * 0.9)
+
 -- configure nvim-tree
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
@@ -22,11 +27,18 @@ require("nvim-tree").setup({
   view = {
     adaptive_size = true,
     hide_root_folder = false,
-    -- side = "right",
+    width = width,
+    height = height,
     float = {
       enable = true,
-      -- width = 100,
-      -- height = 30,
+      open_win_config = {
+        relative = "editor",
+        width = width,
+        height = height,
+        row = (gheight - height) * 0.4,
+        col = (gwidth - width) * 0.5,
+        border = "rounded",
+      },
     },
   },
   actions = {
