@@ -72,6 +72,7 @@ local function setup_server(server)
   if server.name == "tsserver" then
     require("typescript").setup({
       server = {
+        capabilities = config.capabilities,
         on_attach = function(client, bufnr)
           default_on_attach(client, bufnr)
 
@@ -79,6 +80,7 @@ local function setup_server(server)
             require("typescript").actions.organizeImports({ sync = opts.bang })
           end, { desc = "Organize Imports", bang = true })
         end,
+        root_dir = require("lspconfig").util.root_pattern(".git"),
       },
     })
 

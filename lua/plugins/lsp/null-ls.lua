@@ -11,6 +11,7 @@ null_ls.setup({
       end,
     }),
     null_ls.builtins.formatting.stylua,
+    require("typescript.extensions.null-ls.code-actions"),
   },
   on_attach = function(client, bufnr)
     mods.setup_format_keymap(client, bufnr)
