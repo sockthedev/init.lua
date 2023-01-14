@@ -13,26 +13,22 @@ k.set_keymaps("n", {
 -- Modification
 k.set_keymaps("n", {
   { "x", '"_x', "Delete character" },
-  { "<leader>p", '"_dP', "Delete selection, pasting over contents, but keep paste register" },
+  { "<leader>p", '"_dP', "Paste, but keep paste register" },
 })
 
 -- Exiting things
 k.set_keymaps("i", {
-  { "kk", "<Esc>", "Quit INSERT mode" },
-})
-k.set_keymaps("n", {
-  { "<leader>Q", ":qa<CR>", "Close all buffer/pane" },
-  { "<leader>q", ":q<CR>", "Close buffer/pane" },
+  { "kk", "<Esc>", "Exit INSERT mode" },
 })
 
 -- Line actions
 k.set_keymaps("n", {
-  { "<leader>hD", "yyP", "Duplicate line up" },
-  { "<leader>hd", "yyp", "Duplicate line down" },
-  { "<leader>hj", "ddp", "Move line up" },
-  { "<leader>hk", "ddkP", "Move line down" },
-  { "<leader>hI", "O<Esc>", "Insert empty line above" },
-  { "<leader>hi", "o<Esc>", "Insert empty line below" },
+  { "<leader>h", "yyP", "Duplicate line up" },
+  { "<leader>l", "yyp", "Duplicate line down" },
+  { "<leader>j", "ddp", "Move line up" },
+  { "<leader>k", "ddkP", "Move line down" },
+  { "<leader>O", "O<Esc>", "Insert empty line above" },
+  { "<leader>o", "o<Esc>", "Insert empty line below" },
 })
 
 -- Splits

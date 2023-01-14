@@ -95,6 +95,6 @@ require("nvim-tree").setup({
 
 -- keymaps
 u.set_keymaps("n", {
-  { "<leader>ft", ":NvimTreeToggle<CR>", "Toggle file tree" },
-  { "<leader>ff", ":NvimTreeFindFile<CR>", "Focus file tree" },
+  { "<leader>tt", ":NvimTreeToggle<CR>", "Toggle files" },
+  { "<leader>tf", ":NvimTreeFindFile<CR>", "Focus files" },
 })

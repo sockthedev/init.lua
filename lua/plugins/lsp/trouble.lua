@@ -6,4 +6,4 @@ require("trouble").setup({
   },
 })
 
-u.set_keymap("n", "<Leader>xx", ":TroubleToggle<CR>", "toggle trouble")
+u.set_keymap("n", "<Leader>il", ":TroubleToggle<CR>", "List issues")

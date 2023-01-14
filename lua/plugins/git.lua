@@ -21,7 +21,7 @@ local plugins = {
         on_attach = function(bufnr)
           u.set_keymaps("n", {
             {
-              "<leader>gp",
+              "<leader>vp",
               function()
                 if vim.wo.diff then
                   return "<leader>p"
@@ -36,10 +36,10 @@ local plugins = {
               "Prev change",
             },
             {
-              "<leader>gn",
+              "<leader>vn",
               function()
                 if vim.wo.diff then
-                  return "<leader>gn"
+                  return "<leader>vn"
                 end
 
                 vim.schedule(function()
@@ -55,7 +55,7 @@ local plugins = {
             expr = true,
           })
 
-          u.set_keymap("v", "<leader>gs", ":Gitsigns stage_hunk<cr>", {
+          u.set_keymap("v", "<leader>vs", ":Gitsigns stage_hunk<cr>", {
             buffer = bufnr,
             desc = "Stage change",
           })
@@ -67,12 +67,22 @@ local plugins = {
       end)
     end,
   },
-  { "rhysd/git-messenger.vim" },
+  {
+    "rhysd/git-messenger.vim",
+    init = function()
+      vim.g.git_messenger_no_default_mappings = true
+    end,
+    config = function()
+      u.set_keymaps("n", {
+        { "<leader>vi", "<CMD>GitMessenger<CR>", "Git messenger" },
+      })
+    end,
+  },
   {
     "tpope/vim-fugitive",
     config = function()
       u.set_keymaps("n", {
-        { "<leader>gs", vim.cmd.Git, "Open fugitive" },
+        { "<leader>vs", vim.cmd.Git, "Open fugitive" },
       })
     end,
   },
@@ -87,11 +97,11 @@ local plugins = {
       local k = require("utils.keymaps")
 
       k.set_keymaps("n", {
-        { "<leader>gdc", "<CMD>DiffviewFileHistory %<CR>", "View current file history" },
-        { "<leader>gdh", "<CMD>DiffviewFileHistory<CR>", "View branch history" },
-        { "<leader>gdx", "<CMD>DiffviewClose<CR>", "Close diff view" },
-        { "<leader>gdd", "<CMD>DiffviewOpen<CR>", "Open diff view" },
-        { "<leader>gdm", "<CMD>DiffviewOpen origin/main...HEAD<CR>", "Open diff view" },
+        { "<leader>vc", "<CMD>DiffviewFileHistory %<CR>", "View current file history" },
+        { "<leader>vh", "<CMD>DiffviewFileHistory<CR>", "View branch history" },
+        { "<leader>vx", "<CMD>DiffviewClose<CR>", "Close diff view" },
+        { "<leader>vd", "<CMD>DiffviewOpen<CR>", "Open diff view" },
+        { "<leader>vm", "<CMD>DiffviewOpen origin/main...HEAD<CR>", "Open diff view" },
       })
     end,
   },
