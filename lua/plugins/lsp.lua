@@ -45,6 +45,7 @@ local plugins = {
   {
     "glepnir/lspsaga.nvim",
     branch = "main",
+    event = "BufRead",
     config = function()
       require("plugins.lsp.lspsaga")
     end,

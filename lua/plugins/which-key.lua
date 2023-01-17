@@ -63,6 +63,7 @@ function plugin.config()
   u.set_keymap = set_keymap
   u.set_keymaps = set_keymaps
 
+  which_key.register({ c = { name = "code" } }, { prefix = "<leader>" })
   which_key.register({ d = { name = "dap" } }, { prefix = "<leader>" })
   which_key.register({ t = { name = "files" } }, { prefix = "<leader>" })
   which_key.register({ i = { name = "diagnostics" } }, { prefix = "<leader>" })
