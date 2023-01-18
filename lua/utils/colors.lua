@@ -1,7 +1,7 @@
 local c = {}
 
 c.setColorScheme = function()
-  vim.cmd.colorscheme("rose-pine")
+  vim.cmd.colorscheme("nord")
 end
 
 return c

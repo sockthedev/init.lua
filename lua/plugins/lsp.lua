@@ -40,7 +40,6 @@ local plugins = {
     event = "LspAttach",
     config = function()
       require("plugins.lsp.trouble")
-      require("utils.colors").setColorScheme()
     end,
   },
   {
@@ -49,6 +48,8 @@ local plugins = {
     event = "BufRead",
     config = function()
       require("plugins.lsp.lspsaga")
+      -- We have to reset the color scheme otherwise saga comes out in other
+      -- colors;
       require("utils.colors").setColorScheme()
     end,
   },

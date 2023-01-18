@@ -41,7 +41,7 @@ require("lualine").setup({
   options = {
     globalstatus = true,
     icons_enabled = true,
-    theme = "rose-pine",
+    theme = "nord",
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     disabled_filetypes = { "alpha", "dashboard" },

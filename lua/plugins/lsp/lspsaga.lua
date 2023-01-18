@@ -8,7 +8,7 @@ saga.setup({
     auto_enter = false,
   },
   ui = {
-    border = "double",
+    border = "single",
   },
 })
 

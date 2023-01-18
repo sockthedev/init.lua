@@ -1,17 +1,16 @@
 local plugins = {
   {
-    "rose-pine/neovim",
-    name = "rose-pine",
+    "shaunsingh/nord.nvim",
+    name = "nord",
     config = function()
-      require("rose-pine").setup({})
       require("utils.colors").setColorScheme()
+      require("nord").set()
     end,
   },
   {
     "goolord/alpha-nvim",
     config = function()
       require("plugins.ui.alpha")
-      require("utils.colors").setColorScheme()
     end,
   },
   {
@@ -21,13 +20,37 @@ local plugins = {
     },
     config = function()
       require("plugins.ui.nvim-tree")
-      require("utils.colors").setColorScheme()
     end,
   },
   {
     "nvim-lualine/lualine.nvim",
     config = function()
       require("plugins.ui.lualine")
+    end,
+  },
+  {
+    "folke/zen-mode.nvim",
+    config = function()
+      require("zen-mode").setup({
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+        window = {
+          backdrop = 1,
+        },
+      })
+
+      local k = require("utils.keymaps")
+
+      k.set_keymaps("n", {
+        {
+          "<leader>Z",
+          function()
+            require("zen-mode").toggle()
+          end,
+          "[zen] Toggle",
+        },
+      })
     end,
   },
 }

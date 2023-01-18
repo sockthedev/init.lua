@@ -42,7 +42,7 @@ function plugin.init()
       "Git files",
     },
     {
-      "<leader>fr",
+      "<leader>fh",
       function()
         require("telescope.builtin").oldfiles(require("telescope.themes").get_ivy({}))
       end,
@@ -56,7 +56,14 @@ function plugin.init()
       "Grep",
     },
     {
-      "<leader>fh",
+      "<leader>fr",
+      function()
+        require("telescope").extensions.frecency.frecency(require("telescope.themes").get_ivy({ workspace = "CWD" }))
+      end,
+      "Grep",
+    },
+    {
+      "<leader>f?",
       function()
         require("telescope.builtin").help_tags(require("telescope.themes").get_ivy({}))
       end,
@@ -109,8 +116,6 @@ function plugin.config()
 
   telescope.load_extension("fzf")
   telescope.load_extension("frecency")
-
-  require("utils.colors").setColorScheme()
 end
 
 return plugin
