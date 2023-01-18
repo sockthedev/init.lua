@@ -40,6 +40,7 @@ local plugins = {
     event = "LspAttach",
     config = function()
       require("plugins.lsp.trouble")
+      require("utils.colors").setColorScheme()
     end,
   },
   {
@@ -48,6 +49,7 @@ local plugins = {
     event = "BufRead",
     config = function()
       require("plugins.lsp.lspsaga")
+      require("utils.colors").setColorScheme()
     end,
   },
 }

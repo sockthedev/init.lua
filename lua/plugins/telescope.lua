@@ -23,49 +23,49 @@ function plugin.init()
     {
       "<leader>fb",
       function()
-        require("telescope.builtin").buffers()
+        require("telescope.builtin").buffers(require("telescope.themes").get_ivy({}))
       end,
       "Buffers",
     },
     {
       "<leader>ff",
       function()
-        require("telescope.builtin").find_files()
+        require("telescope.builtin").find_files(require("telescope.themes").get_ivy({}))
       end,
       "Files",
     },
     {
       "<leader>fv",
       function()
-        require("telescope.builtin").git_files()
+        require("telescope.builtin").git_files(require("telescope.themes").get_ivy({}))
       end,
       "Git files",
     },
     {
       "<leader>fr",
       function()
-        require("telescope.builtin").oldfiles()
+        require("telescope.builtin").oldfiles(require("telescope.themes").get_ivy({}))
       end,
       "Recent",
     },
     {
       "<leader>fg",
       function()
-        require("telescope.builtin").live_grep()
+        require("telescope.builtin").live_grep(require("telescope.themes").get_ivy({}))
       end,
       "Grep",
     },
     {
       "<leader>fh",
       function()
-        require("telescope.builtin").help_tags()
+        require("telescope.builtin").help_tags(require("telescope.themes").get_ivy({}))
       end,
       "Help",
     },
     {
       "<leader>fc",
       function()
-        require("telescope.builtin").lsp_references({ layout_strategy = "vertical" })
+        require("telescope.builtin").lsp_references(require("telescope.themes").get_ivy({}))
       end,
       "Lsp references",
     },
@@ -109,6 +109,8 @@ function plugin.config()
 
   telescope.load_extension("fzf")
   telescope.load_extension("frecency")
+
+  require("utils.colors").setColorScheme()
 end
 
 return plugin

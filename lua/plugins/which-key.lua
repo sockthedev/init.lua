@@ -65,7 +65,6 @@ function plugin.config()
 
   which_key.register({ c = { name = "code" } }, { prefix = "<leader>" })
   which_key.register({ d = { name = "dap" } }, { prefix = "<leader>" })
-  which_key.register({ t = { name = "files" } }, { prefix = "<leader>" })
   which_key.register({ i = { name = "diagnostics" } }, { prefix = "<leader>" })
   which_key.register({ s = { name = "split" } }, { prefix = "<leader>" })
   which_key.register({ f = { name = "find" } }, { prefix = "<leader>" })

@@ -1,8 +1,17 @@
 local plugins = {
   {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    config = function()
+      require("rose-pine").setup({})
+      require("utils.colors").setColorScheme()
+    end,
+  },
+  {
     "goolord/alpha-nvim",
     config = function()
       require("plugins.ui.alpha")
+      require("utils.colors").setColorScheme()
     end,
   },
   {
@@ -12,13 +21,7 @@ local plugins = {
     },
     config = function()
       require("plugins.ui.nvim-tree")
-    end,
-  },
-  {
-    "rose-pine/neovim",
-    name = "rose-pine",
-    config = function()
-      require("plugins.ui.theme")
+      require("utils.colors").setColorScheme()
     end,
   },
   {
