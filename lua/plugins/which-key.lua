@@ -55,8 +55,8 @@ function plugin.config()
     window = {
       border = "single",
       position = "bottom",
-      margin = { 1, 0, 1, 0 },
-      padding = { 0, 0, 0, 0 },
+      padding = { 1, 0, 1, 0 },
+      margin = { 0, 0, 0, 0 },
     },
   })
 
