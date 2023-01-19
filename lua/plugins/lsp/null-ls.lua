@@ -19,6 +19,15 @@ null_ls.setup({
   end,
 })
 
+require("mason-null-ls").setup({
+  ensure_installed = {
+    "stylua",
+    "jq",
+    "eslint_d",
+    "prettierd",
+  },
+})
+
 require("eslint").setup({
   bin = "eslint_d",
   diagnostics = {

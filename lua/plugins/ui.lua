@@ -55,9 +55,8 @@ local plugins = {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPre",
     opts = {
-      -- char = "▏",
       char = "│",
-      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
+      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "nvim-tree", "Trouble", "lazy" },
       show_trailing_blankline_indent = false,
       show_current_context = false,
     },
@@ -68,7 +67,6 @@ local plugins = {
     version = false, -- wait till new 0.7.0 release to put it back on semver
     event = "BufReadPre",
     opts = {
-      -- symbol = "▏",
       symbol = "│",
       options = { try_as_border = true },
     },

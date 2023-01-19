@@ -29,6 +29,7 @@ local plugins = {
     dependencies = {
       "MunifTanjim/eslint.nvim",
       "MunifTanjim/prettier.nvim",
+      "jay-babu/mason-null-ls.nvim",
     },
     event = "BufReadPre",
     config = function()
