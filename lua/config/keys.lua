@@ -4,11 +4,18 @@ k.set_keymaps({ "n", "v" }, {
   { "<Space>", "<Nop>", "Noop" },
 })
 
+-- better paging
 k.set_keymaps("n", {
-  { "<leader>w", ":w<CR>", "Save file" },
   { "<C-d>", "<C-d>zz", "Page down" },
   { "<C-u>", "<C-u>zz", "Page up" },
 })
+
+-- better indenting
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+
+-- save file
+vim.keymap.set({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
 -- Modification
 k.set_keymaps("n", {
@@ -16,10 +23,21 @@ k.set_keymaps("n", {
   { "<leader>p", '"_dP', "Paste, but keep paste register" },
 })
 
--- Exiting things
+-- Exit insert mode
 k.set_keymaps("i", {
-  { "kk", "<Esc>", "Exit INSERT mode" },
+  { "jk", "<Esc>", "Exit INSERT mode" },
 })
+
+-- Clear search with <esc>
+vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+vim.keymap.set("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+vim.keymap.set("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+vim.keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+vim.keymap.set("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
 -- Line actions
 k.set_keymaps("n", {
@@ -37,11 +55,4 @@ k.set_keymaps("n", {
   { "<leader>sh", "<C-w>s", "Split horizontally" },
   { "<leader>sv", "<C-w>v", "Split vertically" },
   { "<leader>sx", ":close<CR>", "Close split" },
-})
-
--- Search
-k.set_keymaps("n", {
-  { "<leader>fx", ":nohl<CR>", "Clear search highlighting" },
-  { "n", "nzz", "Next search result" },
-  { "N", "Nzz", "Previous search result" },
 })
