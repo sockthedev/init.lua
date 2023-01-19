@@ -16,6 +16,7 @@ cd init.lua
 My config is mostly a process of copying configuration from the following 
 dotfiles shared by developers more awesome than I am at Neovim;
 
+- https://github.com/LazyVim/LazyVim
 - https://github.com/MunifTanjim/dotfiles
 - https://github.com/adamelmore/dotfiles
 - https://github.com/josean-dev/dev-environment-files
