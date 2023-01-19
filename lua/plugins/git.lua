@@ -33,7 +33,7 @@ local plugins = {
 
                 return "<ignore>"
               end,
-              "Prev change",
+              "[gitsigns] Prev change",
             },
             {
               "<leader>vn",
@@ -48,7 +48,7 @@ local plugins = {
 
                 return "<ignore>"
               end,
-              "Next change",
+              "[gitsigns] Next change",
             },
           }, {
             buffer = bufnr,
@@ -57,7 +57,7 @@ local plugins = {
 
           u.set_keymap("v", "<leader>vs", ":Gitsigns stage_hunk<cr>", {
             buffer = bufnr,
-            desc = "Stage change",
+            desc = "[gitsigns] Stage change",
           })
         end,
       })
@@ -74,7 +74,7 @@ local plugins = {
     end,
     config = function()
       u.set_keymaps("n", {
-        { "<leader>vi", "<CMD>GitMessenger<CR>", "Git messenger" },
+        { "<leader>vi", "<CMD>GitMessenger<CR>", "[messenger] Show commit info for line" },
       })
     end,
   },
@@ -82,7 +82,7 @@ local plugins = {
     "tpope/vim-fugitive",
     config = function()
       u.set_keymaps("n", {
-        { "<leader>vs", vim.cmd.Git, "Open fugitive" },
+        { "<leader>vs", vim.cmd.Git, "[fugitive] Open" },
       })
     end,
   },
@@ -97,11 +97,11 @@ local plugins = {
       local k = require("utils.keymaps")
 
       k.set_keymaps("n", {
-        { "<leader>vc", "<CMD>DiffviewFileHistory %<CR>", "View current file history" },
-        { "<leader>vh", "<CMD>DiffviewFileHistory<CR>", "View branch history" },
-        { "<leader>vx", "<CMD>DiffviewClose<CR>", "Close diff view" },
-        { "<leader>vd", "<CMD>DiffviewOpen<CR>", "Open diff view" },
-        { "<leader>vm", "<CMD>DiffviewOpen origin/main...HEAD<CR>", "Open diff view" },
+        { "<leader>vc", "<CMD>DiffviewFileHistory %<CR>", "[diffview] Open file history" },
+        { "<leader>vh", "<CMD>DiffviewFileHistory<CR>", "[diffview] Open branch history" },
+        { "<leader>vx", "<CMD>DiffviewClose<CR>", "[diffview] Close" },
+        { "<leader>vd", "<CMD>DiffviewOpen<CR>", "[diffview] Open current changes" },
+        { "<leader>vm", "<CMD>DiffviewOpen origin/main...HEAD<CR>", "[diffview] Open diff to main" },
       })
     end,
   },

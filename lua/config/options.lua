@@ -1,33 +1,35 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.g.maximizer_default_mapping_key = "<M-m>"
-vim.g.copilot_assume_mapped = true
-vim.opt.colorcolumn = "80"
-vim.opt.splitbelow = true -- split horizontal window to the bottom
-vim.opt.splitright = true -- split vertical window to the right
+
+vim.opt.autowrite = true -- enable auto write
 vim.opt.backspace = "indent,eol,start" -- Allow backspace on indent, end of line or insert mode start position
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
-vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
-vim.opt.confirm = true
+vim.opt.colorcolumn = "80"
+vim.opt.conceallevel = 3 -- hide * markup for bold and italic
+vim.opt.confirm = true -- confirm to save changes before exiting changed buffer
 vim.opt.cursorline = true -- highlight the current line
 vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.fileencoding = "utf-8" -- the encoding written to a file
 vim.opt.fillchars.eob = " "
 vim.opt.foldenable = false
 vim.opt.guicursor = "i:block" -- block cursor on insert
+vim.opt.hidden = true -- enable modified buffers in background
 vim.opt.hlsearch = true -- highlight all matches on previous search pattern
 vim.opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
 vim.opt.incsearch = true
 vim.opt.iskeyword:append("-") -- consider string-string as whole word
-vim.opt.laststatus = 3
+vim.opt.laststatus = 0
+vim.opt.list = true -- show invisible chars
 vim.opt.mouse = "a" -- allow the mouse to be used in neovim
 vim.opt.number = true -- set numbered lines
 vim.opt.numberwidth = 2 -- set number column width to 2 {default 4}
+vim.opt.pumblend = 10 -- popup blend
 vim.opt.pumheight = 10 -- pop up menu height
 vim.opt.relativenumber = true
 vim.opt.ruler = false
-vim.opt.scrolloff = 8 -- is one of my fav
+vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
+vim.opt.scrolloff = 8 -- num lines to buffer scrolls by
 vim.opt.shell = "/bin/zsh"
 vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 vim.opt.shortmess:append("c")
@@ -39,52 +41,30 @@ vim.opt.signcolumn = "yes" -- always show the sign column, otherwise it would sh
 vim.opt.smartcase = true -- smart case
 vim.opt.smartindent = true -- make indenting smarter again
 vim.opt.softtabstop = 2 -- number of spaces that <Tab> uses while editing
+vim.opt.spelllang = { "en" }
 vim.opt.splitbelow = true -- force all horizontal splits to go below current window
+vim.opt.splitbelow = true -- split horizontal window to the bottom
 vim.opt.splitright = true -- force all vertical splits to go to the right of current window
+vim.opt.splitright = true -- split vertical window to the right
 vim.opt.swapfile = false -- creates a swapfile
 vim.opt.tabstop = 2 -- insert 2 spaces for a tab
 vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
-vim.opt.timeoutlen = 1000 -- time to wait for a mapped sequence to complete (in milliseconds)
+vim.opt.timeoutlen = 300 -- time to wait for a mapped sequence to complete (in milliseconds)
 vim.opt.undofile = true -- enable persistent undo
-vim.opt.updatetime = 300 -- faster completion (4000ms default)
+vim.opt.undolevels = 10000
+vim.opt.updatetime = 200 -- faster completion (4000ms default)
 vim.opt.whichwrap:append("<,>,[,],h,l")
+vim.opt.winminwidth = 5 -- minimum window width
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 
--- Fixes Autocomment
-vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-  callback = function()
-    vim.cmd("set formatoptions-=cro")
-  end,
-})
+vim.g.maximizer_default_mapping_key = "<M-m>"
+vim.g.copilot_assume_mapped = true
 
--- Use 'q' to quit from common plugins
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir" },
-  callback = function()
-    vim.cmd([[
-      nnoremap <silent> <buffer> q :close<CR>
-      set nobuflisted
-    ]])
-  end,
-})
+if vim.fn.has("nvim-0.9.0") == 1 then
+  vim.opt.splitkeep = "screen"
+  vim.opt.shortmess = "filnxtToOFWIcC"
+end
 
--- Highlight Yanked Text
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-  callback = function()
-    vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
-  end,
-})
-
--- Wrap lines for markdown files
-local group = vim.api.nvim_create_augroup("Markdown Wrap Settings", { clear = true })
-vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = { "*.md" },
-  group = group,
-  callback = function()
-    vim.cmd([[
-      setlocal wrap
-      set colorcolumn=
-    ]])
-  end,
-})
+-- fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
