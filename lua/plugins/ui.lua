@@ -3,7 +3,15 @@ local plugins = {
     "shaunsingh/nord.nvim",
     name = "nord",
     config = function()
-      require("utils.colors").setColorScheme()
+      vim.cmd.colorscheme("nord")
+      -- Fixes colorscheme setting for some plugins
+      vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+        callback = function()
+          vim.schedule(function()
+            vim.cmd.colorscheme("nord")
+          end)
+        end,
+      })
     end,
   },
   {
