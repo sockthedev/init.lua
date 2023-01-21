@@ -9,11 +9,12 @@ saga.setup({
   },
   ui = {
     border = "single",
+    winblend = 10,
   },
 })
 
 k.set_keymaps({ "n", "v" }, {
-  { "<leader>la", "<cmd>Lspsaga code_action<CR>", "Code action" },
+  { "<leader>ca", "<cmd>Lspsaga code_action<CR>", "Actions" },
 })
 
 k.set_keymaps("n", {
@@ -49,3 +50,7 @@ k.set_keymaps("n", {
   { "<leader>co", "<CMD>Lspsaga outline<CR>", "Toggle code outline" },
   { "gk", ":Lspsaga hover_doc<CR>", "[lsp] Show documentation" },
 })
+
+-- We have to set the theme again over here otherwise the peek panels etc
+-- have an invalid theme
+-- vim.cmd.colorscheme("nord")

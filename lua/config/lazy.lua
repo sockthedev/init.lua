@@ -23,6 +23,6 @@ require("lazy").setup("plugins", {
   },
   concurrency = 8,
   ui = {
-    border = "rounded",
-  }
+    border = "single",
+  },
 })

@@ -39,7 +39,7 @@ function plugin.init()
       function()
         require("telescope.builtin").git_files(require("telescope.themes").get_ivy({}))
       end,
-      "Git files",
+      "Git",
     },
     {
       "<leader>fh",
@@ -60,7 +60,7 @@ function plugin.init()
       function()
         require("telescope").extensions.frecency.frecency(require("telescope.themes").get_ivy({ workspace = "CWD" }))
       end,
-      "Grep",
+      "Frecency",
     },
     {
       "<leader>f?",
@@ -74,14 +74,14 @@ function plugin.init()
       function()
         require("telescope.builtin").lsp_references(require("telescope.themes").get_ivy({}))
       end,
-      "Lsp references",
+      "LSP",
     },
     {
       "<leader>f;",
       function()
         require("telescope.builtin").resume()
       end,
-      "Resume picker",
+      "Resume",
     },
   })
 end
