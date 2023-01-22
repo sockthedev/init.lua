@@ -17,64 +17,29 @@ local plugins = {
           delete = { text = "_" },
           topdelete = { text = "‾" },
           changedelete = { text = "~" },
+          untracked = { text = "▎" },
         },
-        on_attach = function(bufnr)
-          u.set_keymaps("n", {
-            {
-              "<leader>vp",
-              function()
-                if vim.wo.diff then
-                  return "<leader>p"
-                end
+        on_attach = function(buffer)
+          local gs = package.loaded.gitsigns
 
-                vim.schedule(function()
-                  gitsigns.prev_hunk()
-                end)
+          local function map(mode, l, r, desc)
+            vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+          end
 
-                return "<ignore>"
-              end,
-              "[gitsigns] Prev change",
-            },
-            {
-              "<leader>vn",
-              function()
-                if vim.wo.diff then
-                  return "<leader>vn"
-                end
-
-                vim.schedule(function()
-                  gitsigns.next_hunk()
-                end)
-
-                return "<ignore>"
-              end,
-              "[gitsigns] Next change",
-            },
-          }, {
-            buffer = bufnr,
-            expr = true,
-          })
-
-          u.set_keymap("v", "<leader>vs", ":Gitsigns stage_hunk<cr>", {
-            buffer = bufnr,
-            desc = "[gitsigns] Stage change",
-          })
+          -- stylua: ignore start
+          map("n", "]h", gs.next_hunk, "Next Hunk")
+          map("n", "[h", gs.prev_hunk, "Prev Hunk")
+          map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
+          map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+          map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
+          map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
+          map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
+          map("n", "<leader>ghp", gs.preview_hunk, "Preview Hunk")
+          map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
+          map("n", "<leader>ghd", gs.diffthis, "Diff This")
+          map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
+          map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
         end,
-      })
-
-      vim.schedule(function()
-        vim.api.nvim_set_hl(0, "GitSignsChange", { link = "GruvboxOrangeSign" })
-      end)
-    end,
-  },
-  {
-    "rhysd/git-messenger.vim",
-    init = function()
-      vim.g.git_messenger_no_default_mappings = true
-    end,
-    config = function()
-      u.set_keymaps("n", {
-        { "<leader>vi", "<CMD>GitMessenger<CR>", "[messenger] Show commit info for line" },
       })
     end,
   },
@@ -82,7 +47,7 @@ local plugins = {
     "tpope/vim-fugitive",
     config = function()
       u.set_keymaps("n", {
-        { "<leader>vs", vim.cmd.Git, "[fugitive] Open" },
+        { "<leader>gf", vim.cmd.Git, "Open Fugitive" },
       })
     end,
   },
@@ -97,11 +62,11 @@ local plugins = {
       local k = require("utils.keymaps")
 
       k.set_keymaps("n", {
-        { "<leader>vc", "<CMD>DiffviewFileHistory %<CR>", "[diffview] Open file history" },
-        { "<leader>vh", "<CMD>DiffviewFileHistory<CR>", "[diffview] Open branch history" },
-        { "<leader>vx", "<CMD>DiffviewClose<CR>", "[diffview] Close" },
-        { "<leader>vd", "<CMD>DiffviewOpen<CR>", "[diffview] Open current changes" },
-        { "<leader>vm", "<CMD>DiffviewOpen origin/main...HEAD<CR>", "[diffview] Open diff to main" },
+        { "<leader>gdc", "<CMD>DiffviewFileHistory %<CR>", "File history" },
+        { "<leader>gdh", "<CMD>DiffviewFileHistory<CR>", "Branch history" },
+        { "<leader>gdx", "<CMD>DiffviewClose<CR>", "Diff" },
+        { "<leader>gdd", "<CMD>DiffviewOpen<CR>", "Current changes" },
+        { "<leader>gdm", "<CMD>DiffviewOpen origin/main...HEAD<CR>", "Diff to main" },
       })
     end,
   },

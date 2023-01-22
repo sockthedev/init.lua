@@ -37,13 +37,6 @@ local plugins = {
     end,
   },
   {
-    "folke/trouble.nvim",
-    event = "LspAttach",
-    config = function()
-      require("plugins.lsp.trouble")
-    end,
-  },
-  {
     "glepnir/lspsaga.nvim",
     branch = "main",
     event = "BufRead",

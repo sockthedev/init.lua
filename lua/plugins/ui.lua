@@ -14,12 +14,16 @@ local plugins = {
       })
     end,
   },
+
+  -- initial dashboard when opening neovim
   {
     "goolord/alpha-nvim",
     config = function()
       require("plugins.ui.alpha")
     end,
   },
+
+  -- file explorer
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = {
@@ -29,6 +33,8 @@ local plugins = {
       require("plugins.ui.nvim-tree")
     end,
   },
+
+  -- status line
   {
     "nvim-lualine/lualine.nvim",
     after = "nord.nvim",
@@ -36,6 +42,7 @@ local plugins = {
       require("plugins.ui.lualine")
     end,
   },
+
   {
     "folke/zen-mode.nvim",
     config = function()
@@ -58,6 +65,7 @@ local plugins = {
       })
     end,
   },
+
   -- indent guides for Neovim
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -69,6 +77,7 @@ local plugins = {
       show_current_context = false,
     },
   },
+
   -- active indent guide and indent text objects
   {
     "echasnovski/mini.indentscope",
@@ -80,7 +89,16 @@ local plugins = {
     },
     config = function(_, opts)
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "help", "alpha", "dashboard", "neo-tree", "nvim-tree", "Trouble", "lazy", "mason" },
+        pattern = {
+          "help",
+          "alpha",
+          "dashboard",
+          "neo-tree",
+          "nvim-tree",
+          "Trouble",
+          "lazy",
+          "mason",
+        },
         callback = function()
           vim.b.miniindentscope_disable = true
         end,

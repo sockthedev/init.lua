@@ -5,12 +5,12 @@ local function setup_basic_keymap(bufnr)
   local opts = { buffer = bufnr }
 
   u.set_keymaps("n", {
-    { "gD", vim.lsp.buf.declaration, "[lsp] Goto declaration" },
-    { "gd", vim.lsp.buf.definition, "[lsp] Goto definition" },
-    { "gI", vim.lsp.buf.implementation, "[lsp] Goto implementation" },
-    { "gt", vim.lsp.buf.type_definition, "[lsp] Goto type definition" },
-    { "gs", require("telescope.builtin").lsp_document_symbols, "[lsp] Document symbols" },
-    { "gS", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[lsp] Workspace symbols" },
+    { "gd", vim.lsp.buf.definition, "Goto Definition" },
+    { "gD", vim.lsp.buf.declaration, "Goto Declaration" },
+    { "gI", "<cmd>Telescope lsp_implementations<cr>", "Goto Implementation" },
+    { "gt", "<cmd>Telescope lsp_type_definitions<cr>", "Goto Type Definition" },
+    { "K", vim.lsp.buf.hover, desc = "Hover" },
+    { "gK", vim.lsp.buf.signature_help, "Signature Help" },
   }, opts)
 end
 

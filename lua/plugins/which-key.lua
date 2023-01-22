@@ -1,79 +1,39 @@
-local plugin = {
+return {
   "folke/which-key.nvim",
-}
-
-local which_key
-
-local function set_keymap(mode, lhs, rhs, desc_or_opts, opts)
-  if not opts then
-    opts = type(desc_or_opts) == "table" and desc_or_opts or { desc = desc_or_opts }
-  else
-    opts.desc = desc_or_opts
-  end
-
-  local modes = type(mode) == "table" and mode or { mode }
-  for _, map_mode in ipairs(modes) do
-    which_key.register({ [lhs] = { rhs, opts.desc, mode = map_mode } }, opts)
-  end
-end
-
-local function set_keymaps(default_mode, maps, fallback_opts)
-  fallback_opts = fallback_opts or {}
-
-  local which_key_maps_by_mode = {}
-
-  for _, map in ipairs(maps) do
-    local mode, lhs, rhs, desc, map_opts = map.mode or default_mode, map[1], map[2], map[3], map[4] or {}
-    map.mode, map[1], map[2], map[3], map[4] = nil, nil, nil, nil, nil
-
-    local modes = type(mode) == "table" and mode or { mode }
-    for _, map_mode in ipairs(modes) do
-      if not which_key_maps_by_mode[map_mode] then
-        which_key_maps_by_mode[map_mode] = {}
-      end
-
-      which_key_maps_by_mode[map_mode][lhs] = vim.tbl_extend("keep", { rhs, desc }, map, map_opts)
-    end
-  end
-
-  for mode, which_key_maps in pairs(which_key_maps_by_mode) do
-    local opts = vim.tbl_extend("keep", { mode = mode }, fallback_opts)
-    if opts.expr then
-      opts.replace_keycodes = true
-    end
-
-    which_key.register(which_key_maps, opts)
-  end
-end
-
-function plugin.config()
-  local u = require("utils.keymaps")
-
-  which_key = require("which-key")
-
-  which_key.setup({
+  event = "VeryLazy",
+  opts = {
+    plugins = { spelling = true },
     window = {
       border = "single",
       position = "bottom",
       padding = { 1, 0, 1, 0 },
       margin = { 0, 0, 0, 0 },
     },
-  })
-
-  u.set_keymap = set_keymap
-  u.set_keymaps = set_keymaps
-
-  which_key.register({ c = { name = "code" } }, { prefix = "<leader>" })
-  which_key.register({ d = { name = "dap" } }, { prefix = "<leader>" })
-  which_key.register({ i = { name = "diagnostics" } }, { prefix = "<leader>" })
-  which_key.register({ s = { name = "split" } }, { prefix = "<leader>" })
-  which_key.register({ f = { name = "find" } }, { prefix = "<leader>" })
-  which_key.register({ v = { name = "git" } }, { prefix = "<leader>" })
-  which_key.register({ x = { name = "terminal" } }, { prefix = "<leader>" })
-
-  vim.schedule(function()
-    vim.api.nvim_set_hl(0, "WhichKeyFloat", { link = "Normal" })
-  end)
-end
-
-return plugin
+  },
+  config = function(_, opts)
+    local wk = require("which-key")
+    wk.setup(opts)
+    wk.register({
+      mode = { "n", "v" },
+      ["g"] = { name = "+goto" },
+      ["gz"] = { name = "+surround" },
+      ["]"] = { name = "+next" },
+      ["["] = { name = "+prev" },
+      ["<leader><tab>"] = { name = "+tabs" },
+      ["<leader>b"] = { name = "+buffer" },
+      ["<leader>c"] = { name = "+code" },
+      ["<leader>d"] = { name = "+dap" },
+      ["<leader>f"] = { name = "+file/find" },
+      ["<leader>g"] = { name = "+git" },
+      ["<leader>gd"] = { name = "+diff" },
+      ["<leader>gh"] = { name = "+hunks" },
+      ["<leader>q"] = { name = "+quit/session" },
+      ["<leader>s"] = { name = "+search" },
+      ["<leader>t"] = { name = "+search" },
+      ["<leader>sn"] = { name = "+noice" },
+      ["<leader>u"] = { name = "+ui" },
+      ["<leader>w"] = { name = "+windows" },
+      ["<leader>x"] = { name = "+diagnostics/quickfix" },
+    })
+  end,
+}
