@@ -43,10 +43,10 @@ return {
         -- the order of sources matters
         sources = cmp.config.sources({
           { name = "nvim_lsp" }, -- lsp
-          { name = "luasnip" }, -- snippets
-          { name = "copilot" },
-          { name = "buffer" }, -- text within current buffer
           { name = "nvim_lua" },
+          { name = "copilot" },
+          { name = "luasnip" }, -- snippets
+          { name = "buffer" }, -- text within current buffer
           { name = "path" }, -- file system paths
         }),
         snippet = {
@@ -56,9 +56,6 @@ return {
         },
         formatting = {
           format = lspkind.cmp_format({
-            with_text = true,
-            maxwidth = 50,
-            ellipsis_char = "...",
             menu = {
               buffer = "[buf]",
               nvim_lsp = "[lsp]",
