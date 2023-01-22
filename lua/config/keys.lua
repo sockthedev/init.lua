@@ -41,13 +41,30 @@ vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev se
 
 -- Line actions
 k.set_keymaps("n", {
-  { "<leader>h", "yyP", "Duplicate line up" },
-  { "<leader>l", "yyp", "Duplicate line down" },
-  { "<leader>j", "ddp", "Move line up" },
-  { "<leader>k", "ddkP", "Move line down" },
   { "<leader>O", "O<Esc>", "Insert empty line above" },
   { "<leader>o", "o<Esc>", "Insert empty line below" },
 })
+
+-- Clear search, diff update and redraw
+-- taken from runtime/lua/_editor.lua
+vim.keymap.set(
+  "n",
+  "<leader>ur",
+  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+  { desc = "Redraw / clear hlsearch / diff update" }
+)
+
+-- Move Lines
+vim.keymap.set("n", "<A-j>", ":m .+1<cr>==", { desc = "Move down" })
+vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+vim.keymap.set("i", "<A-j>", "<Esc>:m .+1<cr>==gi", { desc = "Move down" })
+vim.keymap.set("n", "<A-k>", ":m .-2<cr>==", { desc = "Move up" })
+vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<cr>==gi", { desc = "Move up" })
+
+-- Diagnostics
+vim.keymap.set("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Open Location List" })
+vim.keymap.set("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Open Quickfix List" })
 
 -- Splits
 k.set_keymaps("n", {
@@ -55,6 +72,15 @@ k.set_keymaps("n", {
   { "<leader>uh", "<C-w>s", "Split horizontally" },
   { "<leader>uv", "<C-w>v", "Split vertically" },
 })
+
+-- windows
+vim.keymap.set("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
+vim.keymap.set("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
+vim.keymap.set("n", "<leader>w-", "<C-W>s", { desc = "Split window below" })
+vim.keymap.set("n", "<leader>w|", "<C-W>v", { desc = "Split window right" })
+vim.keymap.set("n", "<leader>-", "<C-W>s", { desc = "Split window below" })
+vim.keymap.set("n", "<leader>|", "<C-W>v", { desc = "Split window right" })
+vim.keymap.set("n", "<leader>we", "<C-W>=", { desc = "Equalize windows" })
 
 -- Buffers
 vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })

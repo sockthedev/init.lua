@@ -18,7 +18,7 @@ k.set_keymaps({ "n", "v" }, {
 })
 
 k.set_keymaps("n", {
-  { "gk", ":Lspsaga hover_doc<CR>", "[lsp] Show documentation" },
+  { "gk", ":Lspsaga hover_doc<CR>", "Show documentation" },
   { "gr", "<CMD>Lspsaga lsp_finder<CR>", "References" },
   { "gp", "<CMD>Lspsaga peek_definition<CR>", "Peek" },
   { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },

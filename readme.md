@@ -1,7 +1,6 @@
 # sockthedev's Neovim configuration
 
-What a vibe this stuff is! Honestly, Neovim is the coolest shizzle I've played
-with for a long time. I can't believe how hard I've been bitten by this bug.
+Honestly, Neovim is the coolest shizzle I've played with for a long time. I can't believe how hard I've been bitten by this bug. This repository is my personal configuration for it.
 
 To install;
 
@@ -13,8 +12,7 @@ cd init.lua
 
 ## References
 
-My config is mostly a process of copying configuration from the following 
-dotfiles shared by developers more awesome than I am at Neovim;
+My config is mostly a process of copying configuration from the following repositories;
 
 - https://github.com/LazyVim/LazyVim
 - https://github.com/MunifTanjim/dotfiles
