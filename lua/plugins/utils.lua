@@ -1,5 +1,3 @@
-local k = require("utils.keymaps")
-
 local plugins = {
   {
     "heavenshell/vim-jsdoc",

@@ -178,11 +178,14 @@ return {
       local filename = {
         "filename",
         path = 1,
+        symbols = { modified = "  ", readonly = "", unnamed = "" },
       }
 
       local filetype = {
         "filetype",
-        icons_enabled = false,
+        icon_only = true,
+        separator = "",
+        padding = { left = 0, right = 1 },
       }
 
       local location = {
@@ -201,7 +204,7 @@ return {
           theme = "auto",
           component_separators = { left = "", right = "" },
           section_separators = { left = "", right = "" },
-          -- disabled_filetypes = { "alpha", "dashboard" },
+          disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
           always_divide_middle = true,
         },
         sections = {
