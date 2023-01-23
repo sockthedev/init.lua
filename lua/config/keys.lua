@@ -40,8 +40,8 @@ vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev se
 vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
 -- Empty lines
-vim.keymap.set("n", "O", "O<Esc>", { desc = "Insert empty line above" })
-vim.keymap.set("n", "o", "o<Esc>", { desc = "Insert empty line below" })
+vim.keymap.set("n", "<leader>O", "O<Esc>", { desc = "Insert empty line above" })
+vim.keymap.set("n", "<leader>o", "o<Esc>", { desc = "Insert empty line below" })
 
 -- Clear search, diff update and redraw
 vim.keymap.set(
