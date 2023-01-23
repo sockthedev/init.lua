@@ -6,8 +6,19 @@ local plugins = {
     ft = {
       "javascript",
       "javascriptreact",
+      "typescript",
+      "typescriptreact",
     },
     build = "make install",
+    keys = {
+      {
+        "<leader>cd",
+        function()
+          vim.cmd("JsDoc")
+        end,
+        desc = "Generate JsDoc",
+      },
+    },
   },
 
   -- session management
