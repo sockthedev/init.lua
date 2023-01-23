@@ -51,14 +51,6 @@ local plugins = {
     },
   },
 
-  -- enables navigation across tabs with <C-h>, <C-j>, ...
-  {
-    "mrjones2014/smart-splits.nvim",
-    config = function()
-      require("plugins.ui.smart-splits")
-    end,
-  },
-
   -- makes some plugins dot-repeatable like leap
   { "tpope/vim-repeat", event = "VeryLazy" },
 
@@ -162,6 +154,18 @@ local plugins = {
     event = "VeryLazy",
     config = function(_, opts)
       require("mini.pairs").setup(opts)
+    end,
+  },
+
+  -- Maximize window toggling
+  {
+    "szw/vim-maximizer",
+    keys = {
+      { "<leader>z", "<CMD>MaximizerToggle<CR>", desc = "Maximize Window", silent = true },
+      { "<leader>z", "<CMD>MaximizerToggle<CR>gv", mode = "v", desc = "Maximize Window", silent = true },
+    },
+    init = function()
+      vim.g.maximizer_set_default_mapping = 0
     end,
   },
 }

@@ -1,32 +1,29 @@
-local k = require("utils.keymaps")
-
-k.set_keymaps({ "n", "v" }, {
-  { "<Space>", "<Nop>", "Noop" },
-})
+-- better up/down
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 -- better paging
-k.set_keymaps("n", {
-  { "<C-d>", "<C-d>zz", "Page down" },
-  { "<C-u>", "<C-u>zz", "Page up" },
-})
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { silent = true, desc = "Page down" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { silent = true, desc = "Page up" })
+
+-- Move to window using the <ctrl> hjkl keys
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
+
+-- Resize window using <ctrl> arrow keys
+vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- better indenting
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
--- save file
-vim.keymap.set({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
-
--- Modification
-k.set_keymaps("n", {
-  { "x", '"_x', "Delete character" },
-  { "<leader>p", '"_dP', "Paste, but keep paste register" },
-})
-
 -- Exit insert mode
-k.set_keymaps("i", {
-  { "jk", "<Esc>", "Exit INSERT mode" },
-})
+vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit INSERT mode" })
 
 -- Clear search with <esc>
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
@@ -39,14 +36,11 @@ vim.keymap.set("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev se
 vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
--- Line actions
-k.set_keymaps("n", {
-  { "<leader>O", "O<Esc>", "Insert empty line above" },
-  { "<leader>o", "o<Esc>", "Insert empty line below" },
-})
+-- Empty lines
+vim.keymap.set("n", "O", "m`O<Esc>`>m`", { desc = "Insert empty line above" })
+vim.keymap.set("n", "o", "m`o<Esc>`<m`", { desc = "Insert empty line below" })
 
 -- Clear search, diff update and redraw
--- taken from runtime/lua/_editor.lua
 vim.keymap.set(
   "n",
   "<leader>ur",
@@ -65,13 +59,6 @@ vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<cr>==gi", { desc = "Move up" })
 -- Diagnostics
 vim.keymap.set("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Open Location List" })
 vim.keymap.set("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Open Quickfix List" })
-
--- Splits
-k.set_keymaps("n", {
-  { "<leader>ue", "<C-w>=", "Make splits equal size" },
-  { "<leader>uh", "<C-w>s", "Split horizontally" },
-  { "<leader>uv", "<C-w>v", "Split vertically" },
-})
 
 -- windows
 vim.keymap.set("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
@@ -103,3 +90,6 @@ vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 
 -- new file
 vim.keymap.set("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+
+-- save file
+vim.keymap.set({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
