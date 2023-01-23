@@ -17,6 +17,7 @@ return {
       mode = { "n", "v" },
       ["g"] = { name = "+goto" },
       ["gz"] = { name = "+surround" },
+      ["t"] = { name = "+tree" },
       ["]"] = { name = "+next" },
       ["["] = { name = "+prev" },
       ["<leader><tab>"] = { name = "+tabs" },

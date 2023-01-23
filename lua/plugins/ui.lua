@@ -93,8 +93,8 @@ return {
           update_cwd = false,
         },
         view = {
-          adaptive_size = true,
-          hide_root_folder = false,
+          adaptive_size = false,
+          hide_root_folder = true,
           width = width,
           height = height,
           float = {
@@ -162,10 +162,7 @@ return {
       })
 
       -- keymaps
-      u.set_keymaps("n", {
-        { "tt", ":NvimTreeToggle<CR>", "[nvim-tree] Toggle" },
-        { "tf", ":NvimTreeFindFile<CR>", "[nvim-tree] Focus" },
-      })
+      vim.keymap.set("n", "tt", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle" })
     end,
   },
 

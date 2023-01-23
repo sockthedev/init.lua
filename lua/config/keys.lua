@@ -22,6 +22,9 @@ vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increa
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
+-- lazy
+vim.keymap.set("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
+
 -- Exit insert mode
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit INSERT mode" })
 
@@ -37,8 +40,8 @@ vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev se
 vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
 -- Empty lines
-vim.keymap.set("n", "O", "m`O<Esc>`>m`", { desc = "Insert empty line above" })
-vim.keymap.set("n", "o", "m`o<Esc>`<m`", { desc = "Insert empty line below" })
+vim.keymap.set("n", "O", "O<Esc>", { desc = "Insert empty line above" })
+vim.keymap.set("n", "o", "o<Esc>", { desc = "Insert empty line below" })
 
 -- Clear search, diff update and redraw
 vim.keymap.set(
