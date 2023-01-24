@@ -1,51 +1,30 @@
 return {
-  -- nightfox theme
+  -- nord theme
   {
-    "EdenEast/nightfox.nvim",
+    "shaunsingh/nord.nvim",
+    name = "nord",
+    priorty = 1,
     config = function()
-      vim.cmd.colorscheme("nordfox")
-      -- Fixes colorscheme setting for some plugins
-      vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-        callback = function()
-          vim.schedule(function()
-            vim.cmd.colorscheme("nordfox")
-          end)
-        end,
-      })
+      vim.cmd.colorscheme("nord")
     end,
   },
 
-  -- nord theme
+  -- nightfox theme
   -- {
-  --   "shaunsingh/nord.nvim",
-  --   name = "nord",
+  --   "EdenEast/nightfox.nvim",
+  --   priority = 1,
   --   config = function()
-  --     vim.cmd.colorscheme("nord")
-  --     -- Fixes colorscheme setting for some plugins
-  --     vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-  --       callback = function()
-  --         vim.schedule(function()
-  --           vim.cmd.colorscheme("nord")
-  --         end)
-  --       end,
-  --     })
+  --     vim.cmd.colorscheme("nordfox")
   --   end,
   -- },
 
   -- tokyonight theme
   -- {
   --   "folke/tokyonight.nvim",
-  --   -- opts = { style = "moon" },
+  --   priority = 1,
+  --   opts = { style = "moon" },
   --   config = function()
   --     vim.cmd.colorscheme("tokyonight-moon")
-  --     -- Fixes colorscheme setting for some plugins
-  --     vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-  --       callback = function()
-  --         vim.schedule(function()
-  --           vim.cmd.colorscheme("tokyonight-moon")
-  --         end)
-  --       end,
-  --     })
   --   end,
   -- },
 }

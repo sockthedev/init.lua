@@ -283,4 +283,12 @@ return {
       require("mini.indentscope").setup(opts)
     end,
   },
+
+  -- displays colors inline (hex, etc)
+  {
+    "NvChad/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
+    end,
+  },
 }

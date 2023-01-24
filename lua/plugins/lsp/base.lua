@@ -1,6 +1,9 @@
 local mods = require("plugins.lsp.mods")
 local mason_lsp = require("mason-lspconfig")
 
+-- this MUST be called prior to any `require("lspconfig")`
+require("neodev").setup({})
+
 mason_lsp.setup({
   ensure_installed = {
     "astro",
@@ -90,9 +93,6 @@ local function setup_server(server)
 
   server.setup(config)
 end
-
--- this MUST be called prior to any `require("lspconfig")`
-require("neodev").setup({})
 
 for _, server_name in ipairs(mason_lsp.get_installed_servers()) do
   setup_server(require("lspconfig")[server_name])

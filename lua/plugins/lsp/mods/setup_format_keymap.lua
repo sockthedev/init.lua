@@ -1,4 +1,3 @@
-local u = require("utils.keymaps")
 local format = require("plugins.lsp.utils.format")
 
 ---@param client table
@@ -8,12 +7,10 @@ local function setup_format_keymap(client, bufnr)
     return
   end
 
-  local opts = { buffer = bufnr }
-
-  u.set_keymap("n", "<leader>cf", format, "Format document", opts)
+  vim.keymap.set("n", "<leader>cf", format, { desc = "Format document", buffer = bufnr })
 
   if client.server_capabilities.documentRangeFormattingProvider then
-    u.set_keymap("x", "<leader>cf", format, "Format range", opts)
+    vim.keymap.set("x", "<leader>cf", format, { desc = "Format range", buffer = bufnr })
   end
 end
 
