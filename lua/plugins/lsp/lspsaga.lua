@@ -1,11 +1,15 @@
-local k = require("utils.keymaps")
-
-local saga = require("lspsaga")
-
-saga.setup({
+require("lspsaga").setup({
+  lightbulb = {
+    virtual_text = false,
+  },
   show_outline = {
-    win_position = "left_with",
-    auto_enter = false,
+    win_position = "right",
+    win_width = 40,
+    keys = {
+      jump = "o",
+      expand_collapse = "u",
+      quit = "q",
+    },
   },
   ui = {
     border = "single",
@@ -13,55 +17,31 @@ saga.setup({
   },
 })
 
-k.set_keymaps({ "n", "v" }, {
-  { "<leader>ca", "<cmd>Lspsaga code_action<CR>", "Code Action" },
-})
+vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "Code Action" })
 
-k.set_keymaps("n", {
-  { "gk", ":Lspsaga hover_doc<CR>", "Show documentation" },
-  { "gr", "<CMD>Lspsaga lsp_finder<CR>", "References" },
-  { "gp", "<CMD>Lspsaga peek_definition<CR>", "Peek" },
-  { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
-  { "<leader>cr", "<CMD>Lspsaga rename<CR>", "Rename" },
-  { "<leader>co", "<CMD>Lspsaga outline<CR>", "Toggle code outline" },
-  {
-    "<leader>xl",
-    "<cmd>Lspsaga show_line_diagnostics<CR>",
-    "Line diagnostics",
-  },
-  {
-    "<leader>xc",
-    "<cmd>Lspsaga show_cursor_diagnostics<CR>",
-    "Cursor diagnostics",
-  },
-  { "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Prev Diagnostic" },
-  { "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next Diagnostic" },
-  {
-    "[e",
-    function()
-      require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
-    end,
-    "Prev Error",
-  },
-  {
-    "]e",
-    function()
-      require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
-    end,
-    "Next Error",
-  },
-  {
-    "[w",
-    function()
-      require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.WARN })
-    end,
-    "Prev Warning",
-  },
-  {
-    "]w",
-    function()
-      require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.WARN })
-    end,
-    "Next Warning",
-  },
-})
+vim.keymap.set("n", "gk", ":Lspsaga hover_doc<CR>", { desc = "Show documentation" })
+vim.keymap.set("n", "gK", ":Lspsaga hover_doc ++keep<CR>", { desc = "Show documentation (and keep visible)" })
+vim.keymap.set("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", { desc = "References" })
+vim.keymap.set("n", "gp", "<cmd>Lspsaga peek_definition<CR>", { desc = "Peek" })
+vim.keymap.set("n", "gI", "<cmd>Lspsaga incoming_calls<CR>", { desc = "Incoming calls" })
+vim.keymap.set("n", "gO", "<cmd>Lspsaga outgoing_calls<CR>", { desc = "Outgoing calls" })
+vim.keymap.set("n", "<leader>cl", "<cmd>LspInfo<cr>", { desc = "Lsp Info" })
+vim.keymap.set("n", "<leader>cr", "<cmd>Lspsaga rename<CR>", { desc = "Rename" })
+vim.keymap.set("n", "<leader>co", "<cmd>Lspsaga outline<CR>", { desc = "Toggle code outline" })
+vim.keymap.set("n", "<leader>xl", "<cmd>Lspsaga show_line_diagnostics<CR>", { desc = "Line diagnostics" })
+vim.keymap.set("n", "<leader>xc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { desc = "Cursor diagnostics" })
+vim.keymap.set("n", "<leader>xb", "<cmd>Lspsaga show_buffer_diagnostics<CR>", { desc = "Cursor diagnostics" })
+vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Prev Diagnostic" })
+vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "Next Diagnostic" })
+vim.keymap.set("n", "[e", function()
+  require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Prev Error" })
+vim.keymap.set("n", "]e", function()
+  require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Next Error" })
+vim.keymap.set("n", "[w", function()
+  require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.WARNING })
+end, { desc = "Prev Warning" })
+vim.keymap.set("n", "]w", function()
+  require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.WARNING })
+end, { desc = "Next Warning" })

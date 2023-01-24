@@ -35,11 +35,18 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Enable wrapping and spell checking on commits and markdown
+-- Enable spell checking on certain files
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "gitcommit", "markdown" },
   callback = function()
-    vim.opt_local.wrap = true
     vim.opt_local.spell = true
+  end,
+})
+
+-- Enable wrapping on certain file types
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "gitcommit", "markdown", "html", "typescriptreact", "javascriptreact" },
+  callback = function()
+    vim.opt_local.wrap = true
   end,
 })

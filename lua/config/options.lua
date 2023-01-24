@@ -24,6 +24,7 @@ vim.opt.list = true -- show invisible chars
 vim.opt.mouse = "a" -- allow the mouse to be used in neovim
 vim.opt.number = true -- set numbered lines
 vim.opt.numberwidth = 2 -- set number column width to 2 {default 4}
+vim.opt.preserveindent = true -- preserve indent structure as much as possible
 vim.opt.pumblend = 10 -- popup blend
 vim.opt.pumheight = 10 -- pop up menu height
 vim.opt.relativenumber = true
@@ -43,12 +44,10 @@ vim.opt.smartindent = true -- make indenting smarter again
 vim.opt.softtabstop = 2 -- number of spaces that <Tab> uses while editing
 vim.opt.spelllang = { "en" }
 vim.opt.splitbelow = true -- force all horizontal splits to go below current window
-vim.opt.splitbelow = true -- split horizontal window to the bottom
 vim.opt.splitright = true -- force all vertical splits to go to the right of current window
-vim.opt.splitright = true -- split vertical window to the right
 vim.opt.swapfile = false -- creates a swapfile
-vim.opt.tabstop = 2 -- insert 2 spaces for a tab
-vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
+vim.opt.tabstop = 2 -- number of spaces in a tab
+vim.opt.termguicolors = true -- enable 24-bit colors
 vim.opt.timeoutlen = 300 -- time to wait for a mapped sequence to complete (in milliseconds)
 vim.opt.undofile = true -- enable persistent undo
 vim.opt.undolevels = 10000
@@ -58,7 +57,6 @@ vim.opt.winminwidth = 5 -- minimum window width
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 
-vim.g.maximizer_default_mapping_key = "<M-m>"
 vim.g.copilot_assume_mapped = true
 
 if vim.fn.has("nvim-0.9.0") == 1 then
