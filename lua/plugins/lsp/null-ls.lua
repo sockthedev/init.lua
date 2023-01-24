@@ -1,5 +1,4 @@
 local null_ls = require("null-ls")
-local helpers = require("null-ls.helpers")
 local mods = require("plugins.lsp.mods")
 
 ---@diagnostic disable-next-line: redundant-parameter
@@ -22,7 +21,6 @@ null_ls.setup({
 require("mason-null-ls").setup({
   ensure_installed = {
     "stylua",
-    "jq",
     "eslint_d",
     "prettierd",
   },
@@ -40,4 +38,18 @@ require("eslint").setup({
 local prettier = require("prettier")
 prettier.setup({
   bin = "prettierd",
+  filetypes = {
+    "css",
+    "graphql",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "less",
+    "markdown",
+    "scss",
+    "typescript",
+    "typescriptreact",
+    "yaml",
+  },
 })

@@ -17,7 +17,7 @@ local function setup_format_on_save(client, bufnr, options)
     callback = function()
       format({ bufnr = bufnr, async = is_async })
     end,
-    desc = "[lsp] format on save",
+    desc = "Format on save",
   })
 end
 

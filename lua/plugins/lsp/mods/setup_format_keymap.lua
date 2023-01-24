@@ -10,10 +10,10 @@ local function setup_format_keymap(client, bufnr)
 
   local opts = { buffer = bufnr }
 
-  u.set_keymap("n", "<Leader>f<Leader>", format, "[lsp] format", opts)
+  u.set_keymap("n", "<leader>cf", format, "Format document", opts)
 
   if client.server_capabilities.documentRangeFormattingProvider then
-    u.set_keymap("x", "<Leader>f<Leader>", format, "[lsp] format", opts)
+    u.set_keymap("x", "<leader>cf", format, "Format range", opts)
   end
 end
 
