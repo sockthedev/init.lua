@@ -24,30 +24,25 @@ return {
       persist_mode = false,
     })
 
-    local k = require("utils.keymaps")
-
     local Terminal = require("toggleterm.terminal").Terminal
 
-    local function split_terminal_horizontal()
+    vim.keymap.set({ "n", "t" }, "<leader>tt", "<cmd>ToggleTermToggleAll<CR>", { desc = "Toggle All" })
+
+    vim.keymap.set({ "n", "t" }, "<leader>t-", function()
       Terminal:new({ direction = "horizontal", close_on_exit = true }):open()
-    end
-    local function split_terminal_vertical()
+    end, { desc = "Create Horizontal" })
+
+    vim.keymap.set({ "n", "t" }, "<leader>t|", function()
       Terminal:new({ direction = "vertical", close_on_exit = true }):open()
-    end
-    local function split_terminal_float()
+    end, { desc = "Create Vertical" })
+
+    vim.keymap.set({ "n", "t" }, "<leader>tf", function()
       Terminal:new({ direction = "float", close_on_exit = true }):open()
-    end
+    end, { desc = "Create Float" })
 
-    vim.api.nvim_create_user_command("CreateHorizontalTerminal", split_terminal_horizontal, {})
-    vim.api.nvim_create_user_command("CreateVerticalTerminal", split_terminal_vertical, {})
-    vim.api.nvim_create_user_command("CreateFloatTerminal", split_terminal_float, {})
-
-    k.set_keymaps({ "n", "t" }, {
-      { "<leader>tt", "<cmd>ToggleTermToggleAll<CR>", "Toggle all" },
-      { "<leader>th", "<cmd>CreateHorizontalTerminal<cr>", "Create horizontal" },
-      { "<leader>tv", "<cmd>CreateVerticalTerminal<cr>", "Create vertical" },
-      { "<leader>tf", "<cmd>CreateFloatTerminal<cr>", "Create float" },
-    })
+    vim.keymap.set({ "n", "t" }, "<leader>t<tab>", function()
+      Terminal:new({ direction = "tab", close_on_exit = true }):open()
+    end, { desc = "Create Tab" })
 
     function _G.set_terminal_keymaps()
       local opts = { buffer = 0 }

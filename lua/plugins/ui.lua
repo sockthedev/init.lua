@@ -222,22 +222,19 @@ return {
   -- Zen mode editing
   {
     "folke/zen-mode.nvim",
+    keys = {
+      {
+        "<leader>Z",
+        function()
+          require("zen-mode").toggle()
+        end,
+        desc = "Toggle Zen Mode",
+      },
+    },
     config = function()
       require("zen-mode").setup({
         window = {
           backdrop = 1,
-        },
-      })
-
-      local k = require("utils.keymaps")
-
-      k.set_keymaps("n", {
-        {
-          "<leader>Z",
-          function()
-            require("zen-mode").toggle()
-          end,
-          "Toggle Zen Mode",
         },
       })
     end,
