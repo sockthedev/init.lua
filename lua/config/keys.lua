@@ -1,3 +1,9 @@
+-- do not yank with x
+vim.keymap.set("n", "x", '"_x', { silent = true })
+
+-- select all
+vim.keymap.set("n", "<C-a>", "gg<S-v>G", { silent = true, desc = "Select all" })
+
 -- better up/down
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })

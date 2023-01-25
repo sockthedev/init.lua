@@ -107,22 +107,29 @@ vim.api.nvim_create_user_command("Format", function(params)
   end
 end, { desc = "Format", range = "%" })
 
-local function setup_diagnostics()
-  vim.diagnostic.config({
-    underline = true,
-    virtual_text = false,
-    signs = true,
-  })
+-- Show inline diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  underline = true,
+  update_in_insert = false,
+  virtual_text = { spacing = 4, prefix = "●" },
+  severity_sort = true,
+})
 
-  vim.schedule(function()
-    for _, severity in ipairs({ "Error", "Warn", "Info", "Hint" }) do
-      local hl_def = vim.api.nvim_get_hl_by_name("Diagnostic" .. severity, true)
-      vim.api.nvim_set_hl(0, "DiagnosticLineNr" .. severity, { fg = hl_def.foreground, bold = true })
-      vim.fn.sign_define("DiagnosticSign" .. severity, { numhl = "DiagnosticLineNr" .. severity })
-    end
-  end)
+-- Diagnostic symbols in the sign column (gutter)
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = "●",
+  },
+  update_in_insert = true,
+  float = {
+    source = "always", -- Or "if_many"
+  },
+})
 
-setup_diagnostics()
-
+-- Shows progress of the current LSP server in the bottom right hand corner
 require("fidget").setup()

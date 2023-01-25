@@ -14,6 +14,7 @@ cd init.lua
 
 My config is mostly a process of copying configuration from the following repositories;
 
+- https://github.com/craftzdog/dotfiles-public
 - https://github.com/LazyVim/LazyVim
 - https://github.com/MunifTanjim/dotfiles
 - https://github.com/adamelmore/dotfiles
