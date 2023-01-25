@@ -4,6 +4,8 @@ local mods = require("plugins.lsp.mods")
 ---@diagnostic disable-next-line: redundant-parameter
 null_ls.setup({
   sources = {
+    -- NOTE: we don't need prettierd or eslint_d in here as we are utilising
+    -- other plugins for those below
     null_ls.builtins.diagnostics.luacheck.with({
       condition = function(utils)
         return utils.root_has_file({ ".luacheckrc" })

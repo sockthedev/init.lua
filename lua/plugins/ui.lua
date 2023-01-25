@@ -43,15 +43,25 @@ return {
     end,
   },
 
+  -- icons
+  {
+    "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("nvim-web-devicons").setup({
+        -- your personnal icons can go here (to override)
+        -- DevIcon will be appended to `name`
+        override = {},
+        -- globally enable default icons (default to false)
+        -- will get overriden by `get_icons` option
+        default = true,
+      })
+    end,
+  },
+
   -- file explorer
   {
     "nvim-tree/nvim-tree.lua",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
     config = function()
-      local u = require("utils.keymaps")
-
       -- recommended settings from nvim-tree documentation
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
@@ -283,9 +293,11 @@ return {
 
   -- displays colors inline (hex, etc)
   {
-    "NvChad/nvim-colorizer.lua",
+    "norcalli/nvim-colorizer.lua",
     config = function()
-      require("colorizer").setup()
+      require("colorizer").setup({
+        "*",
+      })
     end,
   },
 }

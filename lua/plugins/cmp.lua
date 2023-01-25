@@ -20,22 +20,22 @@ return {
       local cmp = require("cmp")
       local lspkind = require("lspkind")
 
-      -- Configure lsp symbol for Copilot
-      lspkind.init({
-        symbol_map = {
-          Copilot = "",
-        },
-      })
-      vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
-
-      -- Utility to help with Copilot tab completions
-      -- see https://github.com/zbirenbaum/copilot-cmp
-      local has_words_before = function()
-        if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
-          return false
+      local function formatForTailwindCSS(entry, vim_item)
+        if vim_item.kind == "Color" and entry.completion_item.documentation then
+          local _, _, r, g, b = string.find(entry.completion_item.documentation, "^rgb%((%d+), (%d+), (%d+)")
+          if r then
+            local color = string.format("%02x", r) .. string.format("%02x", g) .. string.format("%02x", b)
+            local group = "Tw_" .. color
+            if vim.fn.hlID(group) < 1 then
+              vim.api.nvim_set_hl(0, group, { fg = "#" .. color })
+            end
+            vim_item.kind = "●"
+            vim_item.kind_hl_group = group
+            return vim_item
+          end
         end
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+        vim_item.kind = lspkind.symbolic(vim_item.kind) and lspkind.symbolic(vim_item.kind) or vim_item.kind
+        return vim_item
       end
 
       cmp.setup({
@@ -47,51 +47,22 @@ return {
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<C-p>"] = cmp.mapping.select_prev_item(),
+          ---@diagnostic disable-next-line: missing-parameter
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace, -- important for https://github.com/zbirenbaum/copilot-cmp
             select = true, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
           }),
-          -- This helps with Copilot tab completions
-          ["<Tab>"] = vim.schedule_wrap(function(fallback)
-            if cmp.visible() and has_words_before() then
-              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-            else
-              fallback()
-            end
-          end),
         },
         -- the order of sources matters
         sources = cmp.config.sources({
-          { name = "copilot", group_index = 2 },
           { name = "nvim_lsp", group_index = 2 }, -- lsp
           { name = "path", group_index = 2 }, -- file system paths
           { name = "luasnip", group_index = 2 }, -- snippets
           { name = "nvim_lua", group_index = 2 },
           { name = "buffer", group_index = 2 }, -- text within current buffer
         }),
-        -- Recommended sorting adjustment to account for Copilot
-        -- See https://github.com/zbirenbaum/copilot-cmp#comparators
-        sorting = {
-          priority_weight = 2,
-          comparators = {
-            require("copilot_cmp.comparators").prioritize,
-            require("copilot_cmp.comparators").score,
-
-            -- Below is the default comparitor list and order for nvim-cmp
-            cmp.config.compare.offset,
-            -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
-            cmp.config.compare.exact,
-            cmp.config.compare.score,
-            cmp.config.compare.recently_used,
-            cmp.config.compare.locality,
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
-          },
-        },
         snippet = {
           expand = function(args)
             require("luasnip").lsp_expand(args.body)
@@ -106,14 +77,23 @@ return {
               path = "[path]",
               luasnip = "[snip]",
             },
+            before = function(entry, vim_item)
+              vim_item = formatForTailwindCSS(entry, vim_item)
+              return vim_item
+            end,
           }),
         },
-        experimental = {
-          ghost_text = {
-            hl_group = "LspCodeLens",
-          },
-        },
+        -- experimental = {
+        --   ghost_text = {
+        --     hl_group = "LspCodeLens",
+        --   },
+        -- },
       })
+
+      vim.cmd([[
+        set completeopt=menuone,noinsert,noselect
+        highlight! default link CmpItemKind CmpItemMenuDefault
+      ]])
     end,
   },
 
@@ -154,21 +134,25 @@ return {
     event = "VimEnter",
     config = function()
       require("copilot").setup({
-        -- It is recommended to disable copilot.lua's suggestion and panel
-        -- modules, as they can interfere with completions properly appearing
-        -- in copilot-cmp
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      })
-    end,
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    config = function()
-      require("copilot_cmp").setup({
-        formatters = {
-          -- experimental method for attempting to remove extraneous characters such as extra ending parenthesis
-          insert_text = require("copilot_cmp.format").remove_existing,
+        suggestion = {
+          auto_trigger = true,
+          keymap = {
+            accept_word = "<M-Right>",
+            accept_line = "<M-Down>",
+            prev = "<M-[>",
+            next = "<M-]>",
+            dismiss = "<C-]>",
+          },
+        },
+        panel = {
+          auto_refresh = false,
+          keymap = {
+            accept = "<CR>",
+            jump_prev = "<M-[>",
+            jump_next = "<M-]>",
+            refresh = "gr",
+            open = "<M-CR>",
+          },
         },
       })
     end,

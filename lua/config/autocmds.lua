@@ -1,12 +1,13 @@
 -- Check if we need to reload the file when it changed
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
 
--- Highlight on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
+-- highlight yanked text for 200ms using the "Visual" highlight group
+vim.cmd([[
+  augroup highlight_yank
+  autocmd!
+  au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=100})
+  augroup END
+]])
 
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
