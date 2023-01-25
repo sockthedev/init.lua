@@ -9,10 +9,8 @@ return {
           local minWidth = 50
           local quarterWindow = vim.o.columns / 3
           if quarterWindow > minWidth then
-            print(string.format("using calculated %s", quarterWindow))
             return quarterWindow
           else
-            print(string.format("using default %s", quarterWindow))
             return minWidth
           end
         else
