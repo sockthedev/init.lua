@@ -1,13 +1,24 @@
 return {
+
   -- nord theme
   {
     "shaunsingh/nord.nvim",
     name = "nord",
-    priorty = 1,
+    priority = 1,
     config = function()
       vim.cmd.colorscheme("nord")
     end,
   },
+
+  -- moonlight theme
+  -- {
+  --   "shaunsingh/moonlight.nvim",
+  --   -- name = "moonlight",
+  --   priority = 1,
+  --   config = function()
+  --     vim.cmd.colorscheme("moonlight")
+  --   end,
+  -- },
 
   -- nightfox theme
   -- {
@@ -25,6 +36,14 @@ return {
   --   opts = { style = "moon" },
   --   config = function()
   --     vim.cmd.colorscheme("tokyonight-moon")
+  --     -- Fixes colorscheme setting for some plugins
+  --     vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+  --       callback = function()
+  --         vim.schedule(function()
+  --           vim.cmd.colorscheme("tokyonight-moon")
+  --         end)
+  --       end,
+  --     })
   --   end,
   -- },
 }

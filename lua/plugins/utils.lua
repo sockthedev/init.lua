@@ -138,6 +138,7 @@ local plugins = {
         { opts.mappings.replace, desc = "Replace surrounding" },
         { opts.mappings.update_n_lines, desc = "Update `MiniSurround.config.n_lines`" },
       }
+      ---@diagnostic disable-next-line: missing-parameter
       return vim.list_extend(mappings, keys)
     end,
     opts = {
@@ -163,6 +164,14 @@ local plugins = {
     event = "VeryLazy",
     config = function(_, opts)
       require("mini.pairs").setup(opts)
+    end,
+  },
+
+  -- auto tags
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require("nvim-ts-autotag").setup()
     end,
   },
 

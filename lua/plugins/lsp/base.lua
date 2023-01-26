@@ -27,7 +27,6 @@ local function default_on_attach(client, bufnr)
   mods.setup_basic_keymap(bufnr)
   mods.setup_format_keymap(client, bufnr)
   mods.setup_format_on_save(client, bufnr)
-  mods.setup_document_highlight(client, bufnr)
 end
 
 local function make_config()

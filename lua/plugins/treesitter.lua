@@ -1,5 +1,5 @@
 return {
-  -- treesitter core
+  -- treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     version = false, -- last release is way too old and doesn't work on Windows
@@ -13,6 +13,9 @@ return {
       local treesitter_configs = require("nvim-treesitter.configs")
 
       treesitter_configs.setup({
+        autotag = {
+          enable = true,
+        },
         ensure_installed = {
           "astro",
           "bash",
@@ -42,9 +45,11 @@ return {
         },
         highlight = {
           enable = true,
+          disable = {},
         },
         indent = {
           enable = true,
+          disable = {},
         },
         incremental_selection = {
           enable = true,
@@ -56,6 +61,9 @@ return {
           },
         },
       })
+
+      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+      parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
     end,
   },
 
