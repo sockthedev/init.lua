@@ -81,5 +81,18 @@ return {
         },
       },
     },
+    pickers = {
+      buffers = {
+        sort_lastused = true,
+        mappings = {
+          i = {
+            ["<c-d>"] = "delete_buffer",
+          },
+          n = {
+            ["<c-d>"] = "delete_buffer",
+          },
+        },
+      },
+    },
   },
 }

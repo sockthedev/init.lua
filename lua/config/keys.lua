@@ -31,8 +31,12 @@ vim.keymap.set("v", ">", ">gv")
 -- lazy
 vim.keymap.set("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
 
+-- NOTE: In the end I used the Karabiner-Elements app to remap the capslock
+-- key to escape when pressed once, and to left ctrl when held. This works
+-- really well!
+-- https://ke-complex-modifications.pqrs.org/?q=caps%20lock
 -- Exit insert mode
-vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit INSERT mode" })
+-- vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit INSERT mode" })
 
 -- Clear search with <esc>
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })

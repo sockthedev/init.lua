@@ -1,22 +1,29 @@
 return {
-
-  -- nord theme
+  -- moonlight theme
   {
-    "shaunsingh/nord.nvim",
-    name = "nord",
+    "shaunsingh/moonlight.nvim",
     priority = 1,
+    init = function()
+      vim.g.moonlight_italic_comments = true
+      vim.g.moonlight_italic_keywords = false
+      vim.g.moonlight_italic_functions = false
+      vim.g.moonlight_italic_variables = false
+      vim.g.moonlight_contrast = false
+      vim.g.moonlight_borders = true
+      vim.g.moonlight_disable_background = false
+    end,
     config = function()
-      vim.cmd.colorscheme("nord")
+      vim.cmd.colorscheme("moonlight")
     end,
   },
 
-  -- moonlight theme
+  -- nord theme
   -- {
-  --   "shaunsingh/moonlight.nvim",
-  --   -- name = "moonlight",
+  --   "shaunsingh/nord.nvim",
+  --   name = "nord",
   --   priority = 1,
   --   config = function()
-  --     vim.cmd.colorscheme("moonlight")
+  --     vim.cmd.colorscheme("nord")
   --   end,
   -- },
 
