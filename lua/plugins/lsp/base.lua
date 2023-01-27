@@ -90,6 +90,16 @@ local function setup_server(server)
     return
   end
 
+  if server.name == "tailwindcss" then
+    config.on_attach = function(client, bufnr)
+      require("tailwind-highlight").setup(client, bufnr, {
+        single_column = false,
+        mode = "background",
+        debounce = 200,
+      })
+    end
+  end
+
   server.setup(config)
 end
 

@@ -245,4 +245,9 @@ return {
       })
     end,
   },
+
+  -- tailwind color highlight
+  {
+    "princejoogie/tailwind-highlight.nvim",
+  },
 }
