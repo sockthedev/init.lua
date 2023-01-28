@@ -1,18 +1,18 @@
 local dap = require("dap")
 
 -- https://github.com/microsoft/vscode-node-debug2
-dap.adapters.node2 = {
-  type = "executable",
-  command = "node",
-  args = { vim.fn.stdpath("data") .. "/mason/packages/node-debug2-adapter/out/src/nodeDebug.js" },
-}
+-- dap.adapters.node2 = {
+--   type = "executable",
+--   command = "node",
+--   args = { vim.fn.stdpath("data") .. "/mason/packages/node-debug2-adapter/out/src/nodeDebug.js" },
+-- }
 
 -- https://github.com/Microsoft/vscode-chrome-debug
-dap.adapters.chrome = {
-  type = "executable",
-  command = "node",
-  args = { vim.fn.stdpath("data") .. "/mason/packages/chrome-debug-adapter/out/src/chromeDebug.js" },
-}
+-- dap.adapters.chrome = {
+--   type = "executable",
+--   command = "node",
+--   args = { vim.fn.stdpath("data") .. "/mason/packages/chrome-debug-adapter/out/src/chromeDebug.js" },
+-- }
 
 dap.configurations.javascript = {
   {

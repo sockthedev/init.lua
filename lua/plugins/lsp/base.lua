@@ -13,6 +13,7 @@ mason_lsp.setup({
     "graphql",
     "html",
     "jsonls",
+    "rust_analyzer",
     "sumneko_lua",
     "tailwindcss",
     "tsserver",

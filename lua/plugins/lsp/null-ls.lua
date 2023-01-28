@@ -23,9 +23,9 @@ null_ls.setup({
 
 require("mason-null-ls").setup({
   ensure_installed = {
-    "stylua",
     "eslint_d",
     "prettierd",
+    "stylua",
   },
 })
 

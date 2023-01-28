@@ -231,6 +231,15 @@ return {
       require("zen-mode").setup({
         window = {
           backdrop = 1,
+          options = {
+            signcolumn = "no",
+            list = false,
+            foldcolumn = "0",
+            cursorline = false,
+          },
+        },
+        plugins = {
+          gitsigns = { enabled = false },
         },
       })
     end,

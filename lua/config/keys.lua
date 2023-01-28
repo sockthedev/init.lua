@@ -31,17 +31,11 @@ vim.keymap.set("v", ">", ">gv")
 -- lazy
 vim.keymap.set("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
 
--- NOTE: In the end I used the Karabiner-Elements app to remap the capslock
--- key to escape when pressed once, and to left ctrl when held. This works
--- really well!
--- https://ke-complex-modifications.pqrs.org/?q=caps%20lock
--- Exit insert mode
--- vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit INSERT mode" })
-
 -- Clear search with <esc>
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+-- Use n to always search forward and N to always backward
 vim.keymap.set("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
 vim.keymap.set("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
 vim.keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
@@ -49,7 +43,7 @@ vim.keymap.set("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev se
 vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
--- Empty lines
+-- Insert empty lines
 vim.keymap.set("n", "<leader>O", "O<Esc>", { desc = "Insert empty line above" })
 vim.keymap.set("n", "<leader>o", "o<Esc>", { desc = "Insert empty line below" })
 

@@ -33,7 +33,7 @@ return {
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace, -- important for https://github.com/zbirenbaum/copilot-cmp
+            behavior = cmp.ConfirmBehavior.InsertEnter,
             select = true, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
           }),
         },
