@@ -69,11 +69,6 @@ return {
       -- change color for arrows in tree to light blue
       vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
 
-      local gheight = vim.api.nvim_list_uis()[1].height
-      local gwidth = vim.api.nvim_list_uis()[1].width
-      local width = 90
-      local height = math.floor(gheight * 0.9)
-
       -- configure nvim-tree
       require("nvim-tree").setup({
         sort_by = "case_sensitive",
@@ -89,18 +84,25 @@ return {
         view = {
           adaptive_size = false,
           hide_root_folder = true,
-          width = width,
-          height = height,
           float = {
             enable = true,
-            open_win_config = {
-              relative = "editor",
-              width = width,
-              height = height,
-              row = (gheight - height) * 0.4,
-              col = (gwidth - width) * 0.5,
-              border = "rounded",
-            },
+            -- We dynamically calculate the dimensions and position of the
+            -- float window;
+            open_win_config = function()
+              local gheight = vim.api.nvim_list_uis()[1].height
+              local gwidth = vim.api.nvim_list_uis()[1].width
+              local width = 90
+              local height = math.floor(gheight * 0.9)
+
+              return {
+                relative = "editor",
+                width = width,
+                height = height,
+                row = (gheight - height) * 0.4,
+                col = (gwidth - width) * 0.5,
+                border = "rounded",
+              }
+            end,
           },
         },
         actions = {
