@@ -3,6 +3,10 @@ local Util = require("utils")
 return {
   "nvim-telescope/telescope.nvim",
   cmd = "Telescope",
+  dependencies = {
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    "nvim-telescope/telescope-file-browser.nvim",
+  },
   version = false, -- telescope did only one release, so use HEAD for now
   keys = {
     { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
@@ -20,6 +24,14 @@ return {
       desc = "Find All Files",
     },
     { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+    {
+      "<leader>ft",
+      function()
+        require("telescope").extensions.file_browser.file_browser()
+      end,
+      desc = "File Tree",
+      noremap = true,
+    },
     -- git
     { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
     { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
@@ -58,6 +70,28 @@ return {
     },
   },
   opts = {
+    extensions = {
+      fzf = {
+        fuzzy = true, -- false will only do exact matching
+        override_generic_sorter = true, -- override the generic sorter
+        override_file_sorter = true, -- override the file sorter
+        case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+        -- the default case_mode is "smart_case"
+      },
+      file_browser = {
+        -- theme = "ivy",
+        -- disables netrw and use telescope-file-browser in its place
+        hijack_netrw = true,
+        -- mappings = {
+        --   ["i"] = {
+        --     -- your custom insert mode mappings
+        --   },
+        --   ["n"] = {
+        --     -- your custom normal mode mappings
+        --   },
+        -- },
+      },
+    },
     defaults = {
       prompt_prefix = " ",
       selection_caret = " ",
@@ -95,4 +129,8 @@ return {
       },
     },
   },
+  setup = function()
+    require("telescope").load_extension("fzf")
+    require("telescope").load_extension("file_browser")
+  end,
 }

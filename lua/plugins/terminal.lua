@@ -1,26 +1,34 @@
 return {
   "akinsho/toggleterm.nvim",
-  -- tag = "*",
-  config = function()
-    require("toggleterm").setup({
-      open_mapping = [[<c-\>]],
-      size = function(term)
-        if term.direction == "vertical" then
-          local minWidth = 50
-          local quarterWindow = vim.o.columns / 3
-          if quarterWindow > minWidth then
-            return quarterWindow
-          else
-            return minWidth
-          end
+  opts = {
+    size = function(term)
+      local gheight = vim.api.nvim_list_uis()[1].height
+      local gwidth = vim.api.nvim_list_uis()[1].width
+
+      if term.direction == "vertical" then
+        local minWidth = 70
+        local thirdWidth = math.floor(gwidth / 3)
+        if thirdWidth > minWidth then
+          return thirdWidth
         else
-          return 20
+          return minWidth
         end
-      end,
-      shade_terminals = false,
-      start_in_insert = false,
-      persist_mode = false,
-    })
+      else
+        local minHeight = 20
+        local thirdHeight = math.floor(gheight / 3)
+        if thirdHeight > minHeight then
+          return thirdHeight
+        else
+          return minHeight
+        end
+      end
+    end,
+    shade_terminals = false,
+    start_in_insert = true,
+    persist_mode = true,
+  },
+  config = function(_, opts)
+    require("toggleterm").setup(opts)
 
     local Terminal = require("toggleterm.terminal").Terminal
 
