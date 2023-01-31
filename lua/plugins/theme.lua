@@ -1,4 +1,13 @@
 return {
+  -- iceberg theme
+  -- {
+  --   "cocopon/iceberg.vim",
+  --   priority = 1,
+  --   config = function()
+  --     vim.cmd.colorscheme("iceberg")
+  --   end,
+  -- },
+
   -- moonlight theme
   {
     "shaunsingh/moonlight.nvim",

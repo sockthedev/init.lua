@@ -162,6 +162,23 @@ return {
     end,
   },
 
+  -- buffer tabs
+  {
+    "romgrk/barbar.nvim",
+    config = function()
+      require("bufferline").setup({
+        animation = false,
+        auto_hide = true,
+        closable = false,
+        clickable = false,
+        highlight_alternate = false,
+        highlight_inactive_file_icons = false,
+        highlight_visible = false,
+        icons = false,
+      })
+    end,
+  },
+
   -- status line
   {
     "nvim-lualine/lualine.nvim",

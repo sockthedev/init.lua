@@ -11,6 +11,9 @@ require("lspsaga").setup({
       quit = "q",
     },
   },
+  symbol_in_winbar = {
+    enable = false,
+  },
   ui = {
     border = "single",
     winblend = 10,
