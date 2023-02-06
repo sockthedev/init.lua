@@ -175,6 +175,7 @@ return {
         highlight_inactive_file_icons = false,
         highlight_visible = false,
         icons = false,
+        insert_at_end = true,
       })
     end,
   },
@@ -254,7 +255,7 @@ return {
             signcolumn = "no",
             list = false,
             foldcolumn = "0",
-            cursorline = false,
+            cursorline = true,
           },
         },
         plugins = {
@@ -277,5 +278,10 @@ return {
   -- tailwind color highlight
   {
     "princejoogie/tailwind-highlight.nvim",
+  },
+
+  -- nicer color column (80 char indicator)
+  {
+    "xiyaowong/virtcolumn.nvim",
   },
 }

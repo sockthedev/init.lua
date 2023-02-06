@@ -35,7 +35,7 @@ vim.opt.preserveindent = true -- preserve indent structure as much as possible
 vim.opt.pumblend = 10 -- popup blend
 vim.opt.pumheight = 10 -- pop up menu height
 vim.opt.relativenumber = true
-vim.opt.ruler = false
+vim.opt.ruler = false -- the line/col number is in our status line
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 vim.opt.scrolloff = 8 -- num lines to buffer scrolls by
 vim.opt.shell = "/bin/zsh"
@@ -64,7 +64,7 @@ vim.opt.updatetime = 200 -- faster completion (4000ms default)
 vim.opt.wildoptions = "pum"
 vim.opt.winblend = 0 -- windows are not transparent
 vim.opt.whichwrap:append("<,>,[,],h,l")
-vim.opt.wildignore:append("*/node_modules/*,*/.git/*,*/.cache/*,*/.DS_Store", "*/.sst/*")
+vim.opt.wildignore:append("*/node_modules/*,*/.git/*,*/.cache/*,*/.DS_Store,*/.sst/*")
 vim.opt.winminwidth = 5 -- minimum window width
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited

@@ -110,6 +110,7 @@ return {
         suggestion = {
           auto_trigger = true,
           keymap = {
+            accept = "<M-Up>",
             accept_word = "<M-Right>",
             accept_line = "<M-Down>",
             prev = "<M-[>",

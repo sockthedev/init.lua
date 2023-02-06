@@ -73,9 +73,12 @@ local plugins = {
 
   -- highlight/navigate uses of  word under cursor using LSP, Tree-sitter, or regex matching
   {
-    "RRethy/vim-illuminate",
+    "rrethy/vim-illuminate",
     event = "BufReadPost",
-    opts = { delay = 200 },
+    opts = {
+      delay = 200,
+      under_cursor = false, -- we don't want to highlight the word under cursor, only other instances
+    },
     config = function(_, opts)
       require("illuminate").configure(opts)
     end,
