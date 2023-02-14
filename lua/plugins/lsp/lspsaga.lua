@@ -16,7 +16,7 @@ require("lspsaga").setup({
   },
   ui = {
     border = "single",
-    winblend = 10,
+    -- winblend = 10,
   },
 })
 
