@@ -306,6 +306,11 @@ return {
           lsp_doc_border = false, -- add a border to hover docs and signature help
         },
       })
+
+      -- This removes a warning that is displayed when using noice with nvim-notify
+      require("notify").setup({
+        background_colour = "#000000",
+      })
     end,
   },
 }
