@@ -164,19 +164,23 @@ return {
 
   -- buffer tabs
   {
-    "romgrk/barbar.nvim",
+    "echasnovski/mini.tabline",
+    version = "*",
     config = function()
-      require("bufferline").setup({
-        animation = false,
-        auto_hide = true,
-        closable = false,
-        clickable = false,
-        highlight_alternate = false,
-        highlight_inactive_file_icons = false,
-        highlight_visible = false,
-        icons = false,
-        insert_at_end = true,
-      })
+      require("mini.tabline").setup()
+
+      vim.cmd([[
+        augroup tabline_hide
+        autocmd!
+        autocmd User AlphaReady set showtabline=0
+        augroup END
+      ]])
+      vim.cmd([[
+        augroup tabline_show
+        autocmd!
+        autocmd BufUnload <buffer> set showtabline=2
+        augroup END
+      ]])
     end,
   },
 
@@ -288,6 +292,11 @@ return {
       "rcarriga/nvim-notify",
     },
     config = function()
+      -- This removes a warning that is displayed when using noice with nvim-notify
+      require("notify").setup({
+        background_colour = "#000000",
+      })
+
       require("noice").setup({
         lsp = {
           -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -305,11 +314,6 @@ return {
           inc_rename = false, -- enables an input dialog for inc-rename.nvim
           lsp_doc_border = false, -- add a border to hover docs and signature help
         },
-      })
-
-      -- This removes a warning that is displayed when using noice with nvim-notify
-      require("notify").setup({
-        background_colour = "#000000",
       })
     end,
   },

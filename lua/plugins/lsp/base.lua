@@ -7,7 +7,6 @@ require("neodev").setup({})
 mason_lsp.setup({
   ensure_installed = {
     "astro",
-    "bashls",
     "cssls",
     "emmet_ls",
     "graphql",

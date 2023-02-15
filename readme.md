@@ -1,6 +1,6 @@
-# sockthedev's Neovim configuration
+# sockthedev's Neovim config
 
-Honestly, Neovim is the coolest shizzle I've played with for a long time. I can't believe how hard I've been bitten by this bug. This repository is my personal configuration for it.
+Neovim is so frikken fun. I can't believe how hard I've been bitten by this bug. This repository is my personal configuration for it.
 
 To install;
 
