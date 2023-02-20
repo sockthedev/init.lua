@@ -23,6 +23,7 @@ return {
       ["<leader><tab>"] = { name = "+tabs" },
       ["<leader>b"] = { name = "+buffer" },
       ["<leader>c"] = { name = "+code" },
+      ["<leader>cm"] = { name = "+markdown" },
       ["<leader>d"] = { name = "+dap" },
       ["<leader>f"] = { name = "+file/find" },
       ["<leader>g"] = { name = "+git" },

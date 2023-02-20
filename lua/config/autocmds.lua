@@ -63,3 +63,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end
   end,
 })
+
+-- Ensure files open with all folds open, not closed, which is the default
+vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
+  callback = function()
+    vim.cmd("normal! zR")
+  end,
+})
