@@ -287,14 +287,18 @@ return {
       "rcarriga/nvim-notify",
     },
     config = function()
-      -- This removes a warning that is displayed when using noice with nvim-notify
+      -- This removes a warning that is displayed when using noice with
+      -- nvim-notify
       require("notify").setup({
         background_colour = "#000000",
+        render = "minimal",
+        top_down = false,
       })
 
       require("noice").setup({
         lsp = {
-          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          -- override markdown rendering so that **cmp** and other plugins use
+          -- **Treesitter**
           override = {
             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
             ["vim.lsp.util.stylize_markdown"] = true,
@@ -311,5 +315,14 @@ return {
         },
       })
     end,
+  },
+
+  -- Only show cursorcolumn when going over the limit
+  {
+    "m4xshen/smartcolumn.nvim",
+    opts = {
+      disabled_filetypes = { "help", "dashboard", "packer", "markdown", "lazy", "alpha", "lua" },
+      limit_to_window = true,
+    },
   },
 }
