@@ -271,17 +271,12 @@ return {
 
   -- displays colors inline (hex, etc)
   {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup({
-        "*",
-      })
-    end,
-  },
-
-  -- tailwind color highlight
-  {
-    "princejoogie/tailwind-highlight.nvim",
+    "NvChad/nvim-colorizer.lua",
+    opts = {
+      user_default_options = {
+        tailwind = true,
+      },
+    },
   },
 
   -- noicer ui elements for messages, command line, and popup menu

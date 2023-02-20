@@ -10,7 +10,8 @@ return {
       "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP
       "hrsh7th/cmp-path", -- completions for file paths
       "onsails/lspkind-nvim", -- VSCode-like pictograms
-      { "saadparwaiz1/cmp_luasnip", dependencies = { "L3MON4D3/LuaSnip" } },
+      { "saadparwaiz1/cmp_luasnip",               dependencies = { "L3MON4D3/LuaSnip" } },
+      { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
     },
     event = "InsertEnter",
     init = function()
@@ -19,13 +20,22 @@ return {
     config = function()
       local cmp = require("cmp")
       local lspkind = require("lspkind")
+      local format_kinds = lspkind.cmp_format({
+        menu = {
+          buffer = "[buf]",
+          nvim_lsp = "[lsp]",
+          nvim_lua = "[nvim]",
+          path = "[path]",
+          luasnip = "[snip]",
+        },
+      })
 
       cmp.setup({
         completion = {
           completeopt = "menu,menuone,noinsert",
         },
         mapping = {
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-b>"] = cmp.mapping.scroll_docs( -4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -39,11 +49,12 @@ return {
         },
         -- the order of sources matters
         sources = cmp.config.sources({
-          { name = "nvim_lsp", group_index = 2 }, -- lsp
-          { name = "path", group_index = 2 }, -- file system paths
-          { name = "luasnip", group_index = 2 }, -- snippets
-          { name = "nvim_lua", group_index = 2 },
-          { name = "buffer", group_index = 2 }, -- text within current buffer
+          { name = "nvim_lsp" }, -- lsp
+          { name = "path" }, -- file system paths
+          { name = "luasnip" }, -- snippets
+          { name = "nvim_lua" },
+        }, {
+          { name = "buffer" }, -- text within current buffer
         }),
         snippet = {
           expand = function(args)
@@ -51,15 +62,10 @@ return {
           end,
         },
         formatting = {
-          format = lspkind.cmp_format({
-            menu = {
-              buffer = "[buf]",
-              nvim_lsp = "[lsp]",
-              nvim_lua = "[nvim]",
-              path = "[path]",
-              luasnip = "[snip]",
-            },
-          }),
+          format = function(entry, item)
+            format_kinds(entry, item)
+            return require("tailwindcss-colorizer-cmp").formatter(entry, item)
+          end,
         },
       })
 
@@ -92,8 +98,8 @@ return {
         end,
         expr = true, silent = true, mode = "i",
       },
-      { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
-      { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+      { "<tab>",   function() require("luasnip").jump(1) end,   mode = "s" },
+      { "<s-tab>", function() require("luasnip").jump( -1) end, mode = { "i", "s" } },
     },
   },
 
