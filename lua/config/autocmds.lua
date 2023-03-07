@@ -46,7 +46,18 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Enable wrapping on certain file types
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "gitcommit", "markdown", "html", "typescriptreact", "javascriptreact" },
+  pattern = {
+    "gitcommit",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "markdown",
+    "typescript",
+    "typescriptreact",
+    "yaml",
+    "yml",
+  },
   callback = function()
     vim.opt_local.wrap = true
   end,

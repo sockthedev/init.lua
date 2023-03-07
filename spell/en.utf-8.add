@@ -12,3 +12,5 @@ subgraphs
 subgraph
 JSON
 TypeScript
+deserialization
+monorepo

@@ -3,14 +3,12 @@ vim.g.maplocalleader = " "
 
 vim.opt.autoindent = true -- copy indent from current line when starting a new line
 vim.opt.autowrite = true -- enable auto write
--- vim.opt.background = "dark" -- tell vim what the background color looks like
 vim.opt.backup = false -- don't make a backup before overwriting a file
 vim.opt.backupskip = "/tmp/*,/private/tmp/*"
 vim.opt.backspace = "indent,eol,start" -- Allow backspace on indent, end of line or insert mode start position
 vim.opt.breakindent = true -- wrap lines with indent
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
--- vim.opt.colorcolumn = "80" -- show a line marker at this column number
 vim.opt.conceallevel = 0 -- can see ``` in markdown
 vim.opt.confirm = true -- confirm to save changes before exiting changed buffer
 vim.opt.cursorline = false -- highlight the current line
@@ -22,6 +20,7 @@ vim.opt.fillchars.eob = " "
 vim.opt.foldenable = false
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.formatoptions = "coq" -- auto formatting options
 vim.opt.guicursor = "i:block" -- block cursor on insert
 vim.opt.hidden = true -- enable modified buffers in background
 vim.opt.hlsearch = true -- highlight all matches on previous search pattern
@@ -71,6 +70,7 @@ vim.opt.wildignore:append("*/node_modules/*,*/.git/*,*/.cache/*,*/.DS_Store,*/.s
 vim.opt.winminwidth = 5 -- minimum window width
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+
 vim.scriptencoding = "utf-8"
 
 vim.g.copilot_assume_mapped = true
