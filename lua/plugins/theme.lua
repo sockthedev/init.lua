@@ -65,12 +65,4 @@ return {
   --     vim.cmd.colorscheme("nord")
   --   end,
   -- },
-
-  -- {
-  --   "EdenEast/nightfox.nvim",
-  --   priority = 1,
-  --   config = function()
-  --     vim.cmd.colorscheme("nordfox")
-  --   end,
-  -- },
 }
