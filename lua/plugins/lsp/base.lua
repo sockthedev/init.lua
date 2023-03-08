@@ -9,7 +9,7 @@ mason_lsp.setup({
     "astro",
     "cssls",
     "emmet_ls",
-    "graphql",
+    -- "graphql",
     "html",
     "jsonls",
     "lua_ls",

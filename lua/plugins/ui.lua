@@ -162,27 +162,30 @@ return {
     end,
   },
 
+  -- TODO:
+  -- - Trying out no buffer tabs for a while, let's see how it goes
+  --
   -- buffer tabs
-  {
-    "echasnovski/mini.tabline",
-    version = "*",
-    config = function()
-      require("mini.tabline").setup()
-
-      vim.cmd([[
-        augroup tabline_hide
-        autocmd!
-        autocmd User AlphaReady set showtabline=0
-        augroup END
-      ]])
-      vim.cmd([[
-        augroup tabline_show
-        autocmd!
-        autocmd BufUnload <buffer> set showtabline=2
-        augroup END
-      ]])
-    end,
-  },
+  -- {
+  --   "echasnovski/mini.tabline",
+  --   version = "*",
+  --   config = function()
+  --     require("mini.tabline").setup()
+  --
+  --     vim.cmd([[
+  --       augroup tabline_hide
+  --       autocmd!
+  --       autocmd User AlphaReady set showtabline=0
+  --       augroup END
+  --     ]])
+  --     vim.cmd([[
+  --       augroup tabline_show
+  --       autocmd!
+  --       autocmd BufUnload <buffer> set showtabline=2
+  --       augroup END
+  --     ]])
+  --   end,
+  -- },
 
   -- status line
   {
