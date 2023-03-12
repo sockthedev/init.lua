@@ -7,7 +7,7 @@ return {
     event = "BufReadPost",
     keys = {
       { "<c-space>", desc = "Increment selection" },
-      { "<bs>", desc = "Schrink selection", mode = "x" },
+      { "<bs>",      desc = "Schrink selection",  mode = "x" },
     },
     config = function()
       local treesitter_configs = require("nvim-treesitter.configs")

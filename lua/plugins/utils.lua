@@ -105,7 +105,7 @@ local plugins = {
     cmd = { "TroubleToggle", "Trouble" },
     opts = { use_diagnostic_signs = true },
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+      { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "Document Diagnostics (Trouble)" },
       { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
     },
   },
@@ -134,12 +134,12 @@ local plugins = {
       -- Populate the keys based on the user's options
       local opts = require("lazy.core.plugin").values(plugin, "opts", false)
       local mappings = {
-        { opts.mappings.add, desc = "Add surrounding", mode = { "n", "v" } },
-        { opts.mappings.delete, desc = "Delete surrounding" },
-        { opts.mappings.find, desc = "Find right surrounding" },
-        { opts.mappings.find_left, desc = "Find left surrounding" },
-        { opts.mappings.highlight, desc = "Highlight surrounding" },
-        { opts.mappings.replace, desc = "Replace surrounding" },
+        { opts.mappings.add,            desc = "Add surrounding",                     mode = { "n", "v" } },
+        { opts.mappings.delete,         desc = "Delete surrounding" },
+        { opts.mappings.find,           desc = "Find right surrounding" },
+        { opts.mappings.find_left,      desc = "Find left surrounding" },
+        { opts.mappings.highlight,      desc = "Highlight surrounding" },
+        { opts.mappings.replace,        desc = "Replace surrounding" },
         { opts.mappings.update_n_lines, desc = "Update `MiniSurround.config.n_lines`" },
       }
       ---@diagnostic disable-next-line: missing-parameter
@@ -147,12 +147,12 @@ local plugins = {
     end,
     opts = {
       mappings = {
-        add = "gza", -- Add surrounding in Normal and Visual modes
-        delete = "gzd", -- Delete surrounding
-        find = "gzf", -- Find surrounding (to the right)
-        find_left = "gzF", -- Find surrounding (to the left)
-        highlight = "gzh", -- Highlight surrounding
-        replace = "gzr", -- Replace surrounding
+        add = "gza",        -- Add surrounding in Normal and Visual modes
+        delete = "gzd",     -- Delete surrounding
+        find = "gzf",       -- Find surrounding (to the right)
+        find_left = "gzF",  -- Find surrounding (to the left)
+        highlight = "gzh",  -- Highlight surrounding
+        replace = "gzr",    -- Replace surrounding
         update_n_lines = "gzn", -- Update `n_lines`
       },
     },
@@ -184,7 +184,13 @@ local plugins = {
     "szw/vim-maximizer",
     keys = {
       { "<leader>z", "<CMD>MaximizerToggle<CR>", desc = "Maximize Window", silent = true },
-      { "<leader>z", "<CMD>MaximizerToggle<CR>gv", mode = "v", desc = "Maximize Window", silent = true },
+      {
+        "<leader>z",
+        "<CMD>MaximizerToggle<CR>gv",
+        mode = "v",
+        desc = "Maximize Window",
+        silent = true,
+      },
     },
     init = function()
       vim.g.maximizer_set_default_mapping = 0

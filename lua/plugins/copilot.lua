@@ -1,4 +1,3 @@
--- copilot
 return {
   "zbirenbaum/copilot.lua",
   dependencies = {

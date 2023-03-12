@@ -62,10 +62,10 @@ local plugins = {
       local k = require("utils.keymaps")
 
       k.set_keymaps("n", {
-        { "<leader>gdc", "<CMD>DiffviewFileHistory %<CR>", "File history" },
-        { "<leader>gdh", "<CMD>DiffviewFileHistory<CR>", "Branch history" },
-        { "<leader>gdx", "<CMD>DiffviewClose<CR>", "Diff" },
-        { "<leader>gdd", "<CMD>DiffviewOpen<CR>", "Current changes" },
+        { "<leader>gdc", "<CMD>DiffviewFileHistory %<CR>",           "File history" },
+        { "<leader>gdh", "<CMD>DiffviewFileHistory<CR>",             "Branch history" },
+        { "<leader>gdx", "<CMD>DiffviewClose<CR>",                   "Diff" },
+        { "<leader>gdd", "<CMD>DiffviewOpen<CR>",                    "Current changes" },
         { "<leader>gdm", "<CMD>DiffviewOpen origin/main...HEAD<CR>", "Diff to main" },
       })
     end,

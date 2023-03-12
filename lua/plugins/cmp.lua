@@ -81,18 +81,18 @@ return {
           end,
         },
         mapping = {
-              ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-              ["<C-f>"] = cmp.mapping.scroll_docs(4),
-              ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-              ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
           ---@diagnostic disable-next-line: missing-parameter
-              ["<C-Space>"] = cmp.mapping.complete(),
-              ["<C-e>"] = cmp.mapping.abort(),
-              ["<CR>"] = cmp.mapping.confirm({
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.InsertEnter,
             select = true, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
           }),
-              ["<S-CR>"] = cmp.mapping.confirm({
+          ["<S-CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
           }),
