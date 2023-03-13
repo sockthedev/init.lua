@@ -4,6 +4,10 @@ require("neodev").setup({})
 local mason_lsp = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 
+local format = require("plugins.lsp.utils.format")
+local setup_format_on_save = require("plugins.lsp.utils.setup-format-on-save")
+local setup_keymaps = require("plugins.lsp.utils.setup-keymaps")
+
 mason_lsp.setup({
   ensure_installed = {
     "astro",
@@ -20,33 +24,10 @@ mason_lsp.setup({
   },
 })
 
-local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
-local enable_format_on_save = function(_, bufnr)
-  vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    group = augroup_format,
-    buffer = bufnr,
-    callback = function()
-      vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 8000 })
-    end,
-  })
-end
-
 local function default_on_attach(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-  -- TODO: Remove this and use standard key mapping
-  local u = require("utils.keymaps")
-
-  local opts = { buffer = bufnr }
-
-  u.set_keymaps("n", {
-    { "gd", vim.lsp.buf.definition,                    "Goto Definition" },
-    { "gD", vim.lsp.buf.declaration,                   "Goto Declaration" },
-    { "gI", "<cmd>Telescope lsp_implementations<cr>",  "Goto Implementation" },
-    { "gt", "<cmd>Telescope lsp_type_definitions<cr>", "Goto Type Definition" },
-    { "gK", vim.lsp.buf.signature_help,                "Signature Help" },
-  }, opts)
+  setup_format_on_save(client, bufnr)
+  setup_keymaps(bufnr)
 end
 
 -- Set up completion using nvim_cmp with LSP source
@@ -95,21 +76,7 @@ lspconfig.jsonls.setup({
 lspconfig.lua_ls.setup({
   on_attach = function(client, bufnr)
     default_on_attach(client, bufnr)
-    enable_format_on_save(client, bufnr)
   end,
-  -- settings = {
-  -- 	Lua = {
-  -- 		diagnostics = {
-  -- 			-- Get the language server to recognize the `vim` global
-  -- 			globals = { "vim" },
-  -- 		},
-  -- 		workspace = {
-  -- 			-- Make the server aware of Neovim runtime files
-  -- 			library = vim.api.nvim_get_runtime_file("", true),
-  -- 			checkThirdParty = false,
-  -- 		},
-  -- 	},
-  -- },
   capabilities = capabilities,
 })
 
@@ -124,8 +91,6 @@ lspconfig.tailwindcss.setup({
 })
 
 lspconfig.tsserver.setup({
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-  cmd = { "typescript-language-server", "--stdio" },
   root_dir = require("lspconfig").util.root_pattern(".git"),
   settings = {
     typescript = {
@@ -153,7 +118,6 @@ lspconfig.tsserver.setup({
   },
   on_attach = function(client, bufnr)
     default_on_attach(client, bufnr)
-
     vim.api.nvim_buf_create_user_command(bufnr, "OI", function(opts)
       require("typescript").actions.organizeImports({ sync = opts.bang })
     end, { desc = "Organize Imports", bang = true })
@@ -173,9 +137,9 @@ lspconfig.yamlls.setup({
 
 vim.api.nvim_create_user_command("Format", function(params)
   if params.range > 0 then
-    vim.lsp.buf.format({ range = vim.lsp.util.make_given_range_params(), timeout = 8000 })
+    format({ range = vim.lsp.util.make_given_range_params(), timeout = 8000 })
   else
-    vim.lsp.buf.format({ bufnr = params.bufnr, timeout = 8000 })
+    format({ bufnr = params.bufnr, timeout = 8000 })
   end
 end, { desc = "Format", range = "%" })
 

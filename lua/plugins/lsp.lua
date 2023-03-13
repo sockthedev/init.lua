@@ -6,6 +6,7 @@ local plugins = {
       "folke/neodev.nvim",
       "hrsh7th/cmp-nvim-lsp",
       "jose-elias-alvarez/typescript.nvim",
+      "MunifTanjim/prettier.nvim",
       "onsails/lspkind-nvim",
       "j-hui/fidget.nvim",
       {
